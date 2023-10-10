@@ -1,0 +1,17 @@
+/*
+#ring-container {
+  z-index: -1;
+  transform-origin: center center;
+  transform: translate(0, 0) scale(.3);
+  transition: transform 0.8s ease;
+      
+}*/
+
+#au-control {
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+  position: relative;
+  bottom: 65px;
+
+}
