@@ -6,32 +6,42 @@
 	</head>
 <body>
 	
-<svg width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
 
-	  <path id="motionPath" d="M 2,50 A 50,50 0 0 1 98,50" fill="none" stroke="lightblue" stroke-width=".5" />
+	  <path id="motion-path" d="M 2,50 A 50,50 0 0 1 98,50" fill="none" stroke="lightblue" stroke-width=".5" />
 	  <!-- Define the image to be animated -->
-  <g transform="translate(-12, -12)">
-  <image id="movingImage" x="0" y="0" width="24" height="24" xlink:href="SVG/ring.svg" >
+	  <g id="ring-group" transform="translate(-12, -12)" >
+		  <image id="ring" x="0" y="0" width="24" height="24" xlink:href="SVG/ring.svg" >
 
-  <!-- Use animateMotion to move the image along the path -->
-  <animateMotion repeatCount="indefinite" dur="24s">
-    <mpath href="#motionPath" />
-  </animateMotion>
-  <animateTransform attributeName="transform" attributeType="XML" type="rotate" 
-	from="0 12 12" to="-240 12 12" begin="0s" dur="24s" repeatCount="indefinite"
-   />
-</image>
-</g>
+	  <!-- Use animateMotion to move the image along the path -->
+
+		  <animateMotion id="motion" repeatCount="indefinite" dur="24min">
+		    <mpath href="#motion-path" />
+		  </animateMotion>
+
+		  <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
+			from="0 12 12" to="-240 12 12" begin="0s" dur="24min" repeatCount="indefinite"
+		   />
+		</image>
+	</g>
 </svg>
 <figure id="au-control">
-  <audio controls 
+  <audio id="audio" controls 
   	src="MP3/Year_V2.mp3"
   	autoplay="true"
-  	loop="true" >
+  	loop="true" 
+  	onseeked="doSeek(event)"
+  	onplay="doPlay(event)"
+  	onpause="doPause(event)">
     
   </audio>
 </figure>
-
+<script>
+	 const media = document.getElementById('audio');
+	 if (media.paused){
+	 	document.getElementById('svg-container').pauseAnimations();
+	 }
+  </script>
 </body>
 
 
