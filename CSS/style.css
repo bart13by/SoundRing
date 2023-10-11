@@ -6,3 +6,19 @@
   bottom: 65px;
 
 }
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	opacity: 50%;
+	background-color: black;
+	color: white;
+	position: absolute;
+	z-index: 10;
+}
+.loaded {
+	display: none;
+
+}
