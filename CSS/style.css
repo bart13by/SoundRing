@@ -6,10 +6,7 @@
   bottom: 65px;
 
 }
-#ring-group {
-	position: absolute;
-	top: 100;
-}
+
 .loading {
 	display: flex;
 	justify-content: center;

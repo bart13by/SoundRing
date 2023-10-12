@@ -15,7 +15,7 @@
 	 
 	  <!-- Define the image to be animated -->
 	  <g id="ring-group" transform="translate(-12, -12)" >
-		  <image id="ring" width="24" height="24" xlink:href="SVG/ring.svg" >
+		  <image id="ring" width="24" height="24"  xlink:href="SVG/ring.svg" >
 
 		  <!-- Use animateMotion to move the image along the path -->
 		  <animateMotion id="motion" 
@@ -33,11 +33,25 @@
 
 		  <!-- Use animateTransform to rotate the image -->
 		  <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
-			from="0 12 12" to="-220 12 12" dur="24min" repeatCount="0" fill="freeze"
-			begin="audio.play"
+			from="37 12 12" to="-220 12 12" dur="24min" repeatCount="0" fill="freeze"
+			begin="0s"
 		   />
 		</image>
 	</g>
+	<polygon points="0,0 0,2 2,2" fill="salmon" transform="rotate(45) translate(-.6,-1.5)">
+		<animateMotion id="pointer-arc" 
+			  repeatCount="0" 
+			  dur="24min" 
+			  keyPoints="0.2;1"
+		      keyTimes="0;1"
+		      calcMode="linear" 
+		      fill="freeze"
+		      rotate="auto"
+		      begin="0s"
+		      >
+		    <mpath href="#arc" />
+	</polygon>
+	
 </svg>
 
 <figure id="au-control">
