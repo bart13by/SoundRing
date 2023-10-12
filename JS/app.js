@@ -16,6 +16,8 @@ function doSeek(e){
 
 function doLoaded(e){
 	const loadScreen = document.getElementById('loading');
-	//loadScreen.style.display = "none";
-	setTimeout(() => {loadScreen.className = "loaded"}, "1000");
+	setTimeout(() => {
+		console.log(e.target.readyState);
+		loadScreen.className = "loaded";
+	}, "1000");
 }
