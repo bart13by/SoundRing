@@ -11,28 +11,40 @@
 	
 <svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
 
-	  <path id="motion-path" d="M 2,50 A 50,50 0 0 1 98,50" fill="none" stroke="lightblue" stroke-width=".5" />
+	  <path id="arc" d="M 2,50 A 50,50 0 0 1 98,50" fill="none" stroke="lightblue" stroke-width=".5" />
+	 
 	  <!-- Define the image to be animated -->
 	  <g id="ring-group" transform="translate(-12, -12)" >
-		  <image id="ring" x="0" y="0" width="24" height="24" xlink:href="SVG/ring.svg" >
+		  <image id="ring" width="24" height="24" xlink:href="SVG/ring.svg" >
 
-	  <!-- Use animateMotion to move the image along the path -->
-
-		  <animateMotion id="motion" repeatCount="indefinite" dur="24min">
-		    <mpath href="#motion-path" />
+		  <!-- Use animateMotion to move the image along the path -->
+		  <animateMotion id="motion" 
+			  repeatCount="0" 
+			  dur="24min" 
+			  keyPoints="0.1;0.9"
+		      keyTimes="0;1"
+		      calcMode="linear" 
+		      fill="freeze"
+		      begin="0s"
+		      >
+		    <mpath href="#arc" />
+		    
 		  </animateMotion>
 
+		  <!-- Use animateTransform to rotate the image -->
 		  <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
-			from="0 12 12" to="-240 12 12" begin="0s" dur="24min" repeatCount="indefinite"
+			from="0 12 12" to="-220 12 12" dur="24min" repeatCount="0" fill="freeze"
+			begin="audio.play"
 		   />
 		</image>
 	</g>
 </svg>
+
 <figure id="au-control">
   <audio id="audio" controls 
   	src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
-  	autoplay="true"
-  	loop="true" 
+  	autoplay="false"
+  	loop="false" 
   	onseeked="doSeek(event)"
   	onplay="doPlay(event)"
   	onpause="doPause(event)"
@@ -41,11 +53,8 @@
   </audio>
 </figure>
 <script>
-	 const media = document.getElementById('audio');
-	 if (media.paused){
-	 	document.getElementById('svg-container').pauseAnimations();
-	 }
-  </script>
+	document.getElementById('svg-container').pauseAnimations();
+</script>
 </body>
 
 

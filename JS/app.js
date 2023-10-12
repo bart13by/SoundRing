@@ -19,5 +19,6 @@ function doLoaded(e){
 	setTimeout(() => {
 		console.log(e.target.readyState);
 		loadScreen.className = "loaded";
-	}, "1000");
+		//e.target.play();
+	}, "0");
 }
