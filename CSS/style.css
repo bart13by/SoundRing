@@ -1,4 +1,5 @@
-#au-control {
+
+#au-control { /* display props for our HTMLMediaElement  */
   display: flex;
   justify-content: center; /* Horizontally center the content */
   align-items: center; /* Vertically center the content */
@@ -7,7 +8,17 @@
 
 }
 
-.loading {
+#arc { /* Props for the arc followed by the wheel  */
+	stroke: lightblue;
+	fill: none;
+	stroke-width: .5;
+}
+
+#pointer { /* props for the pointer */
+	fill: salmon;
+}
+
+.loading { /* 'Load Screen' properties. */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -22,4 +33,12 @@
 .loaded {
 	display: none;
 
+}
+
+/* Helping Verbs */
+.hide {
+	display: none;
+}
+.show {
+	display: block;
 }

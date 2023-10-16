@@ -5,19 +5,43 @@
 		<script src="JS/app.js"></script>
 	</head>
 <body>
+	<!-- Display a loading screen until media is ready -->
 	<div id="loading" class="loading">
+
 		<h1>Content Loading</h1>
 	</div>
-	
-<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
 
-	  <path id="arc" d="M 2,50 A 50,50 0 0 1 98,50" fill="none" stroke="lightblue" stroke-width=".5" />
+	<!-- 
+	All(?) animations should be contained within the svg-container in order to keep them in the same coordinate system and on the same animation timeline
+	-->
+	<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+	  <!-- Define an eliptical arc for the Wheel to follow
+		M 2,50: 'move' to bottom left to start drawing
+		A 50,50: Follow an eliptical arc with radii 50,50 (hence a circle)
+		0 0 1: Follow the positive path of the elipse
+		98,50: End at the bottom right 
+
+	   -->
+	  <path id="arc" d="M 2,50 A 50,50 0 0 1 98,50"  />
 	 
-	  <!-- Define the image to be animated -->
-	  <g id="ring-group" transform="translate(-12, -12)" >
-		  <image id="ring" width="24" height="24"  xlink:href="SVG/ring.svg" >
+	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
+	  <g id="wheel-group" transform="translate(-12, -12)" >
+
+		 <!-- Hide the wheel until data is loaded. This is probably unneccessary since it does 
+		 	not solve the Safari bug -->	  	
+		  <image id="wheel" class="hide" width="24" height="24"  xlink:href="SVG/ring.svg" >
 
 		  <!-- Use animateMotion to move the image along the path -->
+		  <!-- Here's what the properties mean:
+		  	repeatCount -- How many times to repead the animation. change to 'indefinite' if we want to auto-loop
+		  	dur -- 24 minute duration to sync with audio
+		  	keyPoints -- start the animation a 10% (.1) and end at 90% (.9)
+		  	keyTimes -- time 0 corresponds to keypoint .1; time 1 to keyPoint .9
+		  	calcMode -- linear interpolation is the default
+		  	fill -- "Freeze" the animation when it is finished
+		  	begin -- start at second 0.
+
+		  -->
 		  <animateMotion id="motion" 
 			  repeatCount="0" 
 			  dur="24min" 
@@ -27,18 +51,24 @@
 		      fill="freeze"
 		      begin="0s"
 		      >
+		      <!-- reference to the 'arc' path we will follow -->
 		    <mpath href="#arc" />
 		    
 		  </animateMotion>
 
-		  <!-- Use animateTransform to rotate the image -->
+		  <!-- Use animateTransform to rotate the image. 
+		  	We rotate from 37º to -205º in order to get the start and end positions correct.
+		  -->
 		  <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
 			from="37 12 12" to="-205 12 12" dur="24min" repeatCount="0" fill="freeze"
 			begin="0s"
 		   />
 		</image>
 	</g>
-	<polygon points="0,0 0,2 2,2" fill="salmon" transform="rotate(45) translate(-.6,-1.5)">
+
+	<!-- use a polygon to make the marker. It's a bitch to position! -->
+	<polygon id="pointer" points="0,0 0,2 2,2" transform="rotate(45) translate(-.6,-1.5)">
+		<!-- animate the pointer along the same arc as the wheel -->
 		<animateMotion id="pointer-arc" 
 			  repeatCount="0" 
 			  dur="24min" 
@@ -54,11 +84,11 @@
 	
 </svg>
 
+<!-- The browser-default HTMLMediaElement for audio controls. Replace with custom -->
 <figure id="au-control">
   <audio id="audio" controls 
   	src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
-  	autoplay
-  	 
+  	autoplay	 
   	onseeked="doSeek(event)"
   	onplay="doPlay(event)"
   	onpause="doPause(event)"
