@@ -1,4 +1,23 @@
+body {
+	
+	animation:temp 1440s;
+}
 
+@keyframes temp {
+	0% {background-color: #D6D6E8; } /* December */
+	8.3% {background-color: #D6D6E8; } /* January */
+	16.6% {background-color: #D6D6E8; } /* February */
+	25% { background-color: #CEE0F3;} /* March */
+	34.3% { background-color: #CEE0F3; } /* April*/
+	42.6% { background-color: #FEF9E5 } /* May */
+	51% { background-color: #FEF9E5 } /* June */
+	59.3% { background-color: #FBE7D9 } /* July */
+	67.6% { background-color: #FBE7D9 } /* August */
+	76% { background-color: #FEF9E5 } /* September */
+	84.3% { background-color: #E4F1ED } /* October */
+	92.6% { background-color: #CEE0F3; } /* November */
+	100% { background-color: #D6D6E8; } /* December */
+}
 #au-control { /* display props for our HTMLMediaElement  */
   display: flex;
   justify-content: center; /* Horizontally center the content */
