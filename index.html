@@ -15,6 +15,10 @@
 	All(?) animations should be contained within the svg-container in order to keep them in the same coordinate system and on the same animation timeline
 	-->
 	<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+		<!-- 
+			#bg-rect is what we will bind the wind properties to
+		-->
+		<rect id="bg-rect" x="0" y="0" width="100%" height="100%" style="filter: url(#noise1); z-index: -1;" />
 	  <!-- Define an eliptical arc for the Wheel to follow
 		M 2,50: 'move' to bottom left to start drawing
 		A 50,50: Follow an eliptical arc with radii 50,50 (hence a circle)
@@ -81,7 +85,59 @@
 		      >
 		    <mpath href="#arc" />
 	</polygon>
-	
+	  <filter id="noise1" x="0" y="0" width="100%" height="100%">
+    <feTurbulence id="wind" type="fractalNoise" baseFrequency="0.02 0.1" numOctaves="5" result="noise" />
+    <feDiffuseLighting id='light' in='noise' lighting-color='white' surfaceScale='3'>
+            <feDistantLight id="light-angle" azimuth='45' elevation='60' />
+    </feDiffuseLighting>
+    
+    
+    <animate xlink:href="#wind" attributeName="baseFrequency" dur="20s" 
+        values="0.01 0.03; 
+                0.002  0.034;
+                
+                
+
+                0.01 0.033; 
+                0.005  0.03;
+                
+                "
+         keyTimes="0;.5; 
+				          .501;1
+         "
+         
+                
+        repeatCount="indefinite" />
+        <!-- values="0.01 0.05; 
+                0.0071  0.03" -->
+    <animate xlink:href="#light" attributeName="surfaceScale" dur="10s" values=".5; 4; 5; .5"
+					   keyTimes="0; .2; .8; 1"
+             repeatCount="indefinite" />
+    <animate xlink:href="#light" attributeName="lighting-color" dur="24min" 
+        values="#D6D6E8; 
+        #D6D6E8; 
+        #D6D6E8; 
+        #CEE0F3; 
+        #CEE0F3; 
+        #FEF9E5; 
+        #FEF9E5; 
+        #FBE7D9; 
+        #FBE7D9; 
+        #FEF9E5; 
+        #E4F1ED; 
+        #CEE0F3; 
+        #D6D6E8;"
+    />
+    
+
+    
+  </filter>
+  
+
+  
+
+
+
 </svg>
 
 <!-- The browser-default HTMLMediaElement for audio controls. Replace with custom -->

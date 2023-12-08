@@ -1,6 +1,6 @@
 body {
 	
-	animation:temp 1440s;
+/*	animation:temp 1440s;*/
 }
 
 @keyframes temp {
@@ -35,6 +35,9 @@ body {
 
 #pointer { /* props for the pointer */
 	fill: salmon;
+}
+#bg-rect {
+	z-index: -1;
 }
 
 .loading { /* 'Load Screen' properties. */
