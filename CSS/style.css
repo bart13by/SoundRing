@@ -3,6 +3,10 @@ body {
 /*	animation:temp 1440s;*/
 }
 
+circle {
+	z-index: 3;
+}
+
 @keyframes temp {
 	0% {background-color: #D6D6E8; } /* December */
 	8.3% {background-color: #D6D6E8; } /* January */
