@@ -66,11 +66,41 @@ circle {
   position: absolute;
   display: inline-block;
   color: #881177;
-  border-bottom: 1px dotted black;
+  
+  
 }
+.poem-ms .marker{
+	color: #881177;
+	font-size: larger;
+	font-weight: bolder;
+}
+.size-XS{
+	font-size: xx-small;
+}
+.size-S{
+	font-size: small;
+}
+.size-M{
+	font-size: medium;
+}
+.size-L{
+	font-size: large;
+}
+.size-XL{
+	font-size: xx-large;
+}
+
+.bird-data{
+	font-family: "Eagle Lake", sans-serif;
+}
+.appearance-Uncommon { color:#847653; }
+.appearance-Common { color:#544832; }
+.appearance-Rare { color: #D7D1C4; }
 
 .tooltip .tooltiptext {
   visibility: hidden;
+  font-family: sans-serif;
+  font-weight: normal;
   width: 200px;
   background-color: black;
   color: #fff;
