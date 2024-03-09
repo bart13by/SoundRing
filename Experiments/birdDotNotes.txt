@@ -1,0 +1,67 @@
+"15": {
+    "id": 2856,
+    "universalSpeciesId": "17",
+    "name": "Mallard",
+    "presence": "3, 4, 5; 8, 9, 10, 11, 12",
+    "arrival": "3; 8",
+    "departure": "5; 12",
+    "bodymass": "1246",
+    "appearance": "Rare",
+    "migratoryStatus": "departing"
+  }
+
+  "6":{
+  "id":2847,
+  "universalSpeciesId":"8",
+  "name":"Rough-legged Hawk",
+  "presence":"11, 12, 1, 2, 3",
+  "arrival":"11",
+  "departure":"3",
+  "bodymass":"847",
+  "appearance":"Common",
+  "migratoryStatus":null
+  }
+
+  name="Rough-legged Hawk" 
+  width="12.648869490237534" 
+  height="12.648869490237534" 
+  id="2847" 
+  cx="38.52996463268127" 
+  cy="271.5024888699821" 
+  fill="#544B32" 
+
+<circle id="2847" 
+  cx="38.52996463268127" 
+  cy="271.5024888699821" 
+  fill="#544B32" 
+  r="12.648869490237534" />
+
+Fill: 
+{Common: #544B32,
+Uncommon: #847653,
+Rare: #D7D1C4,
+}
+
+
+CanvasH = 50
+CanvasW = 100
+Fill[appearance]
+r=bodymass/500
+
+CX: 
+    // Arriving on the left, departing on the right; figure out how we want to shift from month to month
+
+    migratorystatus: 
+        arriving:
+            X = (2 + radius) + random shift
+        departing: 
+            X = (98 - radius) - random shift
+        null:
+            if arrival and departure == null:
+                random ((5 + r), (95 - r))
+            else:
+                X = (98 / number of months till departure) + random shift
+
+
+CY: If arrival and departure is null, bird is non-migratory; hence, "inside" the arch. 
+

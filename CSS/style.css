@@ -74,6 +74,7 @@ circle {
 	font-size: larger;
 	font-weight: bolder;
 }
+/*
 .size-XS{
 	font-size: xx-small;
 }
@@ -89,14 +90,36 @@ circle {
 .size-XL{
 	font-size: xx-large;
 }
+*/
 
-.bird-data{
-	font-family: "Eagle Lake", sans-serif;
+.bird-data {
+	visibility: hidden;
+	display: none;
 }
+.residence-Resident {
+	/*visibility: visible;*/
+}
+ .size-XS img {
+	width: 20;
+}
+ .size-S img {
+	width: 25;
+}
+ .size-M img {
+	width: 30;
+}
+ .size-L img {
+	width: 35;
+}
+ .size-XL img {
+	width: 40;
+}
+
+/*
 .appearance-Uncommon { color:#847653; }
 .appearance-Common { color:#544832; }
 .appearance-Rare { color: #D7D1C4; }
-
+*/
 .tooltip .tooltiptext {
   visibility: hidden;
   font-family: sans-serif;

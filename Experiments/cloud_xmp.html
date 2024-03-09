@@ -2,12 +2,28 @@
 <head>
 	<style>
 body {
+  animation: temp 24s;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(0deg, #62a0d8 0%, #2178d1 50%, #085cb3 100%);
+  /* background: linear-gradient(0deg, #62a0d8 0%, #2178d1 50%, #085cb3 100%); */
   /*background: lightgray;*/
   padding: 1%;
   overflow: hidden;
+}
+@keyframes temp {
+  0% {background-color: #D6D6E8; } /* December */
+  8.3% {background-color: #D6D6E8; } /* January */
+  16.6% {background-color: #D6D6E8; } /* February */
+  25% { background-color: #CEE0F3;} /* March */
+  34.3% { background-color: #CEE0F3; } /* April*/
+  42.6% { background-color: #FEF9E5 } /* May */
+  51% { background-color: #FEF9E5 } /* June */
+  59.3% { background-color: #FBE7D9 } /* July */
+  67.6% { background-color: #FBE7D9 } /* August */
+  76% { background-color: #FEF9E5 } /* September */
+  84.3% { background-color: #E4F1ED } /* October */
+  92.6% { background-color: #CEE0F3; } /* November */
+  100% { background-color: #D6D6E8; } /* December */
 }
 .cloud {
   width: 600px;
@@ -79,6 +95,22 @@ body {
                       seed="8517"/>
             <feDisplacementMap  in="SourceGraphic" scale="120" />
     </filter>
+
+    <animate xlink:href="body" attributeName="background" dur="24s" 
+        values="#D6D6E8; 
+        #D6D6E8; 
+        #D6D6E8; 
+        #CEE0F3; 
+        #CEE0F3; 
+        #FEF9E5; 
+        #FEF9E5; 
+        #FBE7D9; 
+        #FBE7D9; 
+        #FEF9E5; 
+        #E4F1ED; 
+        #CEE0F3; 
+        #D6D6E8;"
+    />
 </svg>
     <script>
 
