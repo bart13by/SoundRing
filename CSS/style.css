@@ -122,10 +122,11 @@ circle {
 */
 .tooltip .tooltiptext {
   visibility: hidden;
-  font-family: sans-serif;
+  font-family: "Cormorant Infant", sans-serif;
   font-weight: normal;
-  width: 200px;
-  background-color: black;
+  width: 300px;
+  background-color: #222222;
+  opacity: 60%;
   color: #fff;
   text-align: center;
   border-radius: 6px;
@@ -136,7 +137,9 @@ circle {
   left: 50%;
   margin-left: -100px;
 }
-
+.scientificName {
+	font-style: italic;
+}
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;

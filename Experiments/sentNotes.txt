@@ -1,0 +1,14 @@
+Rule for "sent" (above the arch):
+
+|50 - x| >= 30: Max == 45 (x <=20 OR >= 80)
+30 > |50 - x| > 15: Max == 30 (20 < x < 35 OR 65 > x > 80) 
+0 <= |50 - x| <= 15: max == 25 ()
+
+|50 - x| == 30: y max = 45 // x is 20 or 80
+|50 - x| == 15: y max = 30 // x is 35 or 65
+|50 - x| == 0:  y max = 25 // x is 50
+
+
+if (Math.abs(50, x) <= 15) { y = getRandom(5, 25) }
+else if (Math.abs(50, x) <= 30) { y = getRandom(5, 30) }
+else { y = getRandom(5, 45) }

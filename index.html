@@ -1,7 +1,11 @@
 <!-- index.html -->
 <html>
 	<head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Eagle Lake">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+    
 		<link rel="stylesheet" href="CSS/style.css" />
 		<script src="JS/app.js"></script>
     <Script src="JS/birdApp.js"></Script>
@@ -94,18 +98,15 @@
 		    <mpath href="#arc" />
 	</polygon>
 	  <filter id="noise1" x="0" y="0" width="100%" height="100%">
-    <feTurbulence id="wind" type="fractalNoise" baseFrequency="0.02 0.1" numOctaves="5" result="noise" />
+    <!feTurbulence id="wind" type="fractalNoise" baseFrequency="0.02 0.1" numOctaves="5" result="noise" />
     <feDiffuseLighting id='light' in='noise' lighting-color='white' surfaceScale='3'>
             <feDistantLight id="light-angle" azimuth='45' elevation='60' />
     </feDiffuseLighting>
     
     
-    <animate xlink:href="#wind" attributeName="baseFrequency" dur="20s" 
+    <!animate xlink:href="#wind" attributeName="baseFrequency" dur="20s" 
         values="0.01 0.03; 
                 0.002  0.034;
-                
-                
-
                 0.01 0.033; 
                 0.005  0.03;
                 
@@ -118,7 +119,7 @@
         repeatCount="indefinite" />
         <!-- values="0.01 0.05; 
                 0.0071  0.03" -->
-    <animate xlink:href="#light" attributeName="surfaceScale" dur="10s" values=".5; 4; 5; .5"
+    <!animate xlink:href="#light" attributeName="surfaceScale" dur="10s" values=".5; 4; 5; .5"
 					   keyTimes="0; .2; .8; 1"
              repeatCount="indefinite" />
     <animate xlink:href="#light" attributeName="lighting-color" dur="24min" 
@@ -147,6 +148,7 @@
   <audio id="audio" controls 
   	src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
   	autoplay	 
+    onseeking="doSeeking(event)"
   	onseeked="doSeek(event)"
   	onplay="doPlay(event)"
   	onpause="doPause(event)"
