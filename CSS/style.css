@@ -138,7 +138,7 @@ circle {
   z-index: 1;
   top: 150%;
   left: 50%;
-  margin-left: -100px;
+  margin-left: -150px;
 }
 .scientificName {
 	font-style: italic;

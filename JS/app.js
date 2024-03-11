@@ -5,6 +5,7 @@ function doPause(e){
 	/*
 	When the audio pauses, pause the animations 
 	*/
+	RUNTIME.audio_playing = false;
 	document.getElementById('svg-container').pauseAnimations();
 	pauseApp();
 }
@@ -13,8 +14,10 @@ function doPlay(e){
 	/*
 	When the audio plays, play the animations 
 	*/
+	RUNTIME.audio_playing = true;
 	document.getElementById('svg-container').unpauseAnimations();
 	resumeApp();
+
 	
 	
 }
@@ -51,7 +54,7 @@ function doLoaded(e){
 		// Ring starts hidden, but that didn't fix the bug in Safari :-(
 		document.getElementById('wheel').style.display = 'flex';
 		
-		runBirdApp();
+		
 		// We may need to force-trigger the play event to make sure the animation starts. 
 		e.target.play();
 
