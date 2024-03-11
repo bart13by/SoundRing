@@ -99,6 +99,9 @@ circle {
 .residence-Resident {
 	/*visibility: visible;*/
 }
+.bird-data img {
+	opacity: 70%;
+}
  .size-XS img {
 	width: 20;
 }
