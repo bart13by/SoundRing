@@ -166,14 +166,32 @@ function setResidentBirds(){
 		const x = getRandom(20, 80);
 		const y = getRandom(45, 90);
 		const birdDOMObject = document.getElementById(id);
-		const style = `
-			visibility: visible;
-			display: inline-block;
-			top: ${y}vh; 
-			left: ${x}vw;
-		`;
-		birdDOMObject.style = style;
+		updateBirdStyle(birdDOMObject, x, y);
+		
 	}
+}
+function updateBirdStyle(birdDOMObject, left, top){
+	// getRandom(min, max) determines the range of load times for birds
+	const tTime = getRandom(1, 8);
+    const classMap = {};
+    for (const cls of birdDOMObject.classList){
+    	let [k, v] = cls.split('-');
+    	classMap[k] = v;
+    }
+	birdDOMObject.style.visibility = "visible";
+	birdDOMObject.style.display = "inline-block";
+	birdDOMObject.style.top = `${top}vh`;
+	birdDOMObject.style.left = `${left}vw`; 
+	const bImage = birdDOMObject.firstElementChild;
+	bImage.style.transition = `opacity, width 5s, ${tTime}s ease-in-out`;
+	setTimeout(() => {
+		bImage.style.opacity = "70%";
+		birdDOMObject.classList.add(`size-${getSizeForMass(classMap['bodymass'])}`);
+	});
+	
+
+	//console.log(`${bImage} ${bImage.style}`);
+	
 }
 function setMigrantBirdsForMonth(monthIndex){
 	// first clear old migrants
@@ -181,18 +199,13 @@ function setMigrantBirdsForMonth(monthIndex){
 	for (element of departed){
 		element.style = "visibility: hidden";
 	}
-	/* when we seek backwards, we need to clear all the birds and start over. Think about this! */
+	
 	for (let id of getMigrantBirdIdsByMonthAndStatus(monthIndex, 'arriving')){
 		const x = getRandom(5, 35);
 		const y = getRandom(5, 30);
 		const birdDOMObject = document.getElementById(id);
-		const style = `
-			visibility: visible;
-			display: inline-block;
-			top: ${y}vh; 
-			left: ${x}vw;
-		`;
-		birdDOMObject.style = style;
+		updateBirdStyle(birdDOMObject, x, y);
+		
 	}
 	for (let id of getMigrantBirdIdsByMonthAndStatus(monthIndex, 'staying')){
 		const x = getRandom(30, 70);
@@ -200,14 +213,8 @@ function setMigrantBirdsForMonth(monthIndex){
 		const birdDOMObject = document.getElementById(id);
 		// if the bird was already staying, don't change it.
 		if (birdDOMObject.classList.contains("staying")) continue;
-		const style = `
-			visibility: visible;
-			display: inline-block;
-			top: ${y}vh; 
-			left: ${x}vw;
-		`;
 		birdDOMObject.classList.add('staying');
-		birdDOMObject.style = style;
+		updateBirdStyle(birdDOMObject, x, y);
 	}
 	for (let id of getMigrantBirdIdsByMonthAndStatus(monthIndex, 'departing')){
 		const x = getRandom(65, 95);
@@ -217,14 +224,8 @@ function setMigrantBirdsForMonth(monthIndex){
 		if (birdDOMObject.classList.contains("staying")){
 			birdDOMObject.classList.remove("staying");
 		}
-		const style = `
-			visibility: visible;
-			display: inline-block;
-			top: ${y}vh; 
-			left: ${x}vw;
-		`;
 		birdDOMObject.classList.add('departing');
-		birdDOMObject.style = style;		
+		updateBirdStyle(birdDOMObject, x, y);
 		
 	}
 	
@@ -295,7 +296,7 @@ function Bird(birdRecord){
 
 	this.asHTML = `
 		<div id="${this.id}"
-		class="bird-data tooltip residence-${this.residenceStatus} appearance-${this.appearance} size-${this.size}">
+		class="bird-data tooltip residence-${this.residenceStatus} appearance-${this.appearance} bodymass-${this.bodymass}">
 		<img src="SVG/${this.appearance}.svg" />
 		<div class="tooltiptext">
 		  <div class="tooltiptext-line">

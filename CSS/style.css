@@ -61,7 +61,7 @@ circle {
 
 }
 
-/*  Tooltip stuff for poem data  */
+/*  Tooltip stuff for poem and bird data  */
 .tooltip {
   position: absolute;
   display: inline-block;
@@ -70,27 +70,11 @@ circle {
   
 }
 .poem-ms .marker{
-	color: #881177;
-	font-size: larger;
+	color: #303030;
+  font-family: "Cormorant Infant", sans-serif;
+	font-size: xx-large;
 	font-weight: bolder;
 }
-/*
-.size-XS{
-	font-size: xx-small;
-}
-.size-S{
-	font-size: small;
-}
-.size-M{
-	font-size: medium;
-}
-.size-L{
-	font-size: large;
-}
-.size-XL{
-	font-size: xx-large;
-}
-*/
 
 .bird-data {
 	visibility: hidden;
@@ -99,9 +83,14 @@ circle {
 .residence-Resident {
 	/*visibility: visible;*/
 }
+
 .bird-data img {
-	opacity: 70%;
+	/* These are changed on load */
+	opacity: 10%;
+	width: 0px;
 }
+
+
  .size-XS img {
 	width: 20;
 }
@@ -118,11 +107,6 @@ circle {
 	width: 40;
 }
 
-/*
-.appearance-Uncommon { color:#847653; }
-.appearance-Common { color:#544832; }
-.appearance-Rare { color: #D7D1C4; }
-*/
 .tooltip .tooltiptext {
   visibility: hidden;
   font-family: "Cormorant Infant", sans-serif;
