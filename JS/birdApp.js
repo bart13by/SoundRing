@@ -183,7 +183,8 @@ function updateBirdStyle(birdDOMObject, left, top){
 	birdDOMObject.style.top = `${top}vh`;
 	birdDOMObject.style.left = `${left}vw`; 
 	const bImage = birdDOMObject.firstElementChild;
-	bImage.style.transition = `opacity, width 5s, ${tTime}s ease-in-out`;
+	
+	bImage.style.transition = `opacity, width 8s, 8s ease-in-out, ${tTime}s`;
 	setTimeout(() => {
 		bImage.style.opacity = "70%";
 		birdDOMObject.classList.add(`size-${getSizeForMass(classMap['bodymass'])}`);
