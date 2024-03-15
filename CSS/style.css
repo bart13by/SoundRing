@@ -76,9 +76,10 @@ circle {
 	font-weight: bolder;
 }
 
-.bird-data {
-	visibility: hidden;
+.bird-data hidden {
 	display: none;
+	transition: display .25s allow-discrete;
+	/* visibility: hidden; */
 }
 .residence-Resident {
 	/*visibility: visible;*/

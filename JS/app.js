@@ -5,6 +5,7 @@ function doPause(e){
 	/*
 	When the audio pauses, pause the animations 
 	*/
+	console.log("paused");
 	RUNTIME.audio_playing = false;
 	document.getElementById('svg-container').pauseAnimations();
 	pauseApp();
@@ -14,27 +15,17 @@ function doPlay(e){
 	/*
 	When the audio plays, play the animations 
 	*/
+	console.log("playing");
 	RUNTIME.audio_playing = true;
 	document.getElementById('svg-container').unpauseAnimations();
-	resumeApp();
-
-	
-	
-}
-function doSeeking(e){
-	console.log(`seeking `);
-	pauseApp();
+	startApp();
 }
 
-function doSeek(e){
-	console.log(` = seeked = `);
-	/*
-	When the audio seeks, set the animation currentTime to the audio currentTime
-	*/
+function doSeeked(e){
+	// /* This is supposed to be called when seeking is over, but it gets called repeatedly while seeking  */
+	document.getElementById('svg-container').setCurrentTime(e.target.currentTime);
+	//doPlay(e);
 	
-	const t = e.target; // event target is the HTMLMediaElement playing the audio
-	document.getElementById('svg-container').setCurrentTime(t.currentTime);
-	resumeApp();
 }
 
 function doLoaded(e){
