@@ -18,10 +18,3 @@ const resp = fetch(fetchUrl)
 	  console.error('Error:', error);
 });
 
-// fs.writeFile('./Birds.json', jsonData, err => {
-// 		  if (err) {
-// 		    console.error(err);
-// 		  } else {
-// 		  	console.log("OK");
-// 		  }
-// 		});

@@ -1,0 +1,28 @@
+zoom.html
+<style>
+	.startSmall span {
+		visibility: hidden;
+		width: 30%;
+		font-size:xx-small;
+		/*transition: font-size 10s ease-in-out;*/
+		/*transition: visibility 0s, all 10s ease-in-out;*/
+
+	}
+</style>
+<script>
+	function getBig(){
+		const zoom = document.getElementById(3).firstElementChild;
+		zoom.style = `transition: font-size 10s`;
+		zoom.style = `visibility: visible; font-size: xx-large; width: 100%`;
+		
+		console.log(zoom.getElementsByTagName());
+
+	}
+</script>
+
+<body onload="setTimeout(getBig, 1000)">
+	<div id="3" class="startSmall">
+		<span>Inside the span </span>
+		Ouside the span
+	</div>
+</body>
