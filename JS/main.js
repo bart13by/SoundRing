@@ -85,10 +85,25 @@ function getCurrentTime(){
 	return document.getElementById('audio').currentTime;
 }
 
-
-const checkTimeToMoveBirds = () => {return handleTimeEvents()}
-function handleTimeEvents(){
+function doDrift(){
+	const currentlyVisibleBirds = Array.from(document.getElementsByClassName("showing"))
+		.concat(Array.from(document.getElementsByClassName("residence-Resident")));
+	if (currentlyVisibleBirds.length == 0) return;
+	for (let i = 0; i < 3; i++){
+		const random = Math.floor(Math.random() * currentlyVisibleBirds.length);
+		const driftBird = currentlyVisibleBirds[random];
+		if (driftBird.classList.contains("drift")) return;
+		driftBird.style.transition = "transform 5s linear";
+		setTimeout(() => {
+				driftBird.classList.add("drift");
+				setTimeout(() => {driftBird.classList.remove("drift")}, 5500);
+			}, 1000);	
+	}
+	
+}
+function checkTimeToMoveBirds(){
 	/* Called every second and on any time change */
+	doDrift();
 	// using currentTime + 5 seconds makes each month start five seconds early, so we get the arriving
 	// birds 5 secs early for "free" . . . 
 	const actualTime = getCurrentTime();
@@ -268,7 +283,9 @@ function Bird(birdRecord){
 	let arcFloor = 28;
 	if (this.left < 18 || this.left > 82) arcFloor = 50; // outside the arch, nearer the edges
 	this.top =  this.residenceStatus == 'Resident' ? getRandom(45, 90) : getRandom(5, arcFloor);
-	const xyStyle = this.residenceStatus == 'Resident' ? `style="top: ${this.top}vh; left: ${this.left}vw"`: "";
+	const xyStyle = this.residenceStatus == 'Resident' ?
+		 `style="top: ${this.top}vh; left: ${this.left}vw"`: "";
+
 
 
 	this.asHTML = `

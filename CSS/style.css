@@ -86,7 +86,9 @@ circle {
 	display: inline-block;
 	visibility: visible;
 }
-
+.drift {
+	transform: translate(5vw, 1vh);
+}
 .residence-Resident {
 	display: inline-block;
 	visibility: visible;

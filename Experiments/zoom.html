@@ -30,10 +30,11 @@ zoom.html
 	function drift(){
 		const element = document.getElementById(4);
 		element.style.transition = "transform 5s linear";
-		//element.style.transform ="translateX(100px)";
-		//setTimeout(()=> { element.style.transform ="translateX(100px)"} );
-		setTimeout(() => {element.classList.add("drift")});
-		setTimeout(() => {element.classList.remove("drift")}, 5100);
+		setTimeout(() => {
+			element.classList.add("drift");
+			setTimeout(() => {element.classList.remove("drift")}, 5500);
+		}, 10);
+	
 		//setTimeout(()=> { element.style.transform ="translateX(0px)"}, 5100 );
 
 	}
