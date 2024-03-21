@@ -23,8 +23,8 @@ for (let i = 1; i <= 12; i++){
 	}
 }
 const BIRDCOORDS = {/* id: {left: ,top: }*/};
-
-const MonthNames = {
+const MONTHSARRAY = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const MONTHNAMES = {
 	1: 'January',
 	2: 'February',
 	3: 'March',
@@ -38,6 +38,7 @@ const MonthNames = {
 	11: 'November',
 	12: 'December'
 };
+
 
 
 const runBirdApp = () => {
@@ -79,22 +80,20 @@ function pauseApp(){
 	clearInterval(RUNTIME.interval_id);
 	RUNTIME.audio_playing = false;
 }
-function dispatchTimeActions(){
-
-}
 
 function getCurrentTime(){
 	return document.getElementById('audio').currentTime;
 }
 
-const monthsByIndex = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-function checkTimeToMoveBirds(){
+
+const checkTimeToMoveBirds = () => {return handleTimeEvents()}
+function handleTimeEvents(){
 	/* Called every second and on any time change */
 	// using currentTime + 5 seconds makes each month start five seconds early, so we get the arriving
 	// birds 5 secs early for "free" . . . 
 	const actualTime = getCurrentTime();
 	const shiftedTime = actualTime + PROPERTIES.preload_seconds;
-	const currentMonth = monthsByIndex[Math.floor(shiftedTime / 120)];
+	const currentMonth = MONTHSARRAY[Math.floor(shiftedTime / 120)];
 	if (currentMonth != RUNTIME.current_month) {
 		//updateMigrantBirdsForMonth(currentMonth);
 		showBirdsForMonth(currentMonth);
@@ -106,55 +105,56 @@ function checkTimeToMoveBirds(){
 	// we means we will also have to unset that (as yet to be created) flag
 	// when departing time is over. Prolly can do that with the actual transition events.
 	const monthElapsedTime = Math.floor(actualTime % 120);
-	if (monthElapsedTime == 105) updateDepartingBirds(currentMonth);
+	if (monthElapsedTime == 105) doDeparting(currentMonth);
 	
 }
 
+function doDeparting(monthIndex){
+	/* Called when monthElapsedTime for monthIndex is 105 seconds (1:45) */	
+	// Need to figure out how to restore them on rewind in same month?
+	
+	// get the list of birds departing this month
+	const departingBirdIds = getMigrantBirdIdsByMonthAndStatus(monthIndex, "departing");
+	for (const id of departingBirdIds){
+		// A random integer between 0 and 19 seconds tells us how long to wait
+		const tTime = getRandom(0, 19);
+		const birdDOMObject = document.getElementById(id);
+		birdDOMObject.classList.add('isDeparting');
+		birdDOMObject.firstElementChild.style.transition = `opacity 2s linear`;	
+		setTimeout(()=> { // outer timeout is tTime seconds
+			birdDOMObject.firstElementChild.style.opacity = '0%';	
+			setTimeout(()=>{ // inner fires a few seconds after outer to fully remove bird from DOM
+				birdDOMObject.classList.remove('isDeparting');
+				birdDOMObject.classList.remove('showing');
+				birdDOMObject.classList.add('hidden');	
+			}, 3000);
+		}, tTime * 1000);
+	}
+	
+}
 /* NEW REQS
  * [x] 1. Distribute birds randomly, no arrive left depart right
  * [x] 2. Arriving birds "flicker" on randomly from -5 to +20 (vis-a-vis realTime % 120)
- * 3. Departing birds flicker off randomly from +1:45 to -5 next month.
- * 4. Still need to figure out "drift zones"
+ * [x] 3. Departing birds flicker off randomly from +1:45 to -5 next month.
+ * 4. Still need to figure out "drift zones" (see zoom.html)
  */
-function updateBirdStyle(birdDOMObject){
-	// construct a mapping of key-Value from classlist
-	const classMap = {};
-	for (const cls of birdDOMObject.classList){
-    	let [k, v] = cls.split('-');
-    	classMap[k] = v;
-    }
-	const tTime = getRandom(0, 18); // delay time before "turning on" 
-
-    birdDOMObject.classList.remove("visibility-Hidden");
-	birdDOMObject.style.visibility = "visible";
-	birdDOMObject.style.display = "inline-block";
-	
-	if (classMap['size'] === undefined){
-			birdDOMObject.classList.add(`size-${getSizeForMass(classMap['bodymass'])}`);	
-		}
-	const bImage = birdDOMObject.firstElementChild;
-
-
-	bImage.style.transition = `opacity .5s ease-in-out ${tTime}s`;	
-	
-	setTimeout(() => {
-		bImage.style.opacity = "70%";
-		
-		
-	});
-	
-}
 
 function showBirdsForMonth(monthIndex){
-	// First hide everything if we're going backward
-	const BACKWARD = (monthIndex < RUNTIME.current_month);
-	if (BACKWARD){
-		const currentlyVisibleBirds = Array.from(document.getElementsByClassName("visibility-Visible"));
-		for (domBird of currentlyVisibleBirds){
-			domBird.classList.remove('visibility-Visible');
-			domBird.classList.add('visibility-Hidden');
-		}	
-	}
+	/* CAlled whenever the time dispatcher decides the month has changed */
+	
+	// We want to remove all visible birds first . . .
+	const currentlyVisibleBirds = Array.from(document.getElementsByClassName("showing"));
+	for (domBird of currentlyVisibleBirds){
+		if (domBird.classList.contains('isDeparting')){
+			// ... unless they're actively departing
+			continue;
+		} 
+		domBird.classList.remove('showing');
+		domBird.classList.add('hidden');
+		domBird.style.top = null;
+		domBird.style.left = null;
+	}	
+
 	// Now turn on the birds for this month	 
 	for (const id of getMigrantBirdIdsByMonthAndStatus(monthIndex, "arriving")){
 		const birdDOMObject = document.getElementById(id);
@@ -165,38 +165,41 @@ function showBirdsForMonth(monthIndex){
 		setVisibleStyle(birdDOMObject, "staying");
 	}
 	for (const id of getMigrantBirdIdsByMonthAndStatus(monthIndex, "departing")){
+		// the "isDeparting" birds we skipped were departing from the last month
+		// Departing birds for this month are treated the same as "staying"
 		const birdDOMObject = document.getElementById(id);
 		setVisibleStyle(birdDOMObject, "departing");
 	}
 	function setVisibleStyle(birdDOMObject, status){
+		/* private to enclosing function. */
+		// We need the JS bird object to get the x,y coordinates
 		const birdObject = getBirdById(birdDOMObject.id);
 		birdDOMObject.style.left = `${birdObject.left}vw`;
 		birdDOMObject.style.top = `${birdObject.top}vh`;
-		birdDOMObject.classList.remove("visibility-Hidden");
-	    birdDOMObject.classList.add("visibility-Visible");
+		birdDOMObject.classList.remove("hidden");
+	    birdDOMObject.classList.add("showing");
 	    if (status != 'arriving'){
 		    birdDOMObject.firstElementChild.style.opacity = '70%'
 		    return;	
-	    }
+	    }// treat arriving separately, cause we need to do the animation
 	    const tTime = getRandom(1, 20); // delay time before "turning on" 
 		const bImage = birdDOMObject.firstElementChild;
-		bImage.style.transition = `opacity .75s ease-in-out ${tTime}s`;	
+		bImage.style.transition = `opacity .75s ease-out`;	
 		setTimeout(() => {
 			bImage.style.opacity = "70%";
-		});
+		},  tTime * 1000); // wait tTime seconds before transitioning
 	}
 }
 	
 
-/*     */
 function getMonthsPresent(presence){
 	/* Returns "presence" as a string of month names  */
 		let monthSpans = [];
 		const stints = presence.split(/;\s?/);
 		for (const stint of stints){
 			const months = stint.trim().split(/\s?[,.]\s?/);
-			const last =  MonthNames[months.at(-1).trim()];
-			const first = MonthNames[months.at(0).trim()];
+			const last =  MONTHNAMES[months.at(-1).trim()];
+			const first = MONTHNAMES[months.at(0).trim()];
 			if (last === first) {
 				monthSpans.push(`${first}`);
 			} else {
@@ -271,7 +274,7 @@ function Bird(birdRecord){
 	this.asHTML = `
 		<div id="${this.id}"
 		${xyStyle}
-		class="tooltip object-bird visibilty-Hidden  size-${getSizeForMass(this.bodymass)}
+		class="tooltip object-bird hidden  size-${getSizeForMass(this.bodymass)}
 		       residence-${this.residenceStatus} appearance-${this.appearance} bodymass-${this.bodymass}">
 		<img src="SVG/${this.appearance}.svg" />
 		<div class="tooltiptext">

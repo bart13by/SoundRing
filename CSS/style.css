@@ -78,11 +78,11 @@ circle {
 	font-weight: bolder;
 }
 
-.visibility-Hidden {
+.hidden {
 	display: none;
 	visibility: hidden; 
 }
-.visibility-Visible {
+.showing {
 	display: inline-block;
 	visibility: visible;
 }
@@ -99,7 +99,6 @@ circle {
 	opacity: 0%;
 	width: 0px;
 }
-
 
  .size-XS img {
 	width: 20;

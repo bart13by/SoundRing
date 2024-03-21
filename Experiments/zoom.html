@@ -8,6 +8,15 @@ zoom.html
 		/*transition: visibility 0s, all 10s ease-in-out;*/
 
 	}
+	.start {
+		position: absolute;
+		top: 50vh;
+		left: 50vw;
+
+	}
+	.drift  {
+		transform: translate(10vw, 10vh);
+	}
 </style>
 <script>
 	function getBig(){
@@ -15,14 +24,37 @@ zoom.html
 		zoom.style = `transition: font-size 10s`;
 		zoom.style = `visibility: visible; font-size: xx-large; width: 100%`;
 		
-		console.log(zoom.getElementsByTagName());
+		//console.log(zoom.getElementsByTagName());
 
 	}
+	function drift(){
+		const element = document.getElementById(4);
+		element.style.transition = "transform 5s linear";
+		//element.style.transform ="translateX(100px)";
+		//setTimeout(()=> { element.style.transform ="translateX(100px)"} );
+		setTimeout(() => {element.classList.add("drift")});
+		setTimeout(() => {element.classList.remove("drift")}, 5100);
+		//setTimeout(()=> { element.style.transform ="translateX(0px)"}, 5100 );
+
+	}
+	function testTimeouts(){
+			const id = setTimeout(()=>{
+				console.log("in timeout 1s");
+				setTimeout(()=>{console.log("in 2nd timeout 1s " + id)}, 3000);
+				
+			}, 100);
+			
+		}
+		
+		
+	
 </script>
 
-<body onload="setTimeout(getBig, 1000)">
+<body onload="setTimeout(drift, 1000)">
 	<div id="3" class="startSmall">
 		<span>Inside the span </span>
 		Ouside the span
 	</div>
+	<div id="4" class="start">Drift this</div>
+	<input type="button" value="timer" onclick="testTimeouts()" />
 </body>
