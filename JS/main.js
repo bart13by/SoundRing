@@ -100,7 +100,7 @@ function doDrift(){
 		setTimeout(() => {
 				driftBird.classList.add("drift");
 				setTimeout(() => {driftBird.classList.remove("drift")}, 5500);
-			}, i * 500);	
+			}, Math.random() * 4000);	
 	}
 	
 }
