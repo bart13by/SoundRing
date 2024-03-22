@@ -282,7 +282,7 @@ function Bird(birdRecord){
 	this.left = this.residenceStatus == 'Resident' ? getRandom(20, 80) : getRandom(5, 95);
 	let arcFloor = 28;
 	if (this.left < 18 || this.left > 82) arcFloor = 50; // outside the arch, nearer the edges
-	this.top =  this.residenceStatus == 'Resident' ? getRandom(45, 90) : getRandom(5, arcFloor);
+	this.top =  this.residenceStatus == 'Resident' ? getRandom(45, 80) : getRandom(15, arcFloor);
 	const xyStyle = this.residenceStatus == 'Resident' ?
 		 `style="top: ${this.top}vh; left: ${this.left}vw"`: "";
 

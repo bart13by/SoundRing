@@ -17,6 +17,28 @@ zoom.html
 	.drift  {
 		transform: translate(10vw, 10vh);
 	}
+	@keyframes backgrounds {
+	0% {background-color: #D6D6E8; } /* December */
+	8.3% {background-color: #D6D6E8; } /* January */
+	16.6% {background-color: #D6D6E8; } /* February */
+	25% { background-color: #CEE0F3;} /* March */
+	34.3% { background-color: #CEE0F3; } /* April*/
+	42.6% { background-color: #FEF9E5 } /* May */
+	51% { background-color: #FEF9E5 } /* June */
+	59.3% { background-color: #FBE7D9 } /* July */
+	67.6% { background-color: #FBE7D9 } /* August */
+	76% { background-color: #FEF9E5 } /* September */
+	84.3% { background-color: #E4F1ED } /* October */
+	92.6% { background-color: #CEE0F3; } /* November */
+	100% { background-color: #D6D6E8; } /* December */
+}
+
+.colors{
+	animation-name: backgrounds;
+	animation-duration: 60s;
+	animation-play-state: paused;
+
+}
 </style>
 <script>
 	function getBig(){
@@ -46,16 +68,36 @@ zoom.html
 			}, 100);
 			
 		}
-		
+	function changeAnimationTime(){
+		const body = document.getElementById(0);
+		body.classList.toggle("colors");
+		// body.classList.add("colors"); 
+		body.style.animationDelay = "-30s"; 
+	
+	}
+	function pause(){
+		const body = document.getElementById(0);
+		body.style.animationPlayState = "running";
+		//console.log(document.getElementById(0).style.animation);
+		switch (body.style.animationPlayState){
+		case "paused":
+			document.getElementById(0).style.animationPlayState = "running";
+		case "running":
+			document.getElementById(0).style.animationPlayState = "paused";
+		}
+		// console.log(ps);
+		// if (ps == "paused") ps = "running";
+		// else ps = "paused";
+	}
 		
 	
 </script>
 
-<body onload="setTimeout(drift, 1000)">
+<body class="colors" id="0" onload="setTimeout(drift, 1000)">
 	<div id="3" class="startSmall">
 		<span>Inside the span </span>
 		Ouside the span
 	</div>
 	<div id="4" class="start">Drift this</div>
-	<input type="button" value="timer" onclick="testTimeouts()" />
+	<input type="button" value="timer" onclick="pause()" />
 </body>
