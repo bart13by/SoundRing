@@ -86,6 +86,9 @@ function getCurrentTime(){
 }
 
 function doDrift(){
+	const seconds = Math.floor(getCurrentTime());
+	if (seconds % 3 != 0) return;
+	console.log(`time is ${seconds}; drifting`);
 	const currentlyVisibleBirds = Array.from(document.getElementsByClassName("showing"))
 		.concat(Array.from(document.getElementsByClassName("residence-Resident")));
 	if (currentlyVisibleBirds.length == 0) return;
@@ -97,7 +100,7 @@ function doDrift(){
 		setTimeout(() => {
 				driftBird.classList.add("drift");
 				setTimeout(() => {driftBird.classList.remove("drift")}, 5500);
-			}, 1000);	
+			}, i * 500);	
 	}
 	
 }
@@ -107,6 +110,7 @@ function checkTimeToMoveBirds(){
 	// using currentTime + 5 seconds makes each month start five seconds early, so we get the arriving
 	// birds 5 secs early for "free" . . . 
 	const actualTime = getCurrentTime();
+	
 	const shiftedTime = actualTime + PROPERTIES.preload_seconds;
 	const currentMonth = MONTHSARRAY[Math.floor(shiftedTime / 120)];
 	if (currentMonth != RUNTIME.current_month) {
