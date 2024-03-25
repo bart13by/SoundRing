@@ -4,17 +4,20 @@ const fs = require('node:fs');
 
 let season = 'winter';
 let query = `
-SELECT franklin_id, ms.name AS name, season, 
+SELECT ms.id, franklin_id, 
+      ms.ms_id as ms_id,
+       ms.year AS year,
+       ms.month AS month,
+       ms.name AS name, 
+       season, 
   (circ.id IS NOT NULL) AS sent,
   people.name AS recipient
 FROM manuscripts AS ms 
 LEFT JOIN manuscript_circulations AS circ 
      ON circ.manuscript_id=ms.id 
 LEFT JOIN people 
-     ON people.id=circ.person_id
-WHERE ms.season IS NOT NULL 
-
-ORDER BY franklin_id;`;
+     ON people.id=circ.person_id;
+`;
 //AND sent IS ${sent}
 
 // open the database file
