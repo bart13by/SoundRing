@@ -12,7 +12,7 @@ LEFT JOIN manuscript_circulations AS circ
      ON circ.manuscript_id=ms.id 
 LEFT JOIN people 
      ON people.id=circ.person_id
-WHERE ms.season IS '${season}' 
+WHERE ms.season IS NOT NULL 
 
 ORDER BY franklin_id;`;
 //AND sent IS ${sent}

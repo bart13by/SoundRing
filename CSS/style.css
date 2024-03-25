@@ -71,7 +71,7 @@ circle {
   
 }
 
-.poem-ms .marker{
+.poem-data .marker{
 	color: #303030;
   font-family: "Cormorant Infant", sans-serif;
 	font-size: xx-large;
@@ -89,6 +89,7 @@ circle {
 .drift {
 	transform: translate(3vw, -2vh);
 }
+
 .residence-Resident {
 	display: inline-block;
 	visibility: visible;
