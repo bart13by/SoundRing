@@ -132,8 +132,7 @@ function doDrift(){
 	/* Manage the "drift" of visible birds in the DOM; called every three seconds */
 	
 	// Get birds with "showing" class AND all resident birds (which are always showing)
-	const currentlyVisibleBirds = Array.from(document.querySelectorAll("#birds .showing"))
-							.concat(Array.from(document.querySelectorAll(".residence-Resident")));
+	const currentlyVisibleBirds = Array.from(document.querySelectorAll("#birds .showing, .residence-Resident"));
 	if (currentlyVisibleBirds.length == 0) return;
 
 	// Randomly select a few birds to start drifting
@@ -155,7 +154,9 @@ function doDrift(){
 }
 
 function dispatchTimerEvents(){
-	/* Called every second and on any time change; manages all the timer-based actions */
+	/* Called every second and on any time change; manages all the timer-based actions
+	 * This is really where all the magic happens.
+	 */
 	const seconds = Math.floor(getCurrentTime());
 	if (seconds % PROPERTIES.drift_interval_seconds == 0){
 		doDrift(); // call drift every three seconds	
@@ -167,13 +168,16 @@ function dispatchTimerEvents(){
 	const currentSeason = SEASONS[MONTHSARRAY[Math.floor(actualTime / 120)]]; // but don't start seasons early
 	if (currentMonth != RUNTIME.current_month) { // If month has changed, reset the birds
 		showBirdsForMonth(currentMonth);
-		setEdgeProperties();
 		RUNTIME.current_month = currentMonth;	
+		if (currentSeason != RUNTIME.current_season){ // If season has also changed, reset the poems
+			showPoemsForSeason(currentSeason);
+			
+			RUNTIME.current_season = currentSeason;
+		}
+		// Now that current birds and poems have visibility props, check proximity to the edge.
+		setEdgeProperties();
 	} 
-	if (currentSeason != RUNTIME.current_season){ // If season has changed, reset the poems
-		showPoemsForSeason(currentSeason);
-		RUNTIME.current_season = currentSeason;
-	}
+
 	// We start departing at 1:45 in the month, aka 105 seconds
 	if (Math.floor(actualTime % 120) == 105) doDeparting(currentMonth);
 	
@@ -202,9 +206,9 @@ function doDeparting(monthIndex){
 	
 }
 function setEdgeProperties(){
-	const allVisibleObjects = Array.from(document.querySelectorAll("div.showing, div.circulation-Retained, div.residence-Resident"));
+
+	const allVisibleObjects = Array.from(document.querySelectorAll(".showing, .residence-Resident"));
 	for (const domObj of allVisibleObjects){
-		if (domObj.classList.contains("poem-data")) console.log(domObj);
 		const edgeClass = getPositionClassPerEdge(domObj);
 		if (edgeClass.length > 0) domObj.classList.add(edgeClass);	
 	}
