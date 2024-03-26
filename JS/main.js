@@ -306,6 +306,33 @@ function getRandom(min, max) {
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
 }
+function getRandomPlacementValues(position){
+	/* 
+	 * Get top/left values for inside and outside the arch. 
+	 * Objects should be placed higher near the middle, lower by the edges. Might need to add additional 
+	 * coordinate 'bands', but currently middle inside = left < 35 or > 65; 
+	 * middle outside = left < 18 or > 82.
+	 */
+	// currently, position should be either outer or inner, but we can add other cases for darkness
+	const ret = {left: null, top: null};
+	switch (position){
+		case 'inner': 
+			ret.left = getRandom(20, 80);
+			let arcCeiling = 19; // middle 
+			if (ret.left < 35 || ret.left > 65) arcCeiling = 38; // closer to the margins, lower top (higher value)
+			ret.top = getRandom(arcCeiling, 72); 
+			break;
+		case 'outer':
+			ret.left = getRandom(5, 95);
+			let arcFloor = 10;
+			if (ret.left < 18 || ret.left > 82) arcFloor = 50; // outside the arch, nearer the edges
+			ret.top = getRandom(5, arcFloor);
+			break
+		default:
+			break;
+	}
+	return ret;
+}
 
 /* Utility accessor methods for in-memory data structures 
  * (some of these are probably not needed and can be removed at some point.)
@@ -372,10 +399,15 @@ function Bird(birdRecord){
 	this.residenceStatus = this.presence.split(/[\s\n]?[;,.]\s?/).length == 12 ? "Resident" : "Migrant";
 
 	// Compute locations and save for later retrieval
-	this.left = this.residenceStatus == 'Resident' ? getRandom(20, 80) : getRandom(5, 95);
-	let arcFloor = 10;
-	if (this.left < 18 || this.left > 82) arcFloor = 50; // outside the arch, nearer the edges
-	this.top =  this.residenceStatus == 'Resident' ? getRandom(15, 72) : getRandom(5, arcFloor);
+	let coords = {left: null, top: null};
+	coords = this.residenceStatus == 'Resident' ? getRandomPlacementValues('inner') 
+												: getRandomPlacementValues('outer');
+	this.left = coords.left;
+	this.top = coords.top;
+	// this.left = this.residenceStatus == 'Resident' ? getRandom(20, 80) : getRandom(5, 95);
+	// let arcFloor = 10;
+	// if (this.left < 18 || this.left > 82) arcFloor = 50; // outside the arch, nearer the edges
+	// this.top =  this.residenceStatus == 'Resident' ? getRandom(15, 72) : getRandom(5, arcFloor);
 	// conditional HTML stuff
 	const xyStyle = this.residenceStatus == 'Resident' ?
 		 `style="top: ${this.top}vh; left: ${this.left}vw"`: "";
@@ -412,15 +444,17 @@ function Poem(msRecord){
 	 this.circulation = this.sent == 0 ? "Retained" : "Sent";
 
 	 // compute locations and save for later
+	 let coords = {left: null, top: null};
 	 if (this.season == "Unknown"){
 	 	// coordinates for "the darkness" will be set here
-		this.left = null;
-		this.top = null;
+	 	coords = getRandomPlacementValues("darkness"); // just returns null for now
+		this.left = coords.left;
+		this.top = coords.top;
 	 } else {
-		this.left = this.circulation == 'Retained' ? getRandom(20, 80) : getRandom(5, 95);
-		let arcFloor = 28;
-		if (this.left < 18 || this.left > 82) arcFloor = 50; // outside the arch, nearer the edges
-		this.top =  this.circulation == 'Retained' ? getRandom(45, 80) : getRandom(15, arcFloor); 	
+		coords = this.circulation == 'Retained' ? getRandomPlacementValues('inner') 
+												: getRandomPlacementValues('outer');
+		this.left = coords.left;
+		this.top = coords.top;
 	 }
 	// some conditional HTML template stuff
 	const xyStyle = this.circulation == 'Retained' ?

@@ -83,11 +83,14 @@ circle {
   
 }
 
-.poem-data .marker{
-	color: #303030;
-  font-family: "Cormorant Infant", sans-serif;
-	font-size: xx-large;
-	font-weight: bolder;
+
+.poem-marker{
+	color: #2B4A5E;
+  font-family: "Annie Use Your Telescope", cursive; 
+  font-weight: 400;
+  font-size: 14pt;
+  font-style: normal;
+  
 }
 
 .hidden {
