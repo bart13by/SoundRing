@@ -44,7 +44,7 @@ circle {
 }
 
 #arc { /* Props for the arc followed by the wheel  */
-	stroke: lightblue;
+	stroke: darkgray;
 	fill: none;
 	stroke-width: .5;
 }
@@ -73,23 +73,8 @@ circle {
 
 }
 
-/*  Tooltip stuff for poem and bird data  */
 
-.tooltip {
-  position: absolute;
-  display: inline-block;
-}
-
-
-.poem-marker{
-	color: #2B4A5E;
-  font-family: "Annie Use Your Telescope", cursive; 
-  font-weight: 400;
-  font-size: 14pt;
-  font-style: normal;
-  
-}
-
+/* handle hide/show for birds and poems*/
 .hidden {
 	display: none;
 	visibility: hidden; 
@@ -98,10 +83,13 @@ circle {
 	display: inline-block;
 	visibility: visible;
 }
+
+/* applied with animation and timeout to create drift effect on birds */
 .drift {
 	transform: translate(3vw, -2vh);
 }
 
+/* Rules for bird appearance and size */
 .residence-Resident {
 	display: inline-block;
 	visibility: visible;
@@ -131,6 +119,20 @@ circle {
 	width: 40;
 }
 
+/* Mouseover data  */
+.tooltip {
+  position: absolute;
+  display: inline-block;
+}
+.poem-marker{
+	color: #2B4A5E;
+  font-family: "Annie Use Your Telescope", cursive; 
+  font-weight: 400;
+  font-size: 14pt;
+  font-style: normal;
+  cursor: default;
+}
+
 .tooltip .tooltiptext {
   visibility: hidden;
   font-family: "Cormorant Infant", sans-serif;
@@ -150,13 +152,22 @@ circle {
   left: 50%;
   transform: translate(-50%, 0);
 }
-.tooltiptext-line {
-	text-wrap: nowrap;
-	white-space: nowrap;
+.left-edge .tooltiptext {
+	transform: translate(-10%, 0);
 }
-.scientificName {
-	font-style: italic;
+.right-edge .tooltiptext {
+	transform: translate(-90%, 0);
 }
+.bottom-edge .tooltiptext {
+	transform: translate(-50%, -200%);
+}
+.bottom-left-edge .tooltiptext {
+	transform: translate(-10%, -200%);
+}
+.bottom-right-edge .tooltiptext {
+	transform: translate(-90%, -200%);
+}
+
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
@@ -167,12 +178,42 @@ circle {
   border-style: solid;
   border-color: transparent transparent black transparent;
 }
+.left-edge .tooltiptext::after {
+	left: 10%;
+}
+.right-edge .tooltiptext::after {
+	left: 90%;
+}
+.bottom-edge .tooltiptext::after {
+	bottom: 0%;
+	top: 100%;
+	border-color: black transparent transparent transparent;
+}
+.bottom-left-edge .tooltiptext::after {
+	left: 10%;
+  bottom: 0%;
+  top: 100%;
+  border-color: black transparent transparent transparent;
+}
+.bottom-right-edge .tooltiptext::after {
+	left: 90%;
+  bottom: 0%;
+  top: 100%;
+  border-color: black transparent transparent transparent;
+}
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
-/* Helping Verbs */
+.tooltiptext-line {
+	text-wrap: nowrap;
+	white-space: nowrap;
+}
+.scientificName {
+	font-style: italic;
+}
 
+/* probably redundant but still in use for loading/loaded */
 .hide {
 	visibility: hidden;
 	display: none;

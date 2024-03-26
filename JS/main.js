@@ -167,6 +167,7 @@ function dispatchTimerEvents(){
 	const currentSeason = SEASONS[MONTHSARRAY[Math.floor(actualTime / 120)]]; // but don't start seasons early
 	if (currentMonth != RUNTIME.current_month) { // If month has changed, reset the birds
 		showBirdsForMonth(currentMonth);
+		setEdgeProperties();
 		RUNTIME.current_month = currentMonth;	
 	} 
 	if (currentSeason != RUNTIME.current_season){ // If season has changed, reset the poems
@@ -197,6 +198,15 @@ function doDeparting(monthIndex){
 				birdDOMObject.classList.add('hidden');	
 			}, 3000);
 		}, tTime * 1000);
+	}
+	
+}
+function setEdgeProperties(){
+	const allVisibleObjects = Array.from(document.querySelectorAll("div.showing, div.circulation-Retained, div.residence-Resident"));
+	for (const domObj of allVisibleObjects){
+		if (domObj.classList.contains("poem-data")) console.log(domObj);
+		const edgeClass = getPositionClassPerEdge(domObj);
+		if (edgeClass.length > 0) domObj.classList.add(edgeClass);	
 	}
 	
 }
@@ -237,6 +247,7 @@ function showBirdsForMonth(monthIndex){
 		domBird.style.top = null;
 		domBird.style.left = null;
 	}	
+
 
 	// Now turn on the birds for this month	 
 	for (const id of getMigrantBirdIdsByMonthAndStatus(monthIndex, "arriving")){
@@ -305,6 +316,28 @@ function getRandom(min, max) {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+}
+function getPositionClassPerEdge(domObj){
+	/* 
+	 * Determine how close the domObj is to the edge and return the correct classname
+	 * Empty string means not near left, right, or bottom edge
+	 * Other values are "left-edge" "right-edge" "left-bottom-edge" and "right-bottom-edge"
+	 */
+    // convert w and h to vw/vh 
+	const w = (domObj.offsetWidth / window.innerWidth) * 100;
+	const h = (domObj.offsetHeight / window.innerHeight) * 100;
+	// left and top are in vw/vh
+	const left = parseInt(domObj.style.left);
+	const top = parseInt(domObj.style.top);
+	let left_right = new String();
+	let bottom = new String();
+	let ret = new String();
+	if (left <= 12) left_right = 'left-';
+	if (left + w >= 82) left_right = 'right-';
+	if (top + h >= 65) bottom = 'bottom-';
+	let prefix = `${left_right}${bottom}`;
+	if (prefix.length > 0) ret = `${prefix}edge`;
+	return ret;
 }
 function getRandomPlacementValues(position){
 	/* 
@@ -404,10 +437,7 @@ function Bird(birdRecord){
 												: getRandomPlacementValues('outer');
 	this.left = coords.left;
 	this.top = coords.top;
-	// this.left = this.residenceStatus == 'Resident' ? getRandom(20, 80) : getRandom(5, 95);
-	// let arcFloor = 10;
-	// if (this.left < 18 || this.left > 82) arcFloor = 50; // outside the arch, nearer the edges
-	// this.top =  this.residenceStatus == 'Resident' ? getRandom(15, 72) : getRandom(5, arcFloor);
+	
 	// conditional HTML stuff
 	const xyStyle = this.residenceStatus == 'Resident' ?
 		 `style="top: ${this.top}vh; left: ${this.left}vw"`: "";
