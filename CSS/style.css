@@ -148,7 +148,7 @@ circle {
   z-index: 1;
   top: 110%;
   left: 50%;
-  transfom: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 .tooltiptext-line {
 	text-wrap: nowrap;
