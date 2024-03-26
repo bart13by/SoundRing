@@ -2,12 +2,21 @@ body {
 	background-color: black;
 /*	animation:temp 1440s;*/
 }
+#daylight {
+	animation: bgcolors 1440s;
+	position: absolute;
+	left:1vw;
+	top:1vh;
+	width: 98%;
+	height: 80%;
 
+
+}
 circle {
 	z-index: 3;
 }
 
-@keyframes temp {
+@keyframes bgcolors {
 	0% {background-color: #D6D6E8; } /* December */
 	8.3% {background-color: #D6D6E8; } /* January */
 	16.6% {background-color: #D6D6E8; } /* February */
@@ -26,9 +35,12 @@ circle {
   display: flex;
   justify-content: center; /* Horizontally center the content */
   align-items: center; /* Vertically center the content */
-  position: relative;
-  bottom: 65px;
 
+
+}
+#audio {
+	width: 90vw;
+	background-color: darkgray;
 }
 
 #arc { /* Props for the arc followed by the wheel  */
@@ -156,8 +168,10 @@ circle {
 /* Helping Verbs */
 
 .hide {
+	visibility: hidden;
 	display: none;
 }
 .show {
-	display: block;
+	visibility: visible;
+	display: flex;
 }

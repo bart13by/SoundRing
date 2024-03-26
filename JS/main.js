@@ -373,9 +373,9 @@ function Bird(birdRecord){
 
 	// Compute locations and save for later retrieval
 	this.left = this.residenceStatus == 'Resident' ? getRandom(20, 80) : getRandom(5, 95);
-	let arcFloor = 28;
+	let arcFloor = 10;
 	if (this.left < 18 || this.left > 82) arcFloor = 50; // outside the arch, nearer the edges
-	this.top =  this.residenceStatus == 'Resident' ? getRandom(45, 80) : getRandom(15, arcFloor);
+	this.top =  this.residenceStatus == 'Resident' ? getRandom(15, 72) : getRandom(5, arcFloor);
 	// conditional HTML stuff
 	const xyStyle = this.residenceStatus == 'Resident' ?
 		 `style="top: ${this.top}vh; left: ${this.left}vw"`: "";

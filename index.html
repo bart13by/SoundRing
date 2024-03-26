@@ -16,29 +16,12 @@
 
 		<h1>Content Loading</h1>
 	</div>
+<div id="daylight" >
 
-	<!-- 
-	All(?) animations should be contained within the svg-container in order to keep them in the same coordinate system and on the same animation timeline
-	-->
+
 	<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
 
-		<!-- 
-			#bg-rect is what we will bind the wind properties to
-		-->
-		<rect id="bg-rect" x="0" y="0" width="100%" height="100%" style="filter: url(#noise1); z-index: -10;" />
-<!-- Bird circles -->
-  
-<!-- Poem (MS) data -->
-
-
-	  <!-- Define an eliptical arc for the Wheel to follow
-		M 2,50: 'move' to bottom left to start drawing
-		A 50,50: Follow an eliptical arc with radii 50,50 (hence a circle)
-		0 0 1: Follow the positive path of the elipse
-		98,50: End at the bottom right 
-
-	   --> 
-	 <path id="arc" d="M 2,50 A 50,50 0 0 1 98,50"  />
+	 <path id="arc" d="M 1,50 A 50,50 0 0 1 99,50"  />
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
 	  <g id="wheel-group" transform="translate(-12, -12)" >
@@ -51,7 +34,7 @@
 		  <!-- Here's what the properties mean:
 		  	repeatCount -- How many times to repead the animation. change to 'indefinite' if we want to auto-loop
 		  	dur -- 24 minute duration to sync with audio
-		  	keyPoints -- start the animation a 10% (.1) and end at 90% (.9)
+		  	keyPoints -- start the animation at 10% (.1) and end at 90% (.9)
 		  	keyTimes -- time 0 corresponds to keypoint .1; time 1 to keyPoint .9
 		  	calcMode -- linear interpolation is the default
 		  	fill -- "Freeze" the animation when it is finished
@@ -96,56 +79,14 @@
 		      begin="0s"
 		      >
 		    <mpath href="#arc" />
+      </animateMotion>
 	</polygon>
-	  <filter id="noise1" x="0" y="0" width="100%" height="100%">
-    <!feTurbulence id="wind" type="fractalNoise" baseFrequency="0.02 0.1" numOctaves="5" result="noise" />
-    <feDiffuseLighting id='light' in='noise' lighting-color='white' surfaceScale='3'>
-            <feDistantLight id="light-angle" azimuth='45' elevation='60' />
-    </feDiffuseLighting>
-    
-    
-    <!animate xlink:href="#wind" attributeName="baseFrequency" dur="20s" 
-        values="0.01 0.03; 
-                0.002  0.034;
-                0.01 0.033; 
-                0.005  0.03;
-                
-                "
-         keyTimes="0;.5; 
-				          .501;1
-         "
-         
-                
-        repeatCount="indefinite" />
-        <!-- values="0.01 0.05; 
-                0.0071  0.03" -->
-    <!animate xlink:href="#light" attributeName="surfaceScale" dur="10s" values=".5; 4; 5; .5"
-					   keyTimes="0; .2; .8; 1"
-             repeatCount="indefinite" />
-    <animate xlink:href="#light" attributeName="lighting-color" dur="24min" 
-        values="#D6D6E8; 
-        #D6D6E8; 
-        #D6D6E8; 
-        #CEE0F3; 
-        #CEE0F3; 
-        #FEF9E5; 
-        #FEF9E5; 
-        #FBE7D9; 
-        #FBE7D9; 
-        #FEF9E5; 
-        #E4F1ED; 
-        #CEE0F3; 
-        #D6D6E8;"
-    />
-    
 
-    
-  </filter>
 </svg>
 
 <!-- The browser-default HTMLMediaElement for audio controls. Replace with custom -->
 <figure id="au-control" >
-  <audio id="audio" style="width: 80vw" controls 
+  <audio id="audio" controls 
   	src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
   	autoplay	 
   	onseeked="doSeeked(event)"
@@ -162,8 +103,7 @@
 <div id="birds">
 
 </div>
-
-
+</div>
 
 <script>
 	document.getElementById('svg-container').pauseAnimations();
