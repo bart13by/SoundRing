@@ -1,0 +1,24 @@
+<style>
+	#wheel img{
+		position: absolute;
+		width:250px;
+		left: 5vw;
+		top: 5vh;
+		transition: transform 5s linear;
+
+	}
+	#wheel:hover .turn {
+		
+		transform: rotate(360deg);
+		
+	}
+</style>
+
+<body>
+	<div id="wheel">
+		<img  id="seasons_layer" src="../SVG/seasons.svg" />	
+		<img class="turn" id="indicator_layer" src="../SVG/indicator.svg" />	
+		<img id="months_layer" src="../SVG/months.svg" />	
+		<img class="turn" id="window_layer" src="../SVG/window.svg" />	
+	</div>
+</body>
