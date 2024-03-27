@@ -36,7 +36,7 @@ body {
   justify-content: center; /* Horizontally center the content */
   align-items: center; /* Vertically center the content */
   position: sticky;
-  bottom: 10%;
+  bottom: 5%;
 
 
 }
@@ -48,15 +48,14 @@ body {
 #arc { /* Props for the arc followed by the wheel  */
 	stroke: darkgray;
 	fill: none;
-	stroke-width: .5;
+	stroke-width: .2;
 }
+#inverse-arc {
+        stroke: silver;
+        fill: none;
+        stroke-width: .2;
+      }
 
-#pointer { /* props for the pointer */
-	fill: salmon;
-}
-#bg-rect {
-	z-index: -1;
-}
 
 .loading { /* 'Load Screen' properties. */
 	display: flex;
@@ -133,6 +132,12 @@ body {
   font-size: 14pt;
   font-style: normal;
   cursor: default;
+}
+.darkness {
+	visibility: visible;
+}
+.darkness .poem-marker{
+	color: silver;
 }
 
 .tooltip .tooltiptext {

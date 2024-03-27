@@ -352,10 +352,11 @@ function getRandomPlacementValues(position){
 	 */
 	// currently, position should be either outer or inner, but we can add other cases for darkness
 	const ret = {left: null, top: null};
+	let arcCeiling = 0;
 	switch (position){
 		case 'inner': 
 			ret.left = getRandom(20, 80);
-			let arcCeiling = 19; // middle 
+			arcCeiling = 19; // middle 
 			if (ret.left < 35 || ret.left > 65) arcCeiling = 38; // closer to the margins, lower top (higher value)
 			ret.top = getRandom(arcCeiling, 72); 
 			break;
@@ -364,7 +365,16 @@ function getRandomPlacementValues(position){
 			let arcFloor = 10;
 			if (ret.left < 18 || ret.left > 82) arcFloor = 50; // outside the arch, nearer the edges
 			ret.top = getRandom(5, arcFloor);
-			break
+			break;
+		case 'inner_darkness':
+			ret.left = getRandom(20, 80);
+			arcCeiling = 150;
+			if (ret.left < 35 || ret.left > 65) arcCeiling = 115; // closer to the margins, lower top (higher value)
+			ret.top = getRandom(95, arcCeiling); 
+			// y >= 90; < 150
+			break;
+		case 'outer_darkness':
+			break;
 		default:
 			break;
 	}
@@ -480,11 +490,13 @@ function Poem(msRecord){
 	 // compute locations and save for later
 	 let coords = {left: null, top: null};
 	 if (this.season == "Unknown"){
+	 	this.darkness = "darkness";
 	 	// coordinates for "the darkness" will be set here
-	 	coords = getRandomPlacementValues("darkness"); // just returns null for now
+	 	coords = getRandomPlacementValues("inner_darkness"); // just returns null for now
 		this.left = coords.left;
 		this.top = coords.top;
 	 } else {
+	 	this.darkness = "";
 		coords = this.circulation == 'Retained' ? getRandomPlacementValues('inner') 
 												: getRandomPlacementValues('outer');
 		this.left = coords.left;
@@ -499,7 +511,7 @@ function Poem(msRecord){
 
 	// Create the HTML template for this poem
 	 this.asHTML =`
-	 <div id="${this.id}" class="tooltip poem-data hidden circulation-${this.circulation}" ${xyStyle} >
+	 <div id="${this.id}" class="tooltip poem-data hidden ${this.darkness} circulation-${this.circulation}" ${xyStyle} >
       <span class="poem-marker">+</span>
         <div class="tooltiptext">
         <div class="tooltiptext-line poem-firstLine">${this.name} ${yearText}</div>

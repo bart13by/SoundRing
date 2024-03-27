@@ -53,9 +53,9 @@ function doLoaded(e){
 		loadScreen.className = "loaded";
 
 		// Ring starts hidden, but that didn't fix the bug in Safari :-(
-		document.querySelector('#wheel').classList.remove('hide');
-		document.querySelector('#wheel').classList.add('show');
-		document.getElementById('wheel').style.display = 'flex';
+		document.querySelector('#wheel-group').classList.remove('hide');
+		document.querySelector('#wheel-group').classList.add('show');
+		document.getElementById('wheel-group').style.display = 'flex';
 		
 		
 		// We may need to force-trigger the play event to make sure the animation starts. 
