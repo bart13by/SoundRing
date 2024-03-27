@@ -25,64 +25,33 @@
 	 <path id="arc" d="M 1,50 A 50,50 0 0 1 99,50"  />
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
-	  <g id="wheel-group" transform="translate(-12, -12)" >
 
-		 <!-- Hide the wheel until data is loaded. This is probably unneccessary since it does 
-		 	not solve the Safari bug -->	  	
-		  <image id="wheel" class="hide" width="24" height="24"  xlink:href="SVG/ring.svg" >
+<g id="wheel-group" width="24" height="24" transform="translate(-12, -12)" >
 
-		  <!-- Use animateMotion to move the image along the path -->
-		  <!-- Here's what the properties mean:
-		  	repeatCount -- How many times to repead the animation. change to 'indefinite' if we want to auto-loop
-		  	dur -- 24 minute duration to sync with audio
-		  	keyPoints -- start the animation at 10% (.1) and end at 90% (.9)
-		  	keyTimes -- time 0 corresponds to keypoint .1; time 1 to keyPoint .9
-		  	calcMode -- linear interpolation is the default
-		  	fill -- "Freeze" the animation when it is finished
-		  	begin -- start at second 0.
-
-		  -->
-		  <animateMotion id="motion" 
-			  repeatCount="0" 
-			  dur="24min" 
-			  keyPoints="0.1;0.9"
-		      keyTimes="0;1"
-		      calcMode="linear" 
-		      fill="freeze"
-		      begin="0s"
-		      >
-		      <!-- reference to the 'arc' path we will follow -->
-		    <mpath href="#arc" />
-		    
-		  </animateMotion>
-
-		  <!-- Use animateTransform to rotate the image. 
-		  	We rotate from 37º to -205º in order to get the start and end positions correct.
-		  -->
-		  <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
-			from="37 12 12" to="-205 12 12" dur="24min" repeatCount="0" fill="freeze"
-			begin="0s"
-		   />
-		</image>
-	</g>
-
-	<!-- use a polygon to make the marker. It's a bitch to position! -->
-	<polygon id="pointer" points="0,0 0,2 2,2" transform="rotate(45) translate(-.6,-1.5)">
-		<!-- animate the pointer along the same arc as the wheel -->
-		<animateMotion id="pointer-arc" 
-			  repeatCount="0" 
-			  dur="24min" 
-			  keyPoints="0.2;1"
-		      keyTimes="0;1"
-		      calcMode="linear" 
-		      fill="freeze"
-		      rotate="auto"
-		      begin="0s"
-		      >
-		    <mpath href="#arc" />
+     <!-- Hide the wheel until data is loaded. This is probably unneccessary since it does 
+      not solve the Safari bug -->      
+    <image id="seasons-wheel" class="disk-shift" width="24" height="24"  xlink:href="SVG/seasons2.svg" />
+    <image id="months-wheel" class="disk-shift" width="24" height="24" xlink:href="SVG/months2.svg" />
+    <image id="window-wheel" width="24" height="24" xlink:href="SVG/window2.svg" >
+          <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
+            from="-75 12 12" to="285 12 12" dur="24min" repeatCount="0" fill="freeze"
+            begin="0s"
+             />
+        </image>
+      
+      <animateMotion id="motion" 
+        repeatCount="0" 
+        dur="24min" 
+        keyPoints="0.1;0.9"
+          keyTimes="0;1"
+          calcMode="linear" 
+          fill="freeze"
+          begin="0s"
+          >
+          
+        <mpath href="#arc" />
       </animateMotion>
-	</polygon>
-
+  </g>
 </svg>
 
 <!-- The browser-default HTMLMediaElement for audio controls. Replace with custom -->

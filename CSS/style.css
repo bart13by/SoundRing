@@ -9,12 +9,12 @@ body {
 	top:1vh;
 	width: 98%;
 	height: 80%;
-
-
 }
-circle {
-	z-index: 3;
-}
+
+.disk-shift {/*
+	transform-origin: 50% 50%;
+	transform: rotate(5deg);
+*/}
 
 @keyframes bgcolors {
 	0% {background-color: #D6D6E8; } /* December */
