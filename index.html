@@ -17,32 +17,44 @@
 
 		<h1>Content Loading</h1>
 	</div>
+  <div id="the_firmament">
+
 <div id="daylight" >
 
 
 	<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
-
+<style>
+  #wheel-group image{
+    width: 24;
+    height: 24;
+    
+    
+    
+  }
+</style>
 	 <path id="arc" d="M 1,50 A 50,50 0 0 1 99,50"  />
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
 
-<g id="wheel-group" width="24" height="24" transform="translate(-12, -12)" >
+<g id="wheel-group" width="24" height="24" 
+      transform="translate(-12, -12) rotate(76, 12, 12)" >
 
-     <!-- Hide the wheel until data is loaded. This is probably unneccessary since it does 
-      not solve the Safari bug -->      
-    <image id="seasons-wheel" class="disk-shift" width="24" height="24"  xlink:href="SVG/seasons2.svg" />
-    <image id="months-wheel" class="disk-shift" width="24" height="24" xlink:href="SVG/months2.svg" />
-    <image id="window-wheel" width="24" height="24" xlink:href="SVG/window2.svg" >
-          <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
-            from="-75 12 12" to="285 12 12" dur="24min" repeatCount="0" fill="freeze"
+  <g>
+    <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" />
+    <image id="months-wheel"   xlink:href="SVG/months2.svg" />
+            <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
+            from="0 12 12" to="-360 12 12" dur="24min" repeatCount="0" fill="freeze"
             begin="0s"
              />
-        </image>
+  
+  </g>
+    <image id="window-wheel" transform="rotate(-76 12 12)" xlink:href="SVG/window2.svg" />
+        
       
       <animateMotion id="motion" 
         repeatCount="0" 
         dur="24min" 
-        keyPoints="0.1;0.9"
+        keyPoints="0;1"
           keyTimes="0;1"
           calcMode="linear" 
           fill="freeze"
@@ -53,25 +65,45 @@
       </animateMotion>
   </g>
 </svg>
+<!/div>
 
-<!-- The browser-default HTMLMediaElement for audio controls. Replace with custom -->
+<div id="darkness">
+  <!-- Here there be darkness! -->
+
+<!--
+  <svg id="svg-darkness"  fill="red" width="100%" height="100%" viewBox="0 -5 100 50" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      #inverse-arc {
+        stroke: silver;
+        fill: none;
+        stroke-width: .5;
+      }
+    </style>
+<!path id="arc" d="M 1,50 A 50,50 0 0 1 99,50"  />
+<path id="inverse-arc" d="M 1,0 A 40,40 0 0 0 99,0"  />
+</svg>
+-->
+</div>
+
+<!-- The browser-default HTMLMediaElement for audio controls.  -->
 <figure id="au-control" >
   <audio id="audio" controls 
-  	src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
-  	autoplay	 
-  	onseeked="doSeeked(event)"
-  	onplay="doPlay(event)"
-  	onpause="doPause(event)"
-  	oncanplaythrough="doLoaded(event)">
+    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
+    autoplay   
+    onseeked="doSeeked(event)"
+    onplay="doPlay(event)"
+    onpause="doPause(event)"
+    oncanplaythrough="doLoaded(event)">
     
   </audio>
 </figure>
+</div>
 <!---- Birds and Poem MSS follow -->
+<div id="dynamically-placed-items">
 <div id="poems">
 </div>  
 
 <div id="birds">
-
 </div>
 </div>
 
