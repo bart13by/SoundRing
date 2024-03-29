@@ -11,7 +11,7 @@ body {
 	height: 88%; /* play with height re amount of dark to show  */
 }
 #spacer {
-	height: 80px;
+	height: 50px;
 }
 
 @keyframes bgcolors {
@@ -33,10 +33,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /*position: sticky*/
+/*  position: sticky;*/
   position: absolute;
-  /*bottom: 5%;*/
+/*  bottom: 5%;*/
   top: 98%;
+/*  top:0;*/
+  
 }
 
 

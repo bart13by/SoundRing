@@ -381,13 +381,13 @@ function getRandomPlacementValues(position){
 			ret.left = getRandom(20, 80);
 			arcCeiling = 170; // apex of arc is ~180. Lower is inside, higher is outsid 
 			if (ret.left < 35 || ret.left > 65) arcCeiling = 150; 
-			ret.top = getRandom(110, arcCeiling); 
+			ret.top = getRandom(95, arcCeiling); 
 			// y >= 90; < 150
 			break;
 		case 'outer_darkness':
 			ret.left = getRandom(1, 98); // can afford a little wider than daylight
 			arcFloor = 180;
-			if (ret.left < 18 || ret.left > 82) arcFloor = 110; // outside the arch, nearer the edges
+			if (ret.left < 18 || ret.left > 82) arcFloor = 95; // outside the arch, nearer the edges
 			ret.top = getRandom(arcFloor, 250);
 			break;
 		default:
