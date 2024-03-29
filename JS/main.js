@@ -67,7 +67,7 @@ const SEASONS = {
 	11: "fall",
 	12: "winter"
 }
-/* Initialize in-memory structures to populat later */
+/* Initialize in-memory structures to populate later */
 for (const season of ['winter', 'spring', 'summer', 'fall', 'Unknown']){
 	POEM_IDS_BY_SEASON[season] = new Array();
 }
@@ -226,7 +226,8 @@ function showPoemsForSeason(season){
 		domPoem.style.left = null;
 	}
 	// Then get a list of the poems for this season and light 'em up'
-	for (const id of getPoemIdsBySeason(season)){
+	for (const id of getPoemIdsBySeason(season).concat(getPoemIdsBySeason('Unknown')))
+	{
 		const poem = getPoemById(id);
 		const domPoem = document.getElementById(id);
 		domPoem.style.left = `${poem.left}vw`;
@@ -315,7 +316,14 @@ function getSizeForMass(mass){
 	if (11800 <= mass) return 'XL';
 	return undefined;
 }
-function getRandom(min, max) {
+function getRandomFloat(min, max, places=4) {
+	/* Returns a random float (to places places) in range min:max */
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return parseFloat(Math.random() * (maxFloored - minCeiled + 1) + minCeiled).toFixed(places); 
+}
+const getRandom = getRandomFloat;
+function getRandomInteger(min, max) {
 	/* Returns a random integer in range min:max */
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
@@ -339,20 +347,23 @@ function getPositionClassPerEdge(domObj){
 	if (left <= 12) left_right = 'left-';
 	if (left + w >= 82) left_right = 'right-';
 	if (top + h >= 65) bottom = 'bottom-';
-	let prefix = `${left_right}${bottom}`;
+	let prefix = `${bottom}${left_right}`;
 	if (prefix.length > 0) ret = `${prefix}edge`;
 	return ret;
 }
 function getRandomPlacementValues(position){
 	/* 
 	 * Get top/left values for inside and outside the arch. 
-	 * Objects should be placed higher near the middle, lower by the edges. Might need to add additional 
-	 * coordinate 'bands', but currently middle inside = left < 35 or > 65; 
-	 * middle outside = left < 18 or > 82.
+	 * Objects should be placed higher near the middle, lower by the edges. 
+	 *
+	 * inner left: 20:80
+	 * outer left: 5:18, 82:95
+	 * inner top:  19:72, (L < 35 || L > 65) 38: 72 (lower number is higher in UI)
 	 */
-	// currently, position should be either outer or inner, but we can add other cases for darkness
+	
 	const ret = {left: null, top: null};
 	let arcCeiling = 0;
+	let arcFloor = 0;
 	switch (position){
 		case 'inner': 
 			ret.left = getRandom(20, 80);
@@ -362,18 +373,22 @@ function getRandomPlacementValues(position){
 			break;
 		case 'outer':
 			ret.left = getRandom(5, 95);
-			let arcFloor = 10;
+			arcFloor = 10;
 			if (ret.left < 18 || ret.left > 82) arcFloor = 50; // outside the arch, nearer the edges
 			ret.top = getRandom(5, arcFloor);
 			break;
 		case 'inner_darkness':
 			ret.left = getRandom(20, 80);
-			arcCeiling = 150;
-			if (ret.left < 35 || ret.left > 65) arcCeiling = 115; // closer to the margins, lower top (higher value)
-			ret.top = getRandom(95, arcCeiling); 
+			arcCeiling = 170; // apex of arc is ~180. Lower is inside, higher is outsid 
+			if (ret.left < 35 || ret.left > 65) arcCeiling = 150; 
+			ret.top = getRandom(110, arcCeiling); 
 			// y >= 90; < 150
 			break;
 		case 'outer_darkness':
+			ret.left = getRandom(1, 98); // can afford a little wider than daylight
+			arcFloor = 180;
+			if (ret.left < 18 || ret.left > 82) arcFloor = 110; // outside the arch, nearer the edges
+			ret.top = getRandom(arcFloor, 250);
 			break;
 		default:
 			break;
@@ -492,7 +507,13 @@ function Poem(msRecord){
 	 if (this.season == "Unknown"){
 	 	this.darkness = "darkness";
 	 	// coordinates for "the darkness" will be set here
-	 	coords = getRandomPlacementValues("inner_darkness"); // just returns null for now
+	 	if (this.circulation == 'Sent'){
+	 		coords = getRandomPlacementValues("outer_darkness"); 
+		 	
+		 }else{
+		 	coords = getRandomPlacementValues("inner_darkness"); 
+		 }
+	 	
 		this.left = coords.left;
 		this.top = coords.top;
 	 } else {
