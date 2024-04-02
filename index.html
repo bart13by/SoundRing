@@ -8,10 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
     
 		<link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/rain.css" />
 		<script src="JS/events.js"></script>
     <Script src="JS/main.js"></Script>
+    <script src="JS/rain.js"></script>
 	</head>
-<body onload="runFirmament()">
+<body onload="runFirmament(); makeItRain()">
 	<!-- Display a loading screen until media is ready -->
 	<div id="loading" class="loading">
 
@@ -19,7 +21,11 @@
 	</div>
   <div id="the_firmament">
 
-<div id="daylight" >
+<div id="daylight" class="back-row-toggle splat-toggle">
+
+  <div class="rain front-row"></div>
+  <div class="rain back-row"></div>
+  
 
 
 	<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
