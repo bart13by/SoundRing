@@ -10,7 +10,7 @@ function doPause(e){
 	document.getElementById('svg-container').pauseAnimations();
 	const css_anim = document.querySelector("#daylight").getAnimations()[0];
 	css_anim.pause();
-
+	stopRaining();
 	pauseApp();
 }
 

@@ -25,6 +25,13 @@ var makeItRain = function() {
   document.querySelector('.front-row').innerHTML = drops;
   document.querySelector('.back-row').innerHTML = backDrops;
 }
+
+function stopRaining(){
+	for (const el of Array.from(document.querySelectorAll('.rain'))){
+		for (const anim of el.getAnimations()) anim.cancel();
+	}
+}
+
 function Drop(props){
 	for (const [key, value] of Object.entries(props)){
 		    this[key] = value;
