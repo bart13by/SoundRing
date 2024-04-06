@@ -19,37 +19,58 @@
 	</div>
   <div id="the_firmament">
 
-<div id="daylight" >
+<div id="daylight" ></div>
+<div id="play-bar">
+<figure id="au-control" >
+  <audio id="audio" controls 
+    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
+    autoplay   
+    onseeked="doSeeked(event)"
+    onplay="doPlay(event)"
+    onpause="doPause(event)"
+    oncanplaythrough="doLoaded(event)">
+  </audio>
+</figure>
+</div>
+<div id="darkness"></div>
+<!---- Birds and Poem MSS follow -->
+<div id="dynamically-placed-items">
+  <div id="poems"></div>  
+  <div id="birds"></div>
+</div>
 
 
-	<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 <style>
-  #wheel-group image{
+  #wheel-group image {
     width: 18;
     height: 18;
-    
-    
-    
   }
 </style>
-<!--
-set origin >50 to shift wheel further down into "darkness" before starting: 
-<path id="arc" d="M 1,52 A 50,50 0 0 1 99,52"  />
--->
-	 <path id="arc" d="M .5,50 A 50,50 0 0 1 99.5,50"  />
+	 <path id="arc" d="M 8,50 A 42,42 0 0 1 92,50"  />
+   <circle id="arc-circle" cx="50" cy="50" r="42"  fill="none" stroke="blue" stroke-width=".1" />
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
 
-<g id="wheel-group" width="24" height="24" 
+<g id="wheel-group" width="18" height="18" 
       transform="translate(-9, -9) rotate(76, 9, 9)" >
 
   <g>
-    <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" />
-    <image id="months-wheel"   xlink:href="SVG/months2.svg" />
+    <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" >
             <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
-            from="09 9" to="-360 9 9" dur="24min" repeatCount="0" fill="freeze"
+            from="0 9 9" to="-360 9 9" dur="24min" repeatCount="0" fill="freeze"
             begin="0s"
              />
+           </image>
+    
+
+    <image id="months-wheel"   xlink:href="SVG/months2.svg" >
+     <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
+            from="0 9 9" to="-360 9 9" dur="24min" repeatCount="0" fill="freeze"
+            begin="0s"
+             />
+           </image>
+           
   
   </g>
     <image id="window-wheel" transform="rotate(-76 9 9)" xlink:href="SVG/window2.svg" />
@@ -69,44 +90,8 @@ set origin >50 to shift wheel further down into "darkness" before starting:
       </animateMotion>
   </g>
 </svg>
-<!/div>
-<div id="spacer">
-</div>
-<div id="darkness">
-  <!-- Here there be darkness! -->
-
-
-  <svg id="svg-darkness" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
-
-
-<path id="inverse-arc" d="M .5,0 A 48,48 0 0 0 99.5,0" 
-       />
-</svg>
-
-</div>
 
 <!-- The browser-default HTMLMediaElement for audio controls.  -->
-<figure id="au-control" >
-  <audio id="audio" controls 
-    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
-    autoplay   
-    onseeked="doSeeked(event)"
-    onplay="doPlay(event)"
-    onpause="doPause(event)"
-    oncanplaythrough="doLoaded(event)">
-    
-  </audio>
-</figure>
-</div>
-<!---- Birds and Poem MSS follow -->
-<div id="dynamically-placed-items">
-<div id="poems">
-  
-</div>  
-
-<div id="birds">
-</div>
-</div>
 
 <script>
 	document.getElementById('svg-container').pauseAnimations();

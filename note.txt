@@ -1,1 +1,0 @@
-New branch for total overhaul of the firmament HTML/SVG code
