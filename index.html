@@ -22,12 +22,12 @@
 <div id="daylight" >
 
 
-	<svg id="svg-container" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+	<svg id="svg-container" width="100%"  viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
 <style>
   #wheel-group image{
     width: 18;
     height: 18;
-    
+    transform: "translate(-9, -9) rotate(76, 9, 9)";
     
     
   }
@@ -36,12 +36,11 @@
 set origin >50 to shift wheel further down into "darkness" before starting: 
 <path id="arc" d="M 1,52 A 50,50 0 0 1 99,52"  />
 -->
-	 <path id="arc" d="M .5,50 A 50,50 0 0 1 99.5,50"  />
+	 <path id="arc" d="M 2,50 A 48,40.5 0 0 1 98,50"  />
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
 
-<g id="wheel-group" width="24" height="24" 
-      transform="translate(-9, -9) rotate(76, 9, 9)" >
+<g id="wheel-group" width="18" height="18" transform="translate(-9, -9) rotate(76, 9, 9)";>
 
   <g>
     <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" />
@@ -79,7 +78,7 @@ set origin >50 to shift wheel further down into "darkness" before starting:
   <svg id="svg-darkness" width="100%" height="100%" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
 
 
-<path id="inverse-arc" d="M .5,0 A 48,48 0 0 0 99.5,0" 
+<path id="inverse-arc" d="M 2,0 A 47.2,40 0 0 0 98,0" 
        />
 </svg>
 
