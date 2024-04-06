@@ -39,17 +39,25 @@ set origin >50 to shift wheel further down into "darkness" before starting:
 	 <path id="arc" d="M .5,50 A 50,50 0 0 1 99.5,50"  />
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
-
-<g id="wheel-group" width="24" height="24" 
+<g id="wheel-group" width="18" height="18" 
       transform="translate(-9, -9) rotate(76, 9, 9)" >
 
   <g>
-    <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" />
-    <image id="months-wheel"   xlink:href="SVG/months2.svg" />
+    <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" >
             <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
-            from="09 9" to="-360 9 9" dur="24min" repeatCount="0" fill="freeze"
+            from="0 9 9" to="-360 9 9" dur="24min" repeatCount="0" fill="freeze"
             begin="0s"
              />
+           </image>
+    
+
+    <image id="months-wheel"   xlink:href="SVG/months2.svg" >
+     <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
+            from="0 9 9" to="-360 9 9" dur="24min" repeatCount="0" fill="freeze"
+            begin="0s"
+             />
+           </image>
+           
   
   </g>
     <image id="window-wheel" transform="rotate(-76 9 9)" xlink:href="SVG/window2.svg" />
