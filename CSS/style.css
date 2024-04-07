@@ -33,20 +33,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-/*  position: sticky;*/
   position: absolute;
-/*  bottom: 5%;*/
-  top: 98%;
-/*  top:0;*/
+  width: 100%;
+  top: 87vh;  
+}
+#audio {
+	opacity: 90%;
+	color: white;
+	background-color: black;
+  width: 50%;
   
 }
-
-
-#audio {
-  width: 90vw;
-  background-color: darkgray;
-}
-
 
 #arc { /* Props for the arc followed by the wheel  */
 	stroke: darkgray;
