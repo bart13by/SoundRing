@@ -28,7 +28,7 @@ function doPlay(e){
 
 function doSeeked(e){
 	// /* This is supposed to be called when seeking is over, but it gets called repeatedly while seeking  */
-	//document.getElementById('svg-container').setCurrentTime(e.target.currentTime);
+	
 	const svg_anim = document.querySelector('#svg-container');
 	const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
 	svg_anim.setCurrentTime(e.target.currentTime);
