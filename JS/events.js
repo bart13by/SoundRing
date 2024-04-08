@@ -8,7 +8,7 @@ function doPause(e){
 	console.log("paused");
 	RUNTIME.audio_playing = false;
 	document.getElementById('svg-container').pauseAnimations();
-	const css_anim = document.querySelector("#daylight").getAnimations()[0];
+	const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
 	css_anim.pause();
 
 	pauseApp();
@@ -21,7 +21,7 @@ function doPlay(e){
 	console.log("playing");
 	RUNTIME.audio_playing = true;
 	document.getElementById('svg-container').unpauseAnimations();
-	const css_anim = document.querySelector("#daylight").getAnimations()[0];
+	const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
 	css_anim.play();
 	startApp();
 }
@@ -30,7 +30,7 @@ function doSeeked(e){
 	// /* This is supposed to be called when seeking is over, but it gets called repeatedly while seeking  */
 	//document.getElementById('svg-container').setCurrentTime(e.target.currentTime);
 	const svg_anim = document.querySelector('#svg-container');
-	const css_anim = document.querySelector("#daylight").getAnimations()[0];
+	const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
 	svg_anim.setCurrentTime(e.target.currentTime);
 	css_anim.currentTime = e.target.currentTime * 1000;
 	//console.log(e.target.currentTime + " " + css_anim.currentTime);
