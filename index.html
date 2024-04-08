@@ -19,7 +19,8 @@
 	</div>
   <div id="the_firmament">
 
-<div id="daylight" ></div>
+<!div id="daylight" ></div>
+
 <div id="play-bar">
 <figure id="au-control" >
   <audio id="audio" controls 
@@ -32,7 +33,9 @@
   </audio>
 </figure>
 </div>
-<div id="darkness"></div>
+
+<!div id="darkness"></div>
+
 <!---- Birds and Poem MSS follow -->
 <div id="dynamically-placed-items">
   <div id="poems"></div>  
@@ -40,20 +43,25 @@
 </div>
 
 
-	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
+       preserveAspectRatio="xMinYMin meet"
+       xmlns="http://www.w3.org/2000/svg">
 <style>
   #wheel-group image {
     width: 18;
     height: 18;
   }
 </style>
-	 <path id="arc" d="M 8,50 A 42,42 0 0 1 92,50"  />
-   <circle id="arc-circle" cx="50" cy="50" r="42"  fill="none" stroke="blue" stroke-width=".1" />
+
+  <rect id="svg-daylight" x="0" y="0" width="100%" height="48" />
+  <rect id="svg-darkness" x="0" y="48" width="100%" height="100%" />
+
+	 
+   <circle id="arc-circle" cx="50" cy="50" r="41"  fill="none" stroke="blue" stroke-width=".1" />
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
 
-<g id="wheel-group" width="18" height="18" 
-      transform="translate(-9, -9) rotate(76, 9, 9)" >
+<g id="wheel-group"  width="18" height="18" transform="translate(-9,-9) rotate(76, 9, 9)">
 
   <g>
     <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" >
@@ -75,7 +83,6 @@
   </g>
     <image id="window-wheel" transform="rotate(-76 9 9)" xlink:href="SVG/window2.svg" />
         
-      
       <animateMotion id="motion" 
         repeatCount="0" 
         dur="24min" 
@@ -84,10 +91,11 @@
           calcMode="linear" 
           fill="freeze"
           begin="0s"
-          >
+          path="M 9,42 A 42,42 0 0 1 91,42"
+          />
           
-        <mpath href="#arc" />
-      </animateMotion>
+        
+      <!/animateMotion>
   </g>
 </svg>
 

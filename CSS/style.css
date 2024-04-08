@@ -1,37 +1,31 @@
 
-#daylight {
-	z-index: -1;
-	animation: bgcolors 1440s infinite;
-	position: absolute;
-	left:0vw;
-	top:0vh;
-	width: 100%;
-	height: 80vh; /* play with height re amount of dark to show  */
-}
-#darkness {
+body {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	background-color: black;
+}
+
+#svg-daylight {
 	z-index: -1;
-	position: absolute;
-	left:0vw;
-	top:80vh;
-	width: 100%;
-	height: 200%;
+	animation: svg-bgcolors 1440s infinite;
 	
 }
-@keyframes bgcolors {
-	0% {background-color: #D6D6E8; } /* December */
-	8.3% {background-color: #D6D6E8; } /* January */
-	16.6% {background-color: #D6D6E8; } /* February */
-	25% { background-color: #CEE0F3;} /* March */
-	34.3% { background-color: #CEE0F3; } /* April*/
-	42.6% { background-color: #FEF9E5 } /* May */
-	51% { background-color: #FEF9E5 } /* June */
-	59.3% { background-color: #FBE7D9 } /* July */
-	67.6% { background-color: #FBE7D9 } /* August */
-	76% { background-color: #FEF9E5 } /* September */
-	84.3% { background-color: #E4F1ED } /* October */
-	92.6% { background-color: #CEE0F3; } /* November */
-	100% { background-color: #D6D6E8; } /* December */
+
+
+@keyframes svg-bgcolors {
+	0% {fill: #D6D6E8; } /* December */
+	8.3% {fill: #D6D6E8; } /* January */
+	16.6% {fill: #D6D6E8; } /* February */
+	25% { fill: #CEE0F3;} /* March */
+	34.3% { fill: #CEE0F3; } /* April*/
+	42.6% { fill: #FEF9E5 } /* May */
+	51% { fill: #FEF9E5 } /* June */
+	59.3% { fill: #FBE7D9 } /* July */
+	67.6% { fill: #FBE7D9 } /* August */
+	76% { fill: #FEF9E5 } /* September */
+	84.3% { fill: #E4F1ED } /* October */
+	92.6% { fill: #CEE0F3; } /* November */
+	100% { fill: #D6D6E8; } /* December */
 }
 
 #au-control {
