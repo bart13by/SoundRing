@@ -1,15 +1,23 @@
 // app.js
 
-
+function pauseAllAnimations(){
+	document.getElementById('svg-container').pauseAnimations();
+	document.querySelector("#svg-daylight").getAnimations()[0].pause();
+}
+function unpauseAllAnimations(){
+	document.getElementById('svg-container').unpauseAnimations();
+	document.querySelector("#svg-daylight").getAnimations()[0].play();
+}
 function doPause(e){
 	/*
 	When the audio pauses, pause the animations 
 	*/
 	console.log("paused");
 	RUNTIME.audio_playing = false;
-	document.getElementById('svg-container').pauseAnimations();
-	const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
-	css_anim.pause();
+	pauseAllAnimations();
+	// document.getElementById('svg-container').pauseAnimations();
+	// const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
+	// css_anim.pause();
 
 	pauseApp();
 }
@@ -20,9 +28,10 @@ function doPlay(e){
 	*/
 	console.log("playing");
 	RUNTIME.audio_playing = true;
-	document.getElementById('svg-container').unpauseAnimations();
-	const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
-	css_anim.play();
+	// document.getElementById('svg-container').unpauseAnimations();
+	// const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
+	// css_anim.play();
+	unpauseAllAnimations();
 	startApp();
 }
 
@@ -33,7 +42,7 @@ function doSeeked(e){
 	const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
 	svg_anim.setCurrentTime(e.target.currentTime);
 	css_anim.currentTime = e.target.currentTime * 1000;
-	//console.log(e.target.currentTime + " " + css_anim.currentTime);
+	
 	
 	
 }
@@ -44,22 +53,25 @@ function doLoaded(e){
 	the browser thinks enough data is present to play without buffering).
 	Removes the "load screen" element.
 	 */
-	const loadScreen = document.getElementById('loading');
-	// setTimeout executes in a thread, waiting a full execution cycle. 
-	// Which is virtually 0 time so probably not necessary.
-	setTimeout(() => {
-		//console.log(e.target.readyState);
-		// "loaded" class is hidden via CSS
-		loadScreen.className = "loaded";
+	const loadScreen = document.querySelector('#loading');
+	loadScreen.className = "loaded";
+	const playPromise = e.target.play();	
+	if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      // Automatic playback started!
+      console.log("auto-play worked");
+      
+    })
+    .catch(error => {
+      // Auto-play was prevented
+      console.error(error);
+      console.log("starting app anyway");
+      startApp();
+    });
+  }
 
-		// Ring starts hidden, but that didn't fix the bug in Safari :-(
-		document.querySelector('#wheel-group').classList.remove('hide');
-		document.querySelector('#wheel-group').classList.add('show');
-		document.getElementById('wheel-group').style.display = 'flex';
+	
+	
 		
-		
-		// We may need to force-trigger the play event to make sure the animation starts. 
-		e.target.play();
 
-	}, "1");
 }

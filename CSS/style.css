@@ -3,6 +3,7 @@ body {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 	background-color: black;
+
 }
 
 #svg-daylight {
@@ -27,36 +28,39 @@ body {
 	92.6% { fill: #CEE0F3; } /* November */
 	100% { fill: #D6D6E8; } /* December */
 }
+#firmament{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0;
+	align-items: center;
+	justify-content: center;
+}
+#play-bar {
+  position: absolute;
+  top: 48vw;
+  left: 0;
+  right: 0;
+  
+} 
+
+
 
 #au-control {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  width: 100%;
-  top: 80vh;  
+  margin: 0;
 }
 #audio {
-	opacity: 90%;
-	color: white;
-	background-color: black;
+	opacity: 60%;
+	color: ghostwhite;
   width: 50%;
   
 }
 
 
-#arc { /* Props for the arc followed by the wheel  */
-	stroke: darkgray;
-	opacity: 70%;
-	fill: none;
-	stroke-width: .1;
-}
-#inverse-arc {
-				opacity: 50%;
-        stroke: silver;
-        fill: none;
-        stroke-width: .1;
-      }
 
 
 .loading { /* 'Load Screen' properties. */
@@ -129,7 +133,6 @@ body {
 }
 .poem-marker{
 	color: #2B4A5E;
-
   font-family: "Annie Use Your Telescope", cursive; 
   font-weight: 400;
   font-size: 14pt;

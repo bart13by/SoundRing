@@ -17,12 +17,10 @@
 
 		<h1>Content Loading</h1>
 	</div>
-  <div id="the_firmament">
-
-<!div id="daylight" ></div>
+  <div id="firmament">
 
 <div id="play-bar">
-<figure id="au-control" >
+  <figure id="au-control">
   <audio id="audio" controls 
     src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
     autoplay   
@@ -31,8 +29,9 @@
     onpause="doPause(event)"
     oncanplaythrough="doLoaded(event)">
   </audio>
-</figure>
 </div>
+</figure>
+
 
 <!div id="darkness"></div>
 
@@ -44,7 +43,7 @@
 
 
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
-       preserveAspectRatio="xMinYMin meet"
+       preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
 <style>
   #wheel-group image {
@@ -109,7 +108,7 @@
 <!-- The browser-default HTMLMediaElement for audio controls.  -->
 
 <script>
-	document.getElementById('svg-container').pauseAnimations();
+	pauseAllAnimations();
 </script>
 </body>
 
