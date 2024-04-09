@@ -81,10 +81,11 @@ for (let i = 1; i <= 12; i++){
 
 /* Kick-off all processes -- called from HTML on load event */
 const runFirmament = () => {
+	console.log(`runFirmament; app_started == ${RUNTIME.app_started}`);
 	if (RUNTIME.app_started) return; // bail out if we were already started
 	RUNTIME.app_started = true;
 	/* Async method parses the JSON data and populates the in-memory structures */
-	_populateDataFromJSON() // Returns a response with ok or error
+	populateDataFromJSON() // Returns a response with ok or error
 		.then(response => { 
 			if (!response.ok) {
 				throw new Error(`Failed to populate data. ${response.error}`);
@@ -106,6 +107,7 @@ const runFirmament = () => {
 	});
 }
 function startApp(){ // called on audio.play event and on initial start up
+	console.log(`startApp; interval_id == ${RUNTIME.interval_id}`);
 	if (RUNTIME.interval_id > 0){
 		// If setInterval has already been called, stop it running so we can restart
 		clearInterval(RUNTIME.interval_id);
@@ -157,6 +159,7 @@ function dispatchTimerEvents(){
 	/* Called every second and on any time change; manages all the timer-based actions
 	 * This is really where all the magic happens.
 	 */
+	console.log("dispatchTimerEvents");
 	const seconds = Math.floor(getCurrentTime());
 	if (seconds % PROPERTIES.drift_interval_seconds == 0){
 		doDrift(); // call drift every three seconds	
@@ -216,6 +219,7 @@ function setEdgeProperties(){
 }
 function showPoemsForSeason(season){
 	/* Called when time dispatcher determines we're in a new season */
+	console.log("showPoemsForSeason");
 
 	// First remove all showing poems
 	const currentlyVisiblePoems = Array.from(document.querySelectorAll("#poems .showing"));
@@ -239,7 +243,7 @@ function showPoemsForSeason(season){
 }
 function showBirdsForMonth(monthIndex){
 	/* Called whenever the time dispatcher decides the month has changed */
-	
+	console.log("showBirdsForMonth");
 	// We want to remove all visible birds first . . .
 	const currentlyVisibleBirds = Array.from(document.querySelectorAll("#birds .showing"));
 	for (const domBird of currentlyVisibleBirds){
@@ -546,7 +550,8 @@ function Poem(msRecord){
 }
 
 /* "Private" function to parse JSON and load in-memory data structures. */
-async function _populateDataFromJSON(){
+async function populateDataFromJSON(){
+	console.log("populateDataFromJSON");
 	try {
 		const poemJson = JSON.parse(JSONPOEMDATA);
 		for (const poemRecord of poemJson){
