@@ -99,6 +99,9 @@ const runFirmament = () => {
 			for (const frId of getAllPoemIds()){
 				poemDiv.appendChild(getPoemById(frId).asDOM.firstElementChild);
 			}
+			// Hoping to fix caching bug by always setting birds and poems for December/Winter
+			showBirdsForMonth(MONTHSARRAY[0]);
+			showPoemsForSeason(SEASONS[MONTHSARRAY[0]]);
 			// startApp is called now and whenever audio plays, initiating the main timer loop
 			startApp();
 		})
@@ -219,7 +222,7 @@ function setEdgeProperties(){
 }
 function showPoemsForSeason(season){
 	/* Called when time dispatcher determines we're in a new season */
-	console.log("showPoemsForSeason");
+	console.log(`showPoemsForSeason: ${season}`);
 
 	// First remove all showing poems
 	const currentlyVisiblePoems = Array.from(document.querySelectorAll("#poems .showing"));
