@@ -362,40 +362,40 @@ function getRandomPlacementValues(position){
 	/* 
 	 * Get top/left values for inside and outside the arch. 
 	 * Objects should be placed higher near the middle, lower by the edges. 
-	 *
-	 * inner left: 20:80
-	 * outer left: 5:18, 82:95
-	 * inner top:  19:72, (L < 35 || L > 65) 38: 72 (lower number is higher in UI)
 	 */
 	
 	const ret = {left: null, top: null};
 	let arcCeiling = 0;
 	let arcFloor = 0;
+
 	switch (position){
 		case 'inner': 
-			ret.left = getRandom(20, 80);
-			arcCeiling = 19; // middle 
-			if (ret.left < 35 || ret.left > 65) arcCeiling = 38; // closer to the margins, lower top (higher value)
-			ret.top = getRandom(arcCeiling, 72); 
+			ret.left = getRandom(14, 84); // cheat a little short of the right edge
+			arcCeiling = 17; // middle 
+			if (ret.left < 18 || ret.left > 80) arcCeiling = 44; // band one
+			else if (ret.left < 28 || ret.left > 70) arcCeiling = 75; // band two
+			ret.top = getRandom(arcCeiling, 78); 
 			break;
 		case 'outer':
-			ret.left = getRandom(5, 95);
-			arcFloor = 10;
-			if (ret.left < 18 || ret.left > 82) arcFloor = 50; // outside the arch, nearer the edges
+			ret.left = getRandom(2, 98);
+			arcFloor = 14; // middle
+			if (ret.left < 8 || ret.left > 92) arcFloor = 78; // extreme outer
+			else if (ret.left < 12 || ret.left > 88) arcFloor = 72; // band two
+			else if (ret.left < 18 || ret.left > 82) arcFloor = 40; // band one
 			ret.top = getRandom(5, arcFloor);
 			break;
 		case 'inner_darkness':
-			ret.left = getRandom(20, 80);
-			arcCeiling = 170; // apex of arc is ~180. Lower is inside, higher is outsid 
-			if (ret.left < 35 || ret.left > 65) arcCeiling = 150; 
+			ret.left = getRandom(15, 85);
+			arcCeiling = 150; // apex of arc is ~150. Lower is inside, higher is outsid 
+			if (ret.left < 35 || ret.left > 65) arcCeiling = 110; 
 			ret.top = getRandom(95, arcCeiling); 
 			// y >= 90; < 150
 			break;
 		case 'outer_darkness':
 			ret.left = getRandom(1, 98); // can afford a little wider than daylight
-			arcFloor = 180;
+			arcFloor = 155;
 			if (ret.left < 18 || ret.left > 82) arcFloor = 95; // outside the arch, nearer the edges
-			ret.top = getRandom(arcFloor, 250);
+			ret.top = getRandom(arcFloor, 180);
 			break;
 		default:
 			break;
