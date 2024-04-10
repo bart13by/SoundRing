@@ -56,11 +56,16 @@ body {
 #audio {
 	opacity: 60%;
 	color: ghostwhite;
-  width: 50%;
+  position: absolute;
+  width: 100%;
+  top: 87vh;  
+}
+#audio {
+	opacity: 90%;
+	color: white;
+	background-color: black;
   
 }
-
-
 
 
 .loading { /* 'Load Screen' properties. */
