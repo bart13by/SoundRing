@@ -1,7 +1,8 @@
 <!-- offset-path.html -->
 	<style>
 :root{
-	--cloud-animation-duration: 60s;
+	--cloud-animation-duration: 120s;
+	--cloud-layer-duration: 125s;
 	--num-clouds-per-type: 8;
 	--delay-increment: calc(var(--cloud-animation-duration) / var(--num-clouds-per-type));
 }
@@ -11,9 +12,11 @@ body {
 	background-color: black;
 
 }
-
-#svg-daylight {
+#arc-circle {
 	z-index: -1;
+}
+#svg-daylight {
+	z-index: -2;
 	animation: svg-bgcolors 1440s infinite;
 	
 }
@@ -44,19 +47,48 @@ body {
 	justify-content: center;
 }
 
-#foo { animation-delay: -5000ms; }
-#bar { animation-delay: -10000ms; }
-#baz { animation-delay: -15000ms; }
-
- .cloud-proxy {
- 	position: absolute;
+[class^="cloud"] {
+	z-index: 1;
+	position: absolute;
 	 offset-path: url("#arc-circle");
 	 offset-anchor: center;
 	 offset-rotate: 70deg auto;
+	 width: 40%;
 	 opacity: 60%;
 	 transition: opacity 2s ease;
-  animation: move var(--cloud-animation-duration) infinite  linear;
+  
 }
+.cloud-base {
+	animation: move var(--cloud-animation-duration) infinite  linear;
+}
+.cloud-layer {
+	opacity: 80%;
+	animation: move var(--cloud-layer-duration) infinite  linear;
+}
+#nimbus-layer-1 { animation-delay: 0; }
+       	#nimbus-base-1 { animation-delay: calc(var(--delay-increment) * -0.1); }
+
+	      #nimbus-base-2 { animation-delay: calc(var(--delay-increment) * -1); }
+	      #nimbus-layer-2 { animation-delay: calc(var(--delay-increment) * -1.1); }
+
+       	#nimbus-base-3 { animation-delay: calc(var(--delay-increment) * -2); }
+       	#nimbus-layer-3 { animation-delay: calc(var(--delay-increment) * -2.1); }
+       	
+       	#nimbus-base-1-2 { animation-delay: calc(var(--delay-increment) * -3); }
+				#nimbus-layer-1-2 { animation-delay: calc(var(--delay-increment) * -3.1); }
+
+#nimbus-base-1-3 { animation-delay: calc(var(--delay-increment) * -4); }
+
+       	#nimbus-base-2-2 { animation-delay: calc(var(--delay-increment) * -5); }
+       	#nimbus-layer-2-2 { animation-delay: calc(var(--delay-increment) * -5.1); }
+
+       	#nimbus-base-3-2 { animation-delay: calc(var(--delay-increment) * -6); }
+       	#nimbus-layer-3-2 { animation-delay: calc(var(--delay-increment) * -6.1); }
+
+#nimbus-base-2-3 { animation-delay: calc(var(--delay-increment) * -7); }       	
+
+#nimbus-base-3-3 { animation-delay: calc(var(--delay-increment) * -8); }       	
+
 
 @keyframes move {
 	0% {
@@ -76,9 +108,7 @@ body {
 
 <script>
 	const app = () => {
-const foo = document.querySelector('#foo');
-const bar = document.querySelector('#bar');
-const baz = document.querySelector('#baz');
+
 
 setTimeout(() => {
 	foo.classList.add("fade-out");
@@ -93,49 +123,68 @@ function pauseAnimations(){
 		a.pause();
 	}
 }
+function unpauseAnimations(){
+	for (const a of document.getAnimations()){
+		a.play();
+	}
+}
 </script>
 
 
 <body onload="app()">
+	<div style="background-color: white;">
 	<span class="button" onclick="pauseAnimations()">Stop</span>
+	<span class="button" onclick="unpauseAnimations()">Start</span>
+</div>
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
        preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
        <style>
-       	#nimbus-base-1 { animation-delay: 0; }
-	      #nimbus-base-2 { animation-delay: calc(var(--delay-increment) * -1); }
-       	#nimbus-base-3 { animation-delay: calc(var(--delay-increment) * -2.5); }
-       	#nimbus-base-1-2 { animation-delay: calc(var(--delay-increment) * -3); }
-       	#nimbus-base-2-2 { animation-delay: calc(var(--delay-increment) * -5); }
-       	#nimbus-base-3-2 { animation-delay: calc(var(--delay-increment) * -6.7); }
+       	
+
        	
        </style>
        
 	  <rect id="svg-daylight" x="0" y="0" width="100%" height="48" />
 	  <rect id="svg-darkness" x="0" y="48" width="100%" height="100%" />
-	   <circle id="arc-circle" cx="50" cy="48" r="38"  fill="none" stroke="blue" stroke-width=".1" />
+	   <circle id="arc-circle" cx="50" cy="48" r="38"  fill="none" stroke="darkgray" stroke-width=".1" />
 
-<image id="nimbus-base-1" x=70 y=10 class="cloud-proxy"
-							width="35%" xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/1_nimbus_base.svg" />
-<image id="nimbus-base-2" x=70 y=10 class="cloud-proxy"
-							width="35%" xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/2_nimbus_base.svg" />
-<image id="nimbus-base-3" x=70 y=10 class="cloud-proxy"
-							width="35%" xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/3_nimbus_base.svg" />
-<image id="nimbus-base-1-2" x=70 y=10 class="cloud-proxy"
-							width="35%" xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/1_nimbus_base.svg" />
-<image id="nimbus-base-2-2" x=70 y=10 class="cloud-proxy"
-							width="35%" xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/2_nimbus_base.svg" />
-<image id="nimbus-base-3-2" x=70 y=10 class="cloud-proxy"
-							width="35%" xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/3_nimbus_base.svg" />							
+<image id="nimbus-base-1" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/1_nimbus_base.svg" />
+<image id="nimbus-base-2" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/2_nimbus_base.svg" />
+<image id="nimbus-base-3" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/3_nimbus_base.svg" />
+<image id="nimbus-base-1-2" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/1_nimbus_base.svg" />
+<image id="nimbus-base-2-2" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/2_nimbus_base.svg" />
+<image id="nimbus-base-3-2" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/3_nimbus_base.svg" />							
+
+<image id="nimbus-base-1-3" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/1_nimbus_base.svg" />
+<image id="nimbus-base-2-3" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/2_nimbus_base.svg" />
+<image id="nimbus-base-3-3" x=70 y=10 class="cloud-base"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/3_nimbus_base.svg" />
+
+
+<image id="nimbus-layer-1" x=70 y=10 class="cloud-layer"
+						 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/1_nimbus_layer_2.svg" />
+<image id="nimbus-layer-2" x=70 y=10 class="cloud-layer"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/2_nimbus_layer_2.svg" />
+<image id="nimbus-layer-3" x=70 y=10 class="cloud-layer"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/3_nimbus_layer_2.svg" />							
+<image id="nimbus-layer-1-2" x=70 y=10 class="cloud-layer"
+						 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/1_nimbus_layer_2.svg" />
+<image id="nimbus-layer-2-2" x=70 y=10 class="cloud-layer"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/2_nimbus_layer_2.svg" />
+<image id="nimbus-layer-3-2" x=70 y=10 class="cloud-layer"
+							 xlink:href="/Users/patrickbryant/Projects/SoundRing/SVG/Clouds/3_nimbus_layer_2.svg" />							
 
 	
 
-	<!-- <circle id="foo" class="cloud-proxy" fill="red" cx="50" cy="45"  r="2.5" />
-	<circle id="bar" class="cloud-proxy" fill="blue" cx="50" cy="43"  r="2.5" />
-	<circle id="baz" class="cloud-proxy" fill="green" cx="50" cy="41"  r="2.5" />
-	<circle id="fop" class="cloud-proxy" fill="purple" cx="50" cy="50"  r="2.5" /> -->
-
-<!-- <circle id="follow" fill="none" stroke="gray" stroke-width=".1" cx="50" cy="40" r="30" /> -->
 
 </svg>
 
