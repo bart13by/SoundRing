@@ -2,11 +2,25 @@
 
 function pauseAllAnimations(){
 	document.getElementById('svg-container').pauseAnimations();
-	document.querySelector("#svg-daylight").getAnimations()[0].pause();
+	document.querySelector("#svg-daylight").getAnimations()[0].pause(); 
+	for (const node of document.querySelectorAll('.rotate img'))
+    {
+        for (const animation of node.getAnimations())
+            {
+                animation.pause();
+            }
+    }
 }
 function unpauseAllAnimations(){
 	document.getElementById('svg-container').unpauseAnimations();
 	document.querySelector("#svg-daylight").getAnimations()[0].play();
+	for (const node of document.querySelectorAll('.rotate img'))
+    {
+        for (const animation of node.getAnimations())
+            {
+                animation.play();
+            }
+    }
 }
 function doPause(e){
 	/*
