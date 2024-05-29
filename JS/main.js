@@ -185,16 +185,18 @@ function updateClouds(currentTime){
 	function doCloudTransition(cloudType)
 	{
 		// embedded method to handle switching cloud types
-		// I *think* this will move everything else to CSS. At least that's my intention.
-		const show = document.querySelector(`#${cloudType}-group`);
+		// first start fading out all clouds
 		const hideList = document.querySelectorAll('.cloud-group');
-		show.classList.add("fade-in");
 		for (cloud of hideList)
 		{
-			if (cloud === show) continue;
 			cloud.classList.remove("fade-in");
-			cloudd.classList.add("fade-out");
+			cloud.classList.add("fade-out");
 		}
+		// if 'none' we're done
+		if (cloudType === 'none') return;
+		// Otherwise, fade-in the selected type
+		const show = document.querySelector(`#${cloudType}-group`);	
+		show.classList.add("fade-in");
 	}
 
 }
