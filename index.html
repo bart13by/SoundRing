@@ -8,29 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
     
 		<link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/clouds.css" />
 		<script src="JS/events.js"></script>
     <Script src="JS/main.js"></Script>
 
     <style>
-.cloud {
-  width: 100%;
-  position: absolute;
-  top: -10%;
-  
-}
-.rotate {
-  transform-origin: center;
-  
-  animation: move 20s infinite linear;
-}
-@keyframes move {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 </style>
 
@@ -42,6 +24,24 @@
 		<h1>Content Loading</h1>
 	</div>
   <div id="firmament">
+  <div id="clouds" class="rotate">
+    <div id="nimbus-group" class="cloud-group">
+      <img src="Images/Nimbus.png" class="cloud cloud-base" />
+      <img src="Images/Nimbus Mist.png" class="cloud cloud-layer" />
+    </div>
+    <div id="cirrus-group" class="cloud-group">
+      <img src="Images/Cirrus.png" class="cloud cloud-base" />
+      <img src="Images/Cirrus Mist.png" class="cloud cloud-layer" />
+    </div>
+    <div id="cumulus-group" class="cloud-group">
+      <img src="Images/Cumulus.png" class="cloud cloud-base" />
+      <img src="Images/Cumulus Mist.png" class="cloud cloud-layer" />
+    </div>
+    <div id="stratus-group" class="cloud-group">
+      <img src="Images/Stratus.png" class="cloud cloud-base" />
+      <img src="Images/Stratus Mist.png" class="cloud cloud-layer" />
+    </div>
+  </div>
 
 <div id="play-bar">
   <figure id="au-control">

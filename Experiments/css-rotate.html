@@ -1,0 +1,29 @@
+<!-- css-rotate.html -->
+
+<!DOCTYPE html>
+<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
+       preserveAspectRatio="xMidYMid meet"
+       xmlns="http://www.w3.org/2000/svg">
+<style>
+.rotate {
+	transform-origin: center;
+	
+	animation: move 20s infinite linear;
+}
+@keyframes move {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+</style>
+
+ 	   <rect id="toy" width="10" height="10" x="45" y="25" class="rotate" fill="red"  />
+							 
+
+</svg>
+
+<div class="rotate" style="position: absolute; left: 45vh; top: 25vh; width: 100px; height: 100px; background-color: red;">DIV</div>
