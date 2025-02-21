@@ -1,0 +1,37 @@
+<head>
+<link rel="stylesheet" href="CSS/audioplayer.css" />
+		
+</head>
+<body>
+
+<div>
+<audio-player>
+  <audio id="audio" 
+    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"></audio>
+</audio-player>
+</div>
+<template id="audio-player">
+  <div id="audioplayer">
+    <div id="audioplayer-controls">
+      <button id="audioplayer-play">Play</button>
+      <div id="audioplayer-time">
+        <span id="audioplayer-time-elapsed">-:--</span> / <span id="audioplayer-time-total">-:--</span>
+      </div>
+      <input type="range" id="audioplayer-scrubber" value="0" min="0" max="0">
+      <div id="audioplayer-volume" tabindex="0">
+        <input type="range" id="audioplayer-volume-control" value="0" min="0" max="0">
+        <button id="audioplayer-volume-mute">Mute</button>        
+      </div>
+      <button id="audioplayer-menu">Menu</button>
+    </div>
+    <div id="audioplayer-extras">
+      <button id="notebook">Notebook</button>
+    </div>
+  </div>
+  <dialog id="menu-dialog">Menu!<form method="dialog"><input type="submit" value="ok"></form></dialog>
+  <dialog id="notebook-dialog">Notebook!<form method="dialog"><input type="submit" value="ok"></form></dialog>
+</template>
+
+
+<script src="JS/audioplayer.js"></script>
+</body>
