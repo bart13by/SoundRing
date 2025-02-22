@@ -5,8 +5,8 @@ body {
 	background-color: black;
 
 }
+
 #svg-daylight {
-	z-index: -1;
 	animation: svg-bgcolors 1440s infinite;
 	
 }
@@ -35,31 +35,65 @@ body {
 	margin: 0;
 	align-items: center;
 	justify-content: center;
+	
 }
 #play-bar {
   position: absolute;
+  z-index: 10;
   top: 48vw;
   left: 0;
   right: 0;
-  
-} 
-
-
-
-#au-control {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
-}
+} 
+
 #audio {
 	opacity: 60%;
 	color: ghostwhite;
   width: 50%;
   
+  
 }
 
+/* Weather data scrolling   */
+#chyron-container {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow: scroll;
+    position: absolute;
+    z-index: 1;
+    top: 25vh;
+    left: 0;
 
+    
+}
+
+#chyron {
+    width: 1200%; /* 12 times the viewport width */
+    height: 100%;
+    display: flex;
+    
+    animation: scroll 1440s linear infinite; /* 1440s = 24 minutes */
+}
+
+#chyron img {
+
+    width: 100%;
+    height: 100%;
+
+
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
 
 
 .loading { /* 'Load Screen' properties. */

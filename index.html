@@ -43,8 +43,8 @@
     </div>
   </div>
 
+<!-- The browser-default HTMLMediaElement for audio controls.  -->
 <div id="play-bar">
-  <figure id="au-control">
   <audio id="audio" controls 
     src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
     autoplay   
@@ -54,8 +54,16 @@
     oncanplaythrough="doLoaded(event)">
   </audio>
 </div>
-</figure>
 
+<!--  Weather data -->
+
+<div id="chyron-container">
+        <div id="chyron">
+            <img src="Images/weather.png" alt="Yearly Weather Data">
+        </div>
+</div>
+
+  
 
 <!---- Birds and Poem MSS follow -->
 <div id="dynamically-placed-items">
@@ -67,6 +75,7 @@
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
        preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
+
 <style>
   #wheel-group image {
     width: 16;
@@ -77,17 +86,13 @@
   <rect id="svg-daylight" x="0" y="0" width="100%" height="48" />
   <rect id="svg-darkness" x="0" y="48" width="100%" height="100%" />
 
-<!-- GUIDE PATH -- only use for aligning animations with circle 
-   <path d="M12,48 A38,38 0 0 1 88,48" stroke="black" stroke-width=".2" fill="none" />	 
-   <circle cx="50" cy="48" r="4" fill="red" />
- -->
-
-   <circle id="arc-circle" cx="50" cy="48" r="38"  fill="none" stroke="blue" stroke-width=".1" />
+  <circle id="arc-circle" cx="50" cy="48" r="38"  fill="none" stroke="blue" stroke-width=".1" />
 
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
 
-<g id="wheel-group"  width="16" height="16" transform="translate(-8,-8) rotate(76, 8, 8)">
+<g id="wheel-group"  width="16" height="16"
+  transform="translate(-8,-8) rotate(76, 8, 8)">
 
   <g>
     <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" >
@@ -127,7 +132,8 @@
   </g>
 </svg>
 
-<!-- The browser-default HTMLMediaElement for audio controls.  -->
+
+
 
 <script>
 	pauseAllAnimations();

@@ -2,25 +2,19 @@
 
 function pauseAllAnimations(){
 	document.getElementById('svg-container').pauseAnimations();
-	document.querySelector("#svg-daylight").getAnimations()[0].pause(); 
-	for (const node of document.querySelectorAll('.rotate img'))
-    {
-        for (const animation of node.getAnimations())
-            {
-                animation.pause();
-            }
-    }
+	for (const css_anim of document.getAnimations())
+	{
+		css_anim.pause();
+	}
+	
 }
 function unpauseAllAnimations(){
 	document.getElementById('svg-container').unpauseAnimations();
-	document.querySelector("#svg-daylight").getAnimations()[0].play();
-	for (const node of document.querySelectorAll('.rotate img'))
-    {
-        for (const animation of node.getAnimations())
-            {
-                animation.play();
-            }
-    }
+	for (const css_anim of document.getAnimations())
+	{
+		css_anim.play();
+	}
+	
 }
 function doPause(e){
 	/*
@@ -29,10 +23,7 @@ function doPause(e){
 	console.log("paused");
 	RUNTIME.audio_playing = false;
 	pauseAllAnimations();
-	// document.getElementById('svg-container').pauseAnimations();
-	// const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
-	// css_anim.pause();
-
+	
 	pauseApp();
 }
 
@@ -42,9 +33,6 @@ function doPlay(e){
 	*/
 	console.log("playing");
 	RUNTIME.audio_playing = true;
-	// document.getElementById('svg-container').unpauseAnimations();
-	// const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
-	// css_anim.play();
 	unpauseAllAnimations();
 	startApp();
 }
@@ -52,12 +40,11 @@ function doPlay(e){
 function doSeeked(e){
 	// /* This is supposed to be called when seeking is over, but it gets called repeatedly while seeking  */
 	
-	const svg_anim = document.querySelector('#svg-container');
-	const css_anim = document.querySelector("#svg-daylight").getAnimations()[0];
-	svg_anim.setCurrentTime(e.target.currentTime);
-	css_anim.currentTime = e.target.currentTime * 1000;
-	
-	
+	document.querySelector('#svg-container').setCurrentTime(e.target.currentTime);
+	for (const css_anim of document.getAnimations())
+	{
+		css_anim.currentTime = e.target.currentTime * 1000;
+	}
 	
 }
 
