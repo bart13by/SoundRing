@@ -6,6 +6,32 @@ body {
 
 }
 
+/* stacking for the full firmament */
+/*
+#firmament 0
+  #clouds 1
+    #clouds img
+  #playbar 3
+  #chyron-container 2
+  #dynamically-placed-items [birds and poem markers] 4
+    .tooltip .tooltiptext 
+
+  #svg-daylight -1
+  #svg-darkness -1
+  #arc-circle [blue line] 
+  #wheel-group 5
+*/
+#html-container { z-index: -1; }
+#firmament { z-index: 0; }
+#clouds { z-index: 1; }
+#play-bar { z-index: 3; }
+#chyron-container { z-index: 2; }
+.tooltip { z-index: 4 } 
+#svg-container { z-index: 5; }
+#svg-daylight {z-index: 0; }
+#svg-darkness {z-index: 0; }
+#wheel-group g { z-index: 5; }
+
 #svg-daylight {
 	animation: svg-bgcolors 1440s infinite;
 	
@@ -39,7 +65,6 @@ body {
 }
 #play-bar {
   position: absolute;
-  z-index: 10;
   top: 48vw;
   left: 0;
   right: 0;
@@ -63,7 +88,6 @@ body {
     height: 100vh; /* Full viewport height */
     overflow: scroll;
     position: absolute;
-    z-index: 1;
     top: 25vh;
     left: 0;
 
@@ -106,7 +130,6 @@ body {
 	background-color: black;
 	color: white;
 	position: absolute;
-	z-index: 10;
 }
 .loaded {
 	display: none;
