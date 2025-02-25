@@ -19,60 +19,12 @@
 
 	</head>
 <body onload="runFirmament()">
-  <div id="html-container">
-	<!-- Display a loading screen until media is ready -->
-	<div id="loading" class="loading">
-
-		<h1>Content Loading</h1>
-	</div>
-  <div id="firmament">
-  <div id="clouds" class="rotate">
-    <div id="nimbus-group" class="cloud-group">
-      <img src="Images/Nimbus.png" class="cloud cloud-base" />
-      <img src="Images/Nimbus_Mist.png" class="cloud cloud-layer" />
-    </div>
-    <div id="cirrus-group" class="cloud-group">
-      <img src="Images/Cirrus.png" class="cloud cloud-base" />
-      <img src="Images/Cirrus_Mist.png" class="cloud cloud-layer" />
-    </div>
-    <div id="cumulus-group" class="cloud-group">
-      <img src="Images/Cumulus.png" class="cloud cloud-base" />
-    </div>
-    <div id="stratus-group" class="cloud-group">
-      <img src="Images/Stratus.png" class="cloud cloud-base" />
-      <img src="Images/Stratus_Mist.png" class="cloud cloud-layer" />
-    </div>
-  </div>
-
-<!-- The browser-default HTMLMediaElement for audio controls.  -->
-<div id="play-bar">
-  <audio id="audio" controls 
-    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
-    autoplay   
-    onseeked="doSeeked(event)"
-    onplay="doPlay(event)"
-    onpause="doPause(event)"
-    oncanplaythrough="doLoaded(event)">
-  </audio>
-</div>
-
-<!--  Weather data -->
-
-<div id="chyron-container">
-        <div id="chyron">
-            <img src="Images/weather.png" alt="Yearly Weather Data">
-        </div>
-</div>
-
-  
-
-<!---- Birds and Poem MSS follow -->
-<div id="dynamically-placed-items">
-  <div id="poems"></div>  
-  <div id="birds"></div>
-</div>
-
-</div>
+<style>
+  #svg-container {
+    position:absolute;
+    z-index: -5;
+  }
+</style>
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
        preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
@@ -134,6 +86,60 @@
 </svg>
 
 
+  <div id="html-container">
+  <!-- Display a loading screen until media is ready -->
+  <div id="loading" class="loading">
+
+    <h1>Content Loading</h1>
+  </div>
+  <div id="firmament">
+  <div id="clouds" class="rotate">
+    <div id="nimbus-group" class="cloud-group">
+      <img src="Images/Nimbus.png" class="cloud cloud-base" />
+      <img src="Images/Nimbus_Mist.png" class="cloud cloud-layer" />
+    </div>
+    <div id="cirrus-group" class="cloud-group">
+      <img src="Images/Cirrus.png" class="cloud cloud-base" />
+      <img src="Images/Cirrus_Mist.png" class="cloud cloud-layer" />
+    </div>
+    <div id="cumulus-group" class="cloud-group">
+      <img src="Images/Cumulus.png" class="cloud cloud-base" />
+    </div>
+    <div id="stratus-group" class="cloud-group">
+      <img src="Images/Stratus.png" class="cloud cloud-base" />
+      <img src="Images/Stratus_Mist.png" class="cloud cloud-layer" />
+    </div>
+  </div>
+
+<!-- The browser-default HTMLMediaElement for audio controls.  -->
+<div id="play-bar">
+  <audio id="audio" controls 
+    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
+    autoplay   
+    onseeked="doSeeked(event)"
+    onplay="doPlay(event)"
+    onpause="doPause(event)"
+    oncanplaythrough="doLoaded(event)">
+  </audio>
+</div>
+
+<!--  Weather data -->
+
+<div id="chyron-container">
+        <div id="chyron">
+            <img src="Images/weather.png" alt="Yearly Weather Data">
+        </div>
+</div>
+
+  
+
+<!---- Birds and Poem MSS follow -->
+<div id="dynamically-placed-items">
+  <div id="poems"></div>  
+  <div id="birds"></div>
+</div>
+
+</div>
 
 
 <script>
