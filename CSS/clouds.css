@@ -1,0 +1,33 @@
+/*clouds.css*/
+
+img.cloud {
+  width: 100%;
+  position: absolute;
+/*  top: -10%;*/
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+.rotate img.cloud-base {
+  transform-origin: center;
+  animation: turn 120s infinite linear;
+}
+.rotate img.cloud-layer {
+  transform-origin: center;
+  animation: turn 125s infinite linear;
+}
+@keyframes turn {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-out img.cloud{
+	opacity: 0;
+}
+.fade-in img.cloud{
+	opacity: 80%;
+}
+

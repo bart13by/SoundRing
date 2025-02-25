@@ -7,44 +7,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
     
-		<link rel="stylesheet" href="CSS/style.css" />
+		<link rel="stylesheet" href="CSS/main.css" />
+    <link rel="stylesheet" href="CSS/objects.css" />
+    <link rel="stylesheet" href="CSS/clouds.css" />
 		<script src="JS/events.js"></script>
     <Script src="JS/main.js"></Script>
+
+    <style>
+
+</style>
+
 	</head>
 <body onload="runFirmament()">
-	<!-- Display a loading screen until media is ready -->
-	<div id="loading" class="loading">
-
-		<h1>Content Loading</h1>
-	</div>
-  <div id="firmament">
-
-<div id="play-bar">
-  <figure id="au-control">
-  <audio id="audio" controls 
-    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
-    autoplay   
-    onseeked="doSeeked(event)"
-    onplay="doPlay(event)"
-    onpause="doPause(event)"
-    oncanplaythrough="doLoaded(event)">
-  </audio>
-</div>
-</figure>
-
-
-<!div id="darkness"></div>
-
-<!---- Birds and Poem MSS follow -->
-<div id="dynamically-placed-items">
-  <div id="poems"></div>  
-  <div id="birds"></div>
-</div>
-
-
+<style>
+  #svg-container {
+    position:absolute;
+    z-index: -5;
+  }
+</style>
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
        preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
+
 <style>
   #wheel-group image {
     width: 16;
@@ -55,17 +39,13 @@
   <rect id="svg-daylight" x="0" y="0" width="100%" height="48" />
   <rect id="svg-darkness" x="0" y="48" width="100%" height="100%" />
 
-<!-- GUIDE PATH -- only use for aligning animations with circle 
-   <path d="M12,48 A38,38 0 0 1 88,48" stroke="black" stroke-width=".2" fill="none" />	 
-   <circle cx="50" cy="48" r="4" fill="red" />
- -->
-
-   <circle id="arc-circle" cx="50" cy="48" r="38"  fill="none" stroke="blue" stroke-width=".1" />
+  <circle id="arc-circle" cx="50" cy="48" r="38"  fill="none" stroke="blue" stroke-width=".1" />
 
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
 
-<g id="wheel-group"  width="16" height="16" transform="translate(-8,-8) rotate(76, 8, 8)">
+<g id="wheel-group"  width="16" height="16"
+  transform="translate(-8,-8) rotate(76, 8, 8)">
 
   <g>
     <image id="seasons-wheel"  xlink:href="SVG/seasons2.svg" >
@@ -105,7 +85,62 @@
   </g>
 </svg>
 
+
+  <div id="html-container">
+  <!-- Display a loading screen until media is ready -->
+  <div id="loading" class="loading">
+
+    <h1>Content Loading</h1>
+  </div>
+  <div id="firmament">
+  <div id="clouds" class="rotate">
+    <div id="nimbus-group" class="cloud-group">
+      <img src="Images/Nimbus.png" class="cloud cloud-base" />
+      <img src="Images/Nimbus_Mist.png" class="cloud cloud-layer" />
+    </div>
+    <div id="cirrus-group" class="cloud-group">
+      <img src="Images/Cirrus.png" class="cloud cloud-base" />
+      <img src="Images/Cirrus_Mist.png" class="cloud cloud-layer" />
+    </div>
+    <div id="cumulus-group" class="cloud-group">
+      <img src="Images/Cumulus.png" class="cloud cloud-base" />
+    </div>
+    <div id="stratus-group" class="cloud-group">
+      <img src="Images/Stratus.png" class="cloud cloud-base" />
+      <img src="Images/Stratus_Mist.png" class="cloud cloud-layer" />
+    </div>
+  </div>
+
 <!-- The browser-default HTMLMediaElement for audio controls.  -->
+<div id="play-bar">
+  <audio id="audio" controls 
+    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
+    autoplay   
+    onseeked="doSeeked(event)"
+    onplay="doPlay(event)"
+    onpause="doPause(event)"
+    oncanplaythrough="doLoaded(event)">
+  </audio>
+</div>
+
+<!--  Weather data -->
+
+<div id="chyron-container">
+        <div id="chyron">
+            <img src="Images/weather.png" alt="Yearly Weather Data">
+        </div>
+</div>
+
+  
+
+<!---- Birds and Poem MSS follow -->
+<div id="dynamically-placed-items">
+  <div id="poems"></div>  
+  <div id="birds"></div>
+</div>
+
+</div>
+
 
 <script>
 	pauseAllAnimations();
