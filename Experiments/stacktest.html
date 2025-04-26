@@ -1,0 +1,22 @@
+
+<style>
+	#rect {
+		background-color: darkred;
+		position:absolute;
+		left:55vh;
+		height: 50vh;
+		width: 50vh;
+	}
+
+#svg-container {
+        position: absolute; /* Add position property */
+        z-index: 2; /* Higher z-index */
+    }
+</style>
+
+	<div id="rect"></div>
+
+	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
+       xmlns="http://www.w3.org/2000/svg">
+       <rect id="svg-rect" x="20" y="0" width="20" height="20" fill="blue" />
+   </svg>

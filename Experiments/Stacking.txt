@@ -1,0 +1,14 @@
+Stacking:
+
+#firmament 0
+  #clouds 1
+    #clouds img
+  #playbar 3
+  #chyron-container 2
+  #dynamically-placed-items [birds and poem markers] 4
+
+  #svg-daylight -1
+  #svg-darkness -1
+  #arc-circle [blue line] 
+  #wheel-group 5
+

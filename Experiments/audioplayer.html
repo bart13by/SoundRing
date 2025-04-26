@@ -1,13 +1,30 @@
 <head>
 <link rel="stylesheet" href="CSS/audioplayer.css" />
-		
+<script>
+ function doSeeked(e) {
+  console.log(e);
+ }
+ function doPlay(e) {
+  console.log(e);
+ }
+ function doPause(e) {
+  console.log(e);
+ }
+
+</script>
 </head>
 <body>
 
 <div>
 <audio-player>
   <audio id="audio" 
-    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"></audio>
+    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
+    autoplay   
+    onseeked="doSeeked(event)"
+    onplay="doPlay(event)"
+    onpause="doPause(event)"
+    
+    ></audio>
 </audio-player>
 </div>
 <template id="audio-player">
@@ -34,4 +51,5 @@
 
 
 <script src="JS/audioplayer.js"></script>
+
 </body>

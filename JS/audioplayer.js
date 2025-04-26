@@ -134,7 +134,6 @@ class AudioPlayer extends HTMLElement {
     this.updateTimeElapsed();
     this.updateTimeTotal();
     this.updateScrubber();
-    doLoaded(e);
   }
   
   handleTimeupdate(e) {

@@ -75,15 +75,59 @@ body {
   margin: 0;
 } 
 
-#audio {
-	opacity: 60%;
-	color: ghostwhite;
-/*color: #708271;*/
-  width: 50%;
-  
-  
+audio {
+	width: 60%;
+}
+audio::-webkit-media-controls-enclosure {
+  max-width: none;
+  color: white;
+}
+audio::-webkit-media-controls-panel {
+  background-color: black;
+}
+audio::-webkit-media-controls-play-button {
+  background-color: while;
+  color: white !important;
 }
 
+audio::-webkit-media-controls-timeline-container {
+	background: transparent;
+}
+audio::-webkit-media-slider {
+	color: white;
+}
+/*audio::-webkit-media-controls-mute-button {
+  -webkit-appearance: none;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAQCAMAAAAs2N9uAAAAYFBMVEXqgWT////qgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWTqgWSj/dGmAAAAH3RSTlMAAAEDFSAqQEZIT3+MjY+QkZmjqKmqt8bH4OLw8/3+CsnX2AAAAHtJREFUeNpl0NsOwjAMA1C7Y2zAoAXKHeb//8tFKk0f5scjJXKCf0IAWFIlxmA09QCrSDGQuvSgi3JHPjSBLrphwP79HWlCGszKuA846WiUVJJxOGOnJxHltH1how+R1lRsboO+Xr6+lEgmv1bC7epV3ZIfVC21s9fPWQCqbQznzfJieAAAAABJRU5ErkJggg==) 50% 50% no-repeat;
+}*/
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: white;
+}
+/*
+audio::-webkit-media-controls-panel {
+  background-color: dimgray;
+
+  
+}
+audio::-webkit-media-controls-mute-button { background-color: white; }
+
+audio::-webkit-media-controls-play-button { color: white; }
+
+audio::-webkit-media-controls-timeline-container,
+
+audio::-webkit-media-controls-current-time-display,
+
+audio::-webkit-media-controls-time-remaining-display,
+
+audio::-webkit-media-controls-timeline,
+
+audio::-webkit-media-controls-volume-slider-container,
+
+audio::-webkit-media-controls-volume-slider {
+	color:white;
+}
+*/
 /* Weather data scrolling   */
 #chyron-container {
 /*	visibility: hidden;*/

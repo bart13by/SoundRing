@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chyron Effect</title>
+    <!link rel="stylesheet" href="styles.css">
+    <style>
+
+
+body {
+    margin: 0;
+    
+}
+
+.chyron-container {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow: scroll;
+    position: relative;
+}
+
+.chyron {
+    width: 1200%; /* 12 times the viewport width */
+    height: 100%;
+    display: flex;
+    animation: scroll 1440s linear infinite; /* 1440s = 24 minutes */
+}
+
+.chyron img {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+</style
+</head>
+<body>
+    <div class="chyron-container">
+        <div class="chyron">
+            <img src="Images/weather.png" alt="Yearly Weather Data">
+        </div>
+    </div>
+</body>
+</html>
+
+
