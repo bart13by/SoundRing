@@ -23,7 +23,7 @@
 	visibility: visible;
 }
 .residence-Resident img {
-	opacity: 70%;
+	opacity: 80%;
 }
 .residence-Migrant img {
 	/* These are changed on load */
@@ -31,7 +31,7 @@
 	width: 0px;
 }
 
- .size-XS img {
+/* .size-XS img {
 	width: 20;
 }
  .size-S img {
@@ -45,6 +45,22 @@
 }
  .size-XL img {
 	width: 40;
+}*/
+
+.size-XS img {
+	width: 15;
+}
+ .size-S img {
+	width: 10;
+}
+ .size-M img {
+	width: 15;
+}
+ .size-L img {
+	width: 20;
+}
+ .size-XL img {
+	width: 25;
 }
 
 /* Mouseover data  */
@@ -53,10 +69,14 @@
   display: inline-block;
 }
 .poem-marker{
-	color: #2B4A5E;
+/*	color: #2B4A5E;*/
+color: #7393B3;
   font-family: "Annie Use Your Telescope", cursive; 
-  font-weight: 400;
-  font-size: 14pt;
+/*font-family: "Fraunces";*/
+/*  font-weight: 400;*/
+font-weight: 400;
+/*  font-size: 14pt;*/
+font-size: 24pt;
   font-style: normal;
   cursor: default;
 }

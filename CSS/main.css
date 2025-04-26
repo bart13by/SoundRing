@@ -78,6 +78,7 @@ body {
 #audio {
 	opacity: 60%;
 	color: ghostwhite;
+/*color: #708271;*/
   width: 50%;
   
   
@@ -85,6 +86,7 @@ body {
 
 /* Weather data scrolling   */
 #chyron-container {
+/*	visibility: hidden;*/
     width: 100vw; /* Full viewport width */
     height: 100vh; /* Full viewport height */
     overflow: scroll;
