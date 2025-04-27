@@ -1,4 +1,25 @@
-// app.js
+// events.js
+
+function toggleVis(e){
+	const containerIds = {
+		'show-weather': '#chyron-container',
+		'show-birds' : '.bird-data',
+		'show-poems' : '.poem-data'
+	};
+	console.log(e.target.checked);
+	for (const hideNode of document.querySelectorAll(containerIds[e.target.id])) {
+		if (e.target.checked){
+			hideNode.style.visibility = 'visible';	
+		}
+		else {
+			hideNode.style.visibility = 'hidden';	
+		}
+		
+	}
+	// containerIds[e.target.id].style.visibility = 'hidden';
+	
+	
+}
 
 function pauseAllAnimations(){
 	document.getElementById('svg-container').pauseAnimations();

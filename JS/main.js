@@ -542,7 +542,9 @@ function Bird(birdRecord){
 		</div>
 		`;
 	// Render object as DOM object
-	this.asDOM = domParser.parseFromString(this.asHTML, 'text/html');
+	// this.asDOM = domParser.parseFromString(this.asHTML, 'text/html');
+		this.asDOM = document.createRange().createContextualFragment(this.asHTML);
+
 		
 }
 
@@ -593,14 +595,8 @@ function Poem(msRecord){
     </div>
     `;
     // Render object as DOM object
-    // Need to fix this, as it creates an entirely new document for each bird.
-    this.asDOM = domParser.parseFromString(this.asHTML, 'text/html');
-    /*() => {
-    	let fragment = document.createFragment();
-    	fragment.innerHTML = this.asHTML;
-    	return fragment;
-    	// 
-    }*/
+    
+    this.asDOM = document.createRange().createContextualFragment(this.asHTML);
 
 }
 

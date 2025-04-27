@@ -117,18 +117,7 @@
   </div>
 
 
-<!-- The browser-default HTMLMediaElement for audio controls.  -->
-<!-- <div id="play-bar">
-  <audio id="audio" controls loop controlsList="nodownload"
-    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
-    autoplay   
-    onseeked="doSeeked(event)"
-    onplay="doPlay(event)"
-    onpause="doPause(event)"
-    oncanplaythrough="doLoaded(event)">a
-  </audio>
-  <img  height="40px" src="Images/notebook_icon.png" />
-</div> -->
+
 <div id="play-bar">
 <audio-player>
   <audio id="audio" 
@@ -159,11 +148,36 @@
       <button id="notebook">Notebook</button>
     </div>
   </div>
-  <dialog id="menu-dialog">Menu:
-<ul><li>Full Screen</li>
-  <li>Loop on end</li></ul>
-    <form method="dialog"><input type="submit" value="ok"></form></dialog>
-  <dialog id="notebook-dialog">Notebook!<form method="dialog"><input type="submit" value="ok"></form></dialog>
+  <dialog id="menu-dialog">
+    Menu:
+    <form method="dialog">
+      <fieldset>
+        <legend>Select features to show:</legend>
+
+  <div>
+    <input type="checkbox" id="show-weather" name="weather" checked onchange="toggleVis(event)" />
+    <label for="weather">Weather Graph</label>
+  </div>
+
+  <div>
+    <input type="checkbox" id="show-birds" name="birds" checked onchange="toggleVis(event)"/>
+    <label for="birds">Birds</label>
+  </div>
+  <div>
+    <input type="checkbox" id="show-poems" name="poems" checked onchange="toggleVis(event)"/>
+    <label for="birds">Poems</label>
+  </div>
+</fieldset>
+
+      <input type="submit" value="Close" />
+    </form>
+  </dialog>
+  <dialog id="notebook-dialog">
+    <h3>Notebook</h3>
+<p>Lorem ipsum dolor sit amet. At iusto necessitatibus aut voluptatem labore <em>Qui necessitatibus ea minima suscipit</em> At suscipit necessitatibus et quibusdam veniam aut dolorem repellat. Eos soluta repudiandae <a href="https://www.loremipzum.com" target="_blank">Et velit ut esse nihil eos totam facilis</a> est beatae quia. </p><p>Sed culpa nemo ea illum Quis <a href="https://www.loremipzum.com" target="_blank">Ut vitae et harum voluptatum et laborum officia</a>. Et harum dolor eos quas officia <em>Ab aliquid eos autem dolor aut fuga odit</em>. </p><p>33 odio quidem ea provident culpa <em>Aut modi aut voluptatum debitis sed voluptatem corporis aut autem quia</em>. Aut veniam neque non error quibusdamut mollitia. </p>
+
+
+<form method="dialog"><input type="submit" value="Close"></form></dialog>
 </template>
 
 <!--  Weather data -->
@@ -174,7 +188,20 @@
         </div>
 </div>
 
-  
+<div id="phenomena">
+  <div id="aurora">
+    <img class="phenomena" src="Images/aurora_borealis.png" />
+  </div>
+  <div id="lightning">
+    <!img class="phenomena" src="Images/lightning.png" />
+  </div>
+  <div id="auroralarc">
+      <!img class="phenomena" src="Images/auroral_arc.png" />
+  </div>
+
+
+</div>
+
 
 <!---- Birds and Poem MSS follow -->
 <div id="dynamically-placed-items">
