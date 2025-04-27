@@ -4,7 +4,8 @@ function toggleVis(e){
 	const containerIds = {
 		'show-weather': '#chyron-container',
 		'show-birds' : '.bird-data',
-		'show-poems' : '.poem-data'
+		'show-poems' : '.poem-data',
+		'show-phenomena' : '#phenomena img'
 	};
 	console.log(e.target.checked);
 	for (const hideNode of document.querySelectorAll(containerIds[e.target.id])) {
