@@ -28,6 +28,7 @@ class AudioPlayer extends HTMLElement {
     this.muteButton = this.querySelector('#audioplayer-volume-mute');
     this.menu = this.querySelector('#audioplayer-menu');
     this.notebook = this.querySelector('#notebook');
+    this.key = this.querySelector('#key');
     
     this.audio.addEventListener('pause', this.handlePause.bind(this));    
     this.audio.addEventListener('play', this.handlePlay.bind(this));
@@ -50,6 +51,7 @@ class AudioPlayer extends HTMLElement {
     this.menu.addEventListener('click', this.handleMenuClick.bind(this));
     
     this.notebook.addEventListener('click', this.handleNotebookClick.bind(this));
+    this.key.addEventListener('click', this.handleKeyClick.bind(this));
   }
   
   handleMenuClick(e) {
@@ -57,7 +59,14 @@ class AudioPlayer extends HTMLElement {
   }
   
   handleNotebookClick(e) {
-    document.getElementById('notebook-dialog').showModal();
+     /* Spawn new window here? Or in the page? */ 
+    
+    //document.getElementById('notebook-dialog').showModal();
+    return;
+  }
+
+  handleKeyClick(e) {
+    document.getElementById('key-dialog').showModal();
   }
   
   handleMuteClick(e) {

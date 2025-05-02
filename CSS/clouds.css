@@ -1,9 +1,8 @@
-/*clouds.css*/
+/*clouds.css + night sky */
 
 img.cloud {
   width: 100%;
   position: absolute;
-/*  top: -10%;*/
   opacity: 0;
   transition: opacity 2s ease;
 }
@@ -24,10 +23,10 @@ img.cloud {
   }
 }
 
-.fade-out img.cloud{
+.fade-out img.cloud, img.fade-out {
 	opacity: 0;
 }
-.fade-in img.cloud{
+.fade-in img.cloud, img.fade-in {
 	opacity: 80%;
 }
 

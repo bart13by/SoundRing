@@ -5,7 +5,7 @@ function toggleVis(e){
 		'show-weather': '#chyron-container',
 		'show-birds' : '.bird-data',
 		'show-poems' : '.poem-data',
-		'show-phenomena' : '#phenomena img'
+		// 'show-phenomena' : '#phenomena img'
 	};
 	console.log(e.target.checked);
 	for (const hideNode of document.querySelectorAll(containerIds[e.target.id])) {
