@@ -203,8 +203,10 @@ input[type="range"]:focus {
 /* slider track */
 input[type="range"]::-webkit-slider-runnable-track {
   background-color: #708271;
+/*background-color: #EEE;*/
   border-radius: 0.5rem;
   height: 2rem;
+
 }
 
 /* slider thumb */
@@ -214,6 +216,8 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: 0rem; /* Centers thumb on the track */
 /*  background-color: #f4c415;*/
 background-color: lightgreen;
+background-color: white;
+opacity: 100%;
   border-radius: 0.5rem;
   height: 2rem;
   width: 1rem;

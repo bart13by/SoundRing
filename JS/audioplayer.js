@@ -56,6 +56,7 @@ class AudioPlayer extends HTMLElement {
   
   handleMenuClick(e) {
     document.getElementById('menu-dialog').showModal();
+    // document.getElementById('menu-dialog').show();
   }
   
   handleNotebookClick(e) {
