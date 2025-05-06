@@ -154,9 +154,19 @@
       <button id="audioplayer-menu">Menu</button>
     </div>
     <div id="audioplayer-extras">
+      <script>
+        function showHide(qs){
+          const node = document.querySelector(qs);
+          if (node.classList.contains('hide')){
+            node.classList.remove('hide');
+          }else{
+            node.classList.add('hide');
+          }
+          
+        }
+      </script>
       <button id="key">Key</button>
-      <button id="notebook" onclick="window.open('notebook.html', 'notebook-window', 
-      'left=100,top=100,width=620,height=720,address=0,toolbar=0')">Notebook</button>
+      <button id="notebook" onclick="showHide('#liner-notes-container')">Notebook</button>
       
     </div>
   </div>
@@ -213,9 +223,10 @@
 </div>
 
 <!-- liner notes? -->
-<div id="liner-notes-container">
+<div id="liner-notes-container" class="hide">
 <iframe width=400 height=800
   id="liner-notes-iframe" src="linernotes.html"></iframe>
+
 </div>
 
 
