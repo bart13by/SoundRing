@@ -31,12 +31,6 @@
   }
 </style>
 
-<!-- liner notes? -->
-<div id="liner-notes-container" class="hide">
-<iframe width=400 height=800
-  id="liner-notes-iframe" src="linernotes.html"></iframe>
-
-</div>
 
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
        preserveAspectRatio="xMidYMid meet"
@@ -126,7 +120,6 @@
   </div>
 
 
-
 <div id="play-bar">
 <audio-player>
   <audio id="audio" 
@@ -167,6 +160,7 @@
           const node = document.querySelector(qs);
           if (node.classList.contains('hide')){
             node.classList.remove('hide');
+            node.focus();
           }else{
             node.classList.add('hide');
           }
@@ -227,6 +221,13 @@
       <!img class="phenomena" src="Images/auroral_arc.png" />
   </div>
 
+
+</div>
+
+<!-- liner notes? -->
+<div id="liner-notes-container" class="hide">
+<iframe width=400 height=800
+  id="liner-notes-iframe" src="linernotes.html"></iframe>
 
 </div>
 

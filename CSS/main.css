@@ -11,6 +11,7 @@ body {
 #html-container { z-index: -1; }
 #firmament { z-index: 0; }
 #clouds { z-index: 1; }
+/*#liner-notes-container { z-index: 1; }*/
 #play-bar { z-index: 3; }
 #chyron-container { z-index: 2; }
 .tooltip { z-index: 4 } 
@@ -34,7 +35,7 @@ body {
 	top: 20;
 	right:20;
 	width: 20%;
-/*	height: 85%;*/
+	opacity: 70%;
 }
 
 @keyframes svg-bgcolors {
