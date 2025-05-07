@@ -90,7 +90,7 @@ const PHENOMENA_TIMES_SECS = {
 	1380: 'lightning',
 	// FOR TESTING
 	5: 'aurora',
-	9: 'aurora',
+	9: 'auroralarc',
 	14: 'lightning'
 };
 
