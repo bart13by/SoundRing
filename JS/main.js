@@ -75,19 +75,21 @@ const SEASONS = {
 	12: "winter"
 };
 const PHENOMENA_DURATIONS_SECS = {
-	'aurora': {'IN': 1, 'OUT': 1, 'DUR': 2 },
-	'arc' : {'IN': 1, 'OUT': 1, 'DUR': 1 },
-	'lightning' : {'IN': 0, 'OUT': 0, 'DUR': 1 },
+	'aurora': 2,
+	'auroralarc' : 1,
+	'lightning' : 1,
 };
 const PHENOMENA_TIMES_SECS = {
-	5 : 'aurora',
+	5 : 'aurora', // test only
+	9 : 'auroralarc',
+	12 : 'lightning',
 	276 : 'aurora',
 	528 : 'aurora',
-	1116 : 'arc',
-	240 : 'lighting',
-	572 : 'lighting',
-	640 : 'lighting',
-	1380: 'lighting'
+	1116 : 'auroralarc',
+	240 : 'lightning',
+	572 : 'lightning',
+	640 : 'lightning',
+	1380: 'lightning'
 
 
 };
@@ -219,15 +221,13 @@ function updateClouds(currentTime){
 
 }
 
-function doNightSkyPhenomena(t){
-	const aur = document.querySelector('#aurora img');
-	console.log(aur);
-	aur.classList.add("fade-in");
-	aur.classList.remove("fade-out");
+function doNightSkyPhenomena(phenom){
+	const phenom_img = document.querySelector(`#${phenom} img`);
+	const duration = PHENOMENA_DURATIONS_SECS[phenom];
+	phenom_img.style.opacity = 1;
 	setTimeout(() => {
-		aur.classList.remove("fade-in");
-		aur.classList.add("fade-out");
-	}, 2000);
+		phenom_img.style.opacity = 0;
+	}, duration * 1000);
 	
 }
 
@@ -239,8 +239,7 @@ function dispatchTimerEvents(){
 	const seconds = Math.floor(getCurrentTime());
 
 	if (PHENOMENA_TIMES_SECS[seconds] !== undefined) {
-		console.log(seconds);
-		doNightSkyPhenomena(seconds);
+		doNightSkyPhenomena(PHENOMENA_TIMES_SECS[seconds]); // update night sky if needed
 	}
 	if (seconds % PROPERTIES.drift_interval_seconds == 0){
 		doDrift(); // call drift every three seconds	
