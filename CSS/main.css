@@ -71,6 +71,7 @@ body {
 #liner-notes-iframe {
  height: 44vw;
 	width: 100%;
+
 }
  #key-iframe {
 	width: 100%;
@@ -101,6 +102,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+
 }
 
 img.phenomena {
@@ -113,13 +115,6 @@ img.phenomena {
 #aurora img, #auroralarc img {
 	transition: opacity 1s ease;	
 }
-/*
-#aurora img {
-	
-}
-#lightning img{
-	
-}*/
 
 
 /* Weather data scrolling   */
@@ -164,15 +159,18 @@ img.phenomena {
 
 
 .loading { /* 'Load Screen' properties. */
+	z-index: 5;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	opacity: 50%;
+	opacity: .8;
+	
 	background-color: black;
 	color: white;
 	position: absolute;
+	transition: opacity 3s ease;	
 }
 .loaded {
 	display: none;

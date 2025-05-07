@@ -79,19 +79,15 @@ const PHENOMENA_DURATIONS_SECS = {
 	'auroralarc' : 1,
 	'lightning' : 1,
 };
-const PHENOMENA_TIMES_SECS = {
-	5 : 'aurora', // test only
-	9 : 'auroralarc',
-	12 : 'lightning',
-	276 : 'aurora',
-	528 : 'aurora',
-	1116 : 'auroralarc',
+const PHENOMENA_TIMES_SECS = { 
+	// subtract 1 sec for fade ins, excluding lightning
+	275 : 'aurora',
+	527 : 'aurora',
+	1115 : 'auroralarc',
 	240 : 'lightning',
 	572 : 'lightning',
 	640 : 'lightning',
 	1380: 'lightning'
-
-
 };
 
 /* Initialize in-memory structures to populate later */
@@ -136,6 +132,47 @@ const runFirmament = () => {
 			console.error('Error:', error);
 	});
 }
+/************** DISPATCH TIMER EVENTS ************/
+function dispatchTimerEvents(){
+	/* Called every second and on any time change; manages all the timer-based actions
+	 * This is really where all the magic happens.
+	 */
+	console.log("dispatchTimerEvents");
+	const seconds = Math.floor(getCurrentTime());
+
+	if (PHENOMENA_TIMES_SECS[seconds] !== undefined) {
+		doNightSkyPhenomena(PHENOMENA_TIMES_SECS[seconds]); // update night sky if needed
+	}
+	if (seconds % PROPERTIES.drift_interval_seconds == 0){
+		doDrift(); // call drift every three seconds	
+	}
+	
+	const actualTime = getCurrentTime();
+	updateClouds(actualTime); // we updateClouds every fscking second!
+	const shiftedTime = actualTime + PROPERTIES.preload_seconds; // we start the month early for the sake of arrive/depart
+	const currentMonth = MONTHSARRAY[Math.floor(shiftedTime / 120)];
+	const currentSeason = SEASONS[MONTHSARRAY[Math.floor(actualTime / 120)]]; // but don't start seasons early
+	if (currentMonth != RUNTIME.current_month) { // If month has changed ...
+		// reset the birds
+		showBirdsForMonth(currentMonth);
+		// change-out the weather graph
+		changeWeatherGraph(currentMonth);
+		// update RUNTIME
+		RUNTIME.current_month = currentMonth;	
+		if (currentSeason != RUNTIME.current_season){ // If season has also changed, reset the poems
+			showPoemsForSeason(currentSeason);
+			
+			RUNTIME.current_season = currentSeason;
+		}
+		// Now that current birds and poems have visibility props, check proximity to the edge.
+		setEdgeProperties();
+	} 
+
+	// We start departing at 1:45 in the month, aka 105 seconds
+	if (Math.floor(actualTime % 120) == 105) doDeparting(currentMonth);
+	
+}
+
 function startApp(){ // called on audio.play event and on initial start up
 	console.log(`startApp; interval_id == ${RUNTIME.interval_id}`);
 	if (RUNTIME.interval_id > 0){
@@ -221,6 +258,11 @@ function updateClouds(currentTime){
 
 }
 
+function changeWeatherGraph(monthIndex){
+		// lastMonth image opacity = 0
+		// thisMonth image opcity = 1
+}
+
 function doNightSkyPhenomena(phenom){
 	const phenom_img = document.querySelector(`#${phenom} img`);
 	const duration = PHENOMENA_DURATIONS_SECS[phenom];
@@ -231,41 +273,6 @@ function doNightSkyPhenomena(phenom){
 	
 }
 
-function dispatchTimerEvents(){
-	/* Called every second and on any time change; manages all the timer-based actions
-	 * This is really where all the magic happens.
-	 */
-	console.log("dispatchTimerEvents");
-	const seconds = Math.floor(getCurrentTime());
-
-	if (PHENOMENA_TIMES_SECS[seconds] !== undefined) {
-		doNightSkyPhenomena(PHENOMENA_TIMES_SECS[seconds]); // update night sky if needed
-	}
-	if (seconds % PROPERTIES.drift_interval_seconds == 0){
-		doDrift(); // call drift every three seconds	
-	}
-	
-	const actualTime = getCurrentTime();
-	updateClouds(actualTime); // we updateClouds every fscking second!
-	const shiftedTime = actualTime + PROPERTIES.preload_seconds; // we start the month early for the sake of arrive/depart
-	const currentMonth = MONTHSARRAY[Math.floor(shiftedTime / 120)];
-	const currentSeason = SEASONS[MONTHSARRAY[Math.floor(actualTime / 120)]]; // but don't start seasons early
-	if (currentMonth != RUNTIME.current_month) { // If month has changed, reset the birds
-		showBirdsForMonth(currentMonth);
-		RUNTIME.current_month = currentMonth;	
-		if (currentSeason != RUNTIME.current_season){ // If season has also changed, reset the poems
-			showPoemsForSeason(currentSeason);
-			
-			RUNTIME.current_season = currentSeason;
-		}
-		// Now that current birds and poems have visibility props, check proximity to the edge.
-		setEdgeProperties();
-	} 
-
-	// We start departing at 1:45 in the month, aka 105 seconds
-	if (Math.floor(actualTime % 120) == 105) doDeparting(currentMonth);
-	
-}
 
 function doDeparting(monthIndex){
 	/* Called when elapsedTime for monthIndex is 105 seconds (1:45) */	

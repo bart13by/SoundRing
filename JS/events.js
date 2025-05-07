@@ -76,8 +76,14 @@ function doLoaded(e){
 	the browser thinks enough data is present to play without buffering).
 	Removes the "load screen" element.
 	 */
-	const loadScreen = document.querySelector('#loading');
-	loadScreen.className = "loaded";
+
+	setTimeout(() => {
+		setTimeout(() => { 
+			document.querySelector('#loading').className = 'loaded';
+			}, 2500);
+				document.querySelector('#loading').style.opacity = 0;
+		}, 500);
+
 	const playPromise = e.target.play();	
 	if (playPromise !== undefined) {
     playPromise.then(_ => {
