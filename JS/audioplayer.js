@@ -56,7 +56,6 @@ class AudioPlayer extends HTMLElement {
   
   handleMenuClick(e) {
     document.getElementById('menu-dialog').showModal();
-    // document.getElementById('menu-dialog').show();
   }
   
   handleNotebookClick(e) {
@@ -67,7 +66,8 @@ class AudioPlayer extends HTMLElement {
   }
 
   handleKeyClick(e) {
-    document.getElementById('key-dialog').showModal();
+     return;
+    // document.getElementById('key-dialog').showModal();
   }
   
   handleMuteClick(e) {

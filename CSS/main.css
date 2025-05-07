@@ -25,11 +25,20 @@ body {
 	animation: svg-bgcolors 1440s infinite;
 	
 }
-#liner-notes-iframe {
+#liner-notes-iframe, #key-iframe {
 
 	width: 100%;
 
 }
+
+#key-container {
+	position: absolute;
+	top: 20;
+	left:20;
+	width: 20%;
+	opacity: 70%;
+}
+
 #liner-notes-container {
 	position: absolute;
 	top: 20;
