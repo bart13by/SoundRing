@@ -87,7 +87,11 @@ const PHENOMENA_TIMES_SECS = {
 	240 : 'lightning',
 	572 : 'lightning',
 	640 : 'lightning',
-	1380: 'lightning'
+	1380: 'lightning',
+	// FOR TESTING
+	5: 'aurora',
+	9: 'aurora',
+	14: 'lightning'
 };
 
 /* Initialize in-memory structures to populate later */
