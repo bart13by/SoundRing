@@ -25,16 +25,19 @@ body {
 	animation: svg-bgcolors 1440s infinite;
 	
 }
-#liner-notes-iframe, #key-iframe {
-
+#liner-notes-iframe {
+ height: 44vw;
 	width: 100%;
-
+}
+ #key-iframe {
+	width: 100%;
+	height: 32vw;
 }
 
 #key-container {
 	position: absolute;
 	top: 20;
-	left:20;
+	left:10vw;
 	width: 20%;
 	opacity: 70%;
 }
@@ -73,23 +76,6 @@ body {
 	
 }
 
-#key-dialog {
-	font-family: "Cormorant Infant", sans-serif;
-	object-position: left 10px;
-  font-weight: normal;
-  width: fit-content;
-  max-width: 600px;
-  min-width: 300px;
-  height: 800px;
-/*  background-color: #222222;*/
-background-color: ivory;
-  opacity: 100%;
-  color: #000;
-  text-align: left;
-  border-radius: 6px;
-  padding: 5px 5px;
-  position: absolute;
-}
 
 /* container for audio player */
 #play-bar {
