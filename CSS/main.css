@@ -97,12 +97,16 @@ body {
 
 #key-container label{
 	padding: 25px;
+	position: relative;
 	background: #eee;
 	font-weight: bold;
+	border: 1px solid black;
+	top: 2px;
 }
 #key-container .tab {
 	order: 1;
 	display: none;
+	border-collapse: collapse;
 }
 
 #key-container input[type="radio"]:checked + label + .tab {
@@ -112,6 +116,7 @@ body {
 
 #key-container input[type="radio"]:checked + label {
 	background: #fff;
+	border-bottom: 0;
 
 }
 
