@@ -152,7 +152,7 @@
   </div>
 </div>
 
-<template id="audio-player" shadowrootnode="open">
+<template id="audio-player">
   <script>
         function showHide(qs){
           const node = document.querySelector(qs);
@@ -181,20 +181,23 @@
       <button id="audioplayer-menu" onclick="showHide('#menu-dialog')">Menu</button>
     </div>
     <div id="audioplayer-extras">
-      <button id="key" onclick="showHide('#key-container')">Key</button>
-      
+      <button id="key" class="highlight" onclick="showHide('#key-container')">Key</button>
+
       <button id="notebook" onclick="showHide('#liner-notes-container')">Notebook</button>
       
     </div>
   
   </div>
+
+  <!-- templ here -->
+
   <!-- ##############  MENU POPUP HERE ############# -->
-  <!-- <dialog id="menu-dialog">
-    <form method="dialog"> -->
+
       <div id="menu-dialog" class="hide">
-        <span class="close" onclick="showHide('#menu-dialog')">[X]</span>
-      <fieldset>
-        <legend>Select Layers to show:</legend>
+        <div class="menu-title">Select Layers to show</div>
+        <div class="menu-content">
+        
+      
 <div>
     <input type="checkbox" id="show-poems" name="poems" checked onchange="toggleLayer(event)"/>
     <label for="show-poems">Poems</label>
@@ -220,13 +223,11 @@
     <label for="show-phenomena">Night Sky Phenomena</label>
   </div>
 
-</fieldset>
 </div>
-<!--       <input type="submit" value="Save" />
-    </form> -->
-  </dialog>
+</div>
 
 </template>
+
 
 
 <div id="phenomena">
