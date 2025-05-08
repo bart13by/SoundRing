@@ -1,11 +1,12 @@
 // events.js
 
-function toggleVis(e){
+function toggleLayer(e){
 	const containerIds = {
-		'show-weather': '#chyron-container',
+		'show-spectrogram': '#chyron-container',
+		'show-climograph' : '#weather-graphs-container',
 		'show-birds' : '.bird-data',
 		'show-poems' : '.poem-data',
-		// 'show-phenomena' : '#phenomena img'
+		'show-phenomena' : '#phenomena img'
 	};
 	console.log(e.target.checked);
 	for (const hideNode of document.querySelectorAll(containerIds[e.target.id])) {
@@ -17,7 +18,6 @@ function toggleVis(e){
 		}
 		
 	}
-	// containerIds[e.target.id].style.visibility = 'hidden';
 	
 	
 }
@@ -80,7 +80,7 @@ function doLoaded(e){
 	setTimeout(() => {
 		setTimeout(() => { 
 			document.querySelector('#loading').className = 'loaded';
-			}, 2500);
+			}, 6000);
 				document.querySelector('#loading').style.opacity = 0;
 		}, 500);
 

@@ -103,6 +103,7 @@ audio-player[muted] #audioplayer-volume-mute {
 }
 
 #audioplayer-menu {
+  cursor: pointer;
   background: white;
   color: transparent;
   border: 0 none;

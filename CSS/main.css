@@ -133,6 +133,11 @@ body {
 
 }
 
+#menu-dialog {
+	background: #eee;
+	opacity: .7;
+	border: 1px inset black;
+}
 /* night sky phenomena */
 
 #phenomena {
@@ -155,8 +160,18 @@ img.phenomena {
 	transition: opacity 1s ease;	
 }
 
+/* Weather graphs */
+#weather-graphs-container {
+	display: none;
+}
 
-/* Weather data scrolling   */
+.weather-graph {
+	opacity: 0;
+}
+.weather-graph img {
+	transition: opacity 5s ease;	
+}
+/* Audio gram scrolling   */
 #chyron-container {
 	
 		position: absolute;
@@ -196,6 +211,12 @@ img.phenomena {
     }
 }
 
+.loading img {
+	position: absolute;
+	width: 80%;
+	top: 0;
+/*	align: center;*/
+}
 
 .loading { /* 'Load Screen' properties. */
 	z-index: 5;
@@ -203,13 +224,12 @@ img.phenomena {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	height: 100%;
-	opacity: .8;
-	
-	background-color: black;
+	height: 150%;
+	opacity: 1;
 	color: white;
+	background-color: #000;
 	position: absolute;
-	transition: opacity 3s ease;	
+	transition: opacity 5s ease;	
 }
 .loaded {
 	display: none;

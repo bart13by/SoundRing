@@ -98,7 +98,9 @@
   <div id="loading" class="loading">
 
     <h1>Firmament Loading</h1>
-  </div>
+    <img class="loading-bg" src="Images/map.png" />
+   </div>
+
   <div id="firmament">
 
   <div id="clouds" class="rotate">
@@ -132,12 +134,22 @@
     ></audio>
 </audio-player>
 </div>
-<!--  Weather data -->
 
+<!--  Spectrogram (pins) -->
 <div id="chyron-container">
         <div id="chyron">
-            <img src="Images/weather.png" alt="Yearly Weather Data">
+            <img src="Images/spectrogram.png" alt="Audio Spectrogram">
         </div>
+</div>
+
+<!-- Precip graphs -->
+<div id="weather-graphs-container">
+  <div class="weather-graph" id="wg1">
+    <img src="Images/nada.gif" />
+  </div>
+  <div class="weather-graph" id="wg2">
+    <img src="Images/nada.gif" />
+  </div>
 </div>
 
 <template id="audio-player">
@@ -174,31 +186,37 @@
   </div>
   <!-- ##############  MENU POPUP HERE ############# -->
   <dialog id="menu-dialog">
-    Menu:
     <form method="dialog">
       <fieldset>
-        <legend>Select features to show:</legend>
-
-  <div>
-    <input type="checkbox" id="show-weather" name="weather" checked onchange="toggleVis(event)" />
-    <label for="weather">Weather Graph</label>
+        <legend>Select Layers to show:</legend>
+<div>
+    <input type="checkbox" id="show-poems" name="poems" checked onchange="toggleLayer(event)"/>
+    <label for="show-poems">Poems</label>
   </div>
 
   <div>
-    <input type="checkbox" id="show-birds" name="birds" checked onchange="toggleVis(event)"/>
-    <label for="birds">Birds</label>
+    <input type="checkbox" id="show-birds" name="birds" checked onchange="toggleLayer(event)"/>
+    <label for="show-birds">Birds</label>
   </div>
+<div>
+    <input type="checkbox" id="show-climograph" name="climograph" checked onchange="toggleLayer(event)" />
+    <label for="show-spectrogram">Climograph</label>
+  </div>
+
   <div>
-    <input type="checkbox" id="show-poems" name="poems" checked onchange="toggleVis(event)"/>
-    <label for="birds">Poems</label>
+    <input type="checkbox" id="show-spectrogram" name="spectrogram" checked onchange="toggleLayer(event)" />
+    <label for="show-spectrogram">Audio Spectrograph</label>
   </div>
+
+  
   <div>
-    <input type="checkbox" id="show-phenomena" name="phenomena" checked onchange="toggleVis(event)"/>
-    <label for="phenomena">Night Sky Stuff</label>
+    <input type="checkbox" id="show-phenomena" name="phenomena" checked onchange="toggleLayer(event)"/>
+    <label for="show-phenomena">Night Sky Phenomena</label>
   </div>
+
 </fieldset>
 
-      <input type="submit" value="Close" />
+      <input type="submit" value="Save" />
     </form>
   </dialog>
 
