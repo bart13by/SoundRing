@@ -82,8 +82,8 @@ body {
 
 #key-container {
 	position: absolute;
-	top: 20;
-	left:10vw;
+	top: 20vh;
+	left:34vw;
 	width: 30%;
 	opacity: 1;
 	/* per https://www.youtube.com/watch?v=oLqdy95LZSw */
@@ -96,17 +96,23 @@ body {
 }
 
 #key-container label{
-	padding: 25px;
+	padding: 25px 10px 25px 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	position: relative;
 	background: #eee;
 	font-weight: bold;
-	border: 1px solid black;
-	top: 2px;
+	border: 1.2px inset black;
+/*	border-left: 2px solid black;*/
+	border-collapse: collapse;
+/*	left: -1px;*/
+	top: 1px;
 }
 #key-container .tab {
 	order: 1;
 	display: none;
 	border-collapse: collapse;
+	border: 1px inset black;
 }
 
 #key-container input[type="radio"]:checked + label + .tab {
