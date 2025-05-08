@@ -76,6 +76,8 @@ body {
  #key-iframe {
 	width: 100%;
 	height: 32vw;
+/*	border-radius: 500px 0 0 0;*/
+
 }
 
 #key-container {
@@ -83,7 +85,34 @@ body {
 	top: 20;
 	left:10vw;
 	width: 30%;
-	opacity: 70%;
+	opacity: 1;
+	/* per https://www.youtube.com/watch?v=oLqdy95LZSw */
+	display: flex;
+	flex-wrap: wrap;
+}
+/* per https://www.youtube.com/watch?v=oLqdy95LZSw */
+#key-container input[type="radio"]{
+	display: none;
+}
+
+#key-container label{
+	padding: 25px;
+	background: #eee;
+	font-weight: bold;
+}
+#key-container .tab {
+	order: 1;
+	display: none;
+}
+
+#key-container input[type="radio"]:checked + label + .tab {
+	display: block;
+
+}
+
+#key-container input[type="radio"]:checked + label {
+	background: #fff;
+
 }
 
 #liner-notes-container {

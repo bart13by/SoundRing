@@ -218,10 +218,19 @@
 
 </div>
 <!-- key and liner notes containers/iframes -->
-<div id="key-container" class="hide">
-<iframe width=400 height=400
-  id="key-iframe" src="key.html"></iframe>
 
+<!-- Key and Atlas need to be tabs -->
+<div id="key-container" class="hide">
+
+  <input type="radio" id="key-tab-radio" name="keyatlasradios" checked="checked" >
+  <label for="key-tab-radio">Key</label>
+  <iframe class="tab" width=400 height=400
+    id="key-iframe" src="key.html"></iframe>
+
+  <input type="radio" id="atlas-tab-radio" name="keyatlasradios" >
+  <label for="atlas-tab-radio">Atlas</label>
+  <iframe class="tab" width=400 height=400
+    id="atlas-iframe" src="atlas.html"></iframe>
 </div>
 
 
