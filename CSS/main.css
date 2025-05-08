@@ -64,7 +64,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  opacity: 60%;
+/*  opacity: 60%;*/
 
 } 
 
@@ -135,10 +135,15 @@ body {
 }
 
 #menu-dialog {
+	position: absolute;
+	top: -12vw;
+	left: 65vw;
 	background: #eee;
-	opacity: .7;
+	opacity: 1;
 	border: 1px inset black;
+	max-width: 20%;
 	font-family: "Cormorant Infant", sans-serif;
+	
 }
 /* night sky phenomena */
 

@@ -153,21 +153,7 @@
 </div>
 
 <template id="audio-player">
-  <div id="audioplayer">
-    <div id="audioplayer-controls">
-      <button id="audioplayer-play">Play</button>
-      <div id="audioplayer-time">
-        <span id="audioplayer-time-elapsed">-:--</span> / <span id="audioplayer-time-total">-:--</span>
-      </div>
-      <input type="range" id="audioplayer-scrubber" value="0" min="0" max="0">
-      <div id="audioplayer-volume" tabindex="0">
-        <input type="range" id="audioplayer-volume-control" value="0" min="0" max="0">
-        <button id="audioplayer-volume-mute">Mute</button>        
-      </div>
-      <button id="audioplayer-menu">Menu</button>
-    </div>
-    <div id="audioplayer-extras">
-      <script>
+  <script>
         function showHide(qs){
           const node = document.querySelector(qs);
           if (node.classList.contains('hide')){
@@ -179,14 +165,32 @@
           
         }
       </script>
+      
+  <div id="audioplayer">
+    
+    <div id="audioplayer-controls">
+      <button id="audioplayer-play">Play</button>
+      <div id="audioplayer-time">
+        <span id="audioplayer-time-elapsed">-:--</span> / <span id="audioplayer-time-total">-:--</span>
+      </div>
+      <input type="range" id="audioplayer-scrubber" value="0" min="0" max="0">
+      <div id="audioplayer-volume" tabindex="0">
+        <input type="range" id="audioplayer-volume-control" value="0" min="0" max="0">
+        <button id="audioplayer-volume-mute">Mute</button>        
+      </div>
+      <button id="audioplayer-menu" onclick="showHide('#menu-dialog')">Menu</button>
+    </div>
+    <div id="audioplayer-extras">
       <button id="key" onclick="showHide('#key-container')">Key</button>
       <button id="notebook" onclick="showHide('#liner-notes-container')">Notebook</button>
       
     </div>
+  
   </div>
   <!-- ##############  MENU POPUP HERE ############# -->
-  <dialog id="menu-dialog">
-    <form method="dialog">
+  <!-- <dialog id="menu-dialog">
+    <form method="dialog"> -->
+      <div id="menu-dialog" class="hide">
       <fieldset>
         <legend>Select Layers to show:</legend>
 <div>
@@ -205,7 +209,7 @@
 
   <div>
     <input type="checkbox" id="show-spectrogram" name="spectrogram" checked onchange="toggleLayer(event)" />
-    <label for="show-spectrogram">Audio Spectrograph</label>
+    <label for="show-spectrogram">Soundscape Waveform</label>
   </div>
 
   
@@ -215,9 +219,9 @@
   </div>
 
 </fieldset>
-
-      <input type="submit" value="Save" />
-    </form>
+</div>
+<!--       <input type="submit" value="Save" />
+    </form> -->
   </dialog>
 
 </template>
