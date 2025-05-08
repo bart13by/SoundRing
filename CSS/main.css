@@ -101,6 +101,7 @@ body {
 	border: 1.2px inset black;
 	border-collapse: collapse;
 	top: 1px;
+	font-family: "Cormorant Infant", sans-serif;
 }
 #key-container .tab {
 	order: 1;
@@ -137,6 +138,7 @@ body {
 	background: #eee;
 	opacity: .7;
 	border: 1px inset black;
+	font-family: "Cormorant Infant", sans-serif;
 }
 /* night sky phenomena */
 
