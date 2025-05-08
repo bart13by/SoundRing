@@ -86,7 +86,7 @@ body {
 	left:34vw;
 	width: 30%;
 	opacity: 1;
-	/* per https://www.youtube.com/watch?v=oLqdy95LZSw */
+	z-index: 5;
 	display: flex;
 	flex-wrap: wrap;
 }
