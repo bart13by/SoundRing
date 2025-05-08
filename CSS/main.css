@@ -69,7 +69,18 @@ body {
 } 
 
 
+.close {
+	cursor: pointer;
+	position: relative;
+	display: none;
+	z-index: 5;
+	font-family: "Cormorant Infant", sans-serif;
+}
+/*#key-container .close {
+	top: 3em;
+	left: 2ex;
 
+}*/
 #key-container {
 	position: absolute;
 	top: 20vh;
@@ -135,15 +146,17 @@ body {
 }
 
 #menu-dialog {
+	z-index: 5;
+	background: rgb(255, 255, 255, 255);
 	position: absolute;
 	top: -12vw;
 	left: 65vw;
-	background: #eee;
+/*	background: #eee;*/
 	opacity: 1;
 	border: 1px inset black;
 	max-width: 20%;
 	font-family: "Cormorant Infant", sans-serif;
-	
+
 }
 /* night sky phenomena */
 

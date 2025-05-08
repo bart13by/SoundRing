@@ -152,7 +152,7 @@
   </div>
 </div>
 
-<template id="audio-player">
+<template id="audio-player" shadowrootnode="open">
   <script>
         function showHide(qs){
           const node = document.querySelector(qs);
@@ -182,6 +182,7 @@
     </div>
     <div id="audioplayer-extras">
       <button id="key" onclick="showHide('#key-container')">Key</button>
+      
       <button id="notebook" onclick="showHide('#liner-notes-container')">Notebook</button>
       
     </div>
@@ -191,6 +192,7 @@
   <!-- <dialog id="menu-dialog">
     <form method="dialog"> -->
       <div id="menu-dialog" class="hide">
+        <span class="close" onclick="showHide('#menu-dialog')">[X]</span>
       <fieldset>
         <legend>Select Layers to show:</legend>
 <div>
@@ -244,7 +246,7 @@
 
 <!-- Key and Atlas need to be tabs -->
 <div id="key-container" class="hide">
-
+  <span class="close" onclick="showHide('#key-container')">[X]</span>
   <input type="radio" id="key-tab-radio" name="keyatlasradios" checked="checked" >
   <label for="key-tab-radio">Key</label>
   <iframe class="tab" width=400 height=400
@@ -258,6 +260,7 @@
 
 
 <div id="liner-notes-container" class="hide">
+  <span class="close" onclick="showHide('#liner-notes-container')">[X]</span>
 <iframe width=400 height=800
   id="liner-notes-iframe" src="linernotes.html"></iframe>
 
