@@ -178,50 +178,49 @@
         <input type="range" id="audioplayer-volume-control" value="0" min="0" max="0">
         <button id="audioplayer-volume-mute">Mute</button>        
       </div>
+      <div class="button-wrapper">
       <button id="audioplayer-menu" onclick="showHide('#menu-dialog')">Menu</button>
     </div>
-    <div id="audioplayer-extras">
-      <button id="key" class="highlight" onclick="showHide('#key-container')">Key</button>
-
-      <button id="notebook" onclick="showHide('#liner-notes-container')">Notebook</button>
-      
     </div>
+    <div id="audioplayer-extras">
+      <div class="button-wrapper button-selected">
+      <button id="key" class="highlight" onclick="showHide('#key-container')">Key</button>
+    </div>
+    <div class="button-wrapper">
+      <button  id="notebook" onclick="showHide('#liner-notes-container')">Notebook</button>
+    </div>
+  </div>
   
   </div>
-
-  <!-- templ here -->
 
   <!-- ##############  MENU POPUP HERE ############# -->
 
-      <div id="menu-dialog" class="hide">
-        <div class="menu-title">Select Layers to show</div>
-        <div class="menu-content">
-        
-      
-<div>
-    <input type="checkbox" id="show-poems" name="poems" checked onchange="toggleLayer(event)"/>
-    <label for="show-poems">Poems</label>
-  </div>
+  <div id="menu-dialog" class="hide">
+    <div class="menu-title">Select Layers to show</div>
+    <div class="menu-content">      
+    <div>
+      <input type="checkbox" id="show-poems" name="poems" checked onchange="toggleLayer(event)"/>
+      <label for="show-poems">Poems</label>
+    </div>
 
-  <div>
-    <input type="checkbox" id="show-birds" name="birds" checked onchange="toggleLayer(event)"/>
-    <label for="show-birds">Birds</label>
-  </div>
-<div>
-    <input type="checkbox" id="show-climograph" name="climograph" checked onchange="toggleLayer(event)" />
-    <label for="show-spectrogram">Climograph</label>
-  </div>
+    <div>
+      <input type="checkbox" id="show-birds" name="birds" checked onchange="toggleLayer(event)"/>
+      <label for="show-birds">Birds</label>
+    </div>
+    <div>
+        <input type="checkbox" id="show-climograph" name="climograph" checked onchange="toggleLayer(event)" />
+        <label for="show-spectrogram">Climograph</label>
+    </div>
 
-  <div>
-    <input type="checkbox" id="show-spectrogram" name="spectrogram" checked onchange="toggleLayer(event)" />
-    <label for="show-spectrogram">Soundscape Waveform</label>
-  </div>
-
+    <div>
+      <input type="checkbox" id="show-spectrogram" name="spectrogram" checked onchange="toggleLayer(event)" />
+      <label for="show-spectrogram">Soundscape Waveform</label>
+    </div>
   
-  <div>
-    <input type="checkbox" id="show-phenomena" name="phenomena" checked onchange="toggleLayer(event)"/>
-    <label for="show-phenomena">Night Sky Phenomena</label>
-  </div>
+    <div>
+      <input type="checkbox" id="show-phenomena" name="phenomena" checked onchange="toggleLayer(event)"/>
+      <label for="show-phenomena">Night Sky Phenomena</label>
+    </div>
 
 </div>
 </div>
@@ -247,7 +246,6 @@
 
 <!-- Key and Atlas need to be tabs -->
 <div id="key-container" class="hide">
-  <span class="close" onclick="showHide('#key-container')">[X]</span>
   <input type="radio" id="key-tab-radio" name="keyatlasradios" checked="checked" >
   <label for="key-tab-radio">Key</label>
   <iframe class="tab" width=400 height=400
@@ -261,7 +259,6 @@
 
 
 <div id="liner-notes-container" class="hide">
-  <span class="close" onclick="showHide('#liner-notes-container')">[X]</span>
 <iframe width=400 height=800
   id="liner-notes-iframe" src="linernotes.html"></iframe>
 
