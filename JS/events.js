@@ -61,13 +61,12 @@ function doPlay(e){
 
 function doSeeked(e){
 	// /* This is supposed to be called when seeking is over, but it gets called repeatedly while seeking  */
-	
+
 	document.querySelector('#svg-container').setCurrentTime(e.target.currentTime);
 	for (const css_anim of document.getAnimations())
 	{
 		css_anim.currentTime = e.target.currentTime * 1000;
 	}
-	
 }
 
 function doLoaded(e){
