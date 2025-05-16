@@ -262,9 +262,16 @@ function updateClouds(currentTime){
 
 }
 
-function changeWeatherGraph(monthIndex){
-		// lastMonth image opacity = 0
-		// thisMonth image opcity = 1
+function changeWeatherGraph(month){
+	
+	console.log(`Weather Change for #wg${month}`);
+	const newMonth = document.querySelector(`#wg${month} img`);
+	// rest all before turning on
+	for (const wg of document.querySelectorAll('.weather-graph img'))
+	{
+		wg.style.opacity = 0;
+	}
+	newMonth.style.opacity = 1;
 }
 
 function doNightSkyPhenomena(phenom){

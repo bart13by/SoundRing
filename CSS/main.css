@@ -187,13 +187,19 @@ img.phenomena {
 
 /* Weather graphs */
 #weather-graphs-container {
-	display: none;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	top: 45vw;
+	width: 100%;
 }
 
 .weather-graph {
-	opacity: 0;
+	position: absolute;
 }
+
 .weather-graph img {
+	opacity: 0;
 	transition: opacity 5s ease;	
 }
 /* Audio gram scrolling   */
