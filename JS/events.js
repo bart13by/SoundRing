@@ -8,18 +8,14 @@ function toggleLayer(e){
 		'show-poems' : '.poem-data',
 		'show-phenomena' : '#phenomena img'
 	};
-	console.log(e.target.checked);
 	for (const hideNode of document.querySelectorAll(containerIds[e.target.id])) {
 		if (e.target.checked){
 			hideNode.style.visibility = 'visible';	
 		}
 		else {
 			hideNode.style.visibility = 'hidden';	
-		}
-		
+		}	
 	}
-	
-	
 }
 
 function pauseAllAnimations(){
@@ -79,7 +75,7 @@ function doLoaded(e){
 	setTimeout(() => {
 		setTimeout(() => { 
 			document.querySelector('#loading').className = 'loaded';
-			}, 6000);
+			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000) ;
 				document.querySelector('#loading').style.opacity = 0;
 		}, 500);
 
@@ -93,7 +89,7 @@ function doLoaded(e){
     .catch(error => {
       // Auto-play was prevented
       console.error(error);
-      console.log("starting app anyway");
+      console.log("Auto-play prevented; starting app anyway");
       startApp();
     });
   }

@@ -1,4 +1,12 @@
 /* main.css */
+
+
+:root {
+	--preload-seconds: 5s;
+	--loading-fade-seconds: 4s;
+	--phenom-fade-seconds: 1s;
+}
+
 body {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
@@ -182,7 +190,7 @@ img.phenomena {
 	opacity: 0;
 }
 #aurora img, #auroralarc img {
-	transition: opacity 1s ease;	
+	transition: opacity var(--phenom-fade-seconds) ease;	
 }
 
 /* Weather graphs */
@@ -200,8 +208,10 @@ img.phenomena {
 
 .weather-graph img {
 	opacity: 0;
-	transition: opacity 5s ease;	
+	transition: opacity var(--preload-seconds) ease;	
 }
+
+
 /* Audio gram scrolling   */
 #chyron-container {
 	
@@ -260,7 +270,7 @@ img.phenomena {
 	color: black;
 	background-color: black;
 	position: absolute;
-	transition: opacity 5s ease;	
+	transition: opacity var(--loading-fade-seconds) ease;	
 }
 .loaded {
 	display: none;
