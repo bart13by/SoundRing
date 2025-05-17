@@ -1,6 +1,4 @@
-/* objects.css */
-
-
+/* birdsandpoems.css */
 
 /* handle hide/show for birds and poems*/
 .hidden {
@@ -54,25 +52,19 @@
   display: inline-block;
 }
 .poem-marker{
-/*	color: #2B4A5E;*/
-color: #7393B3;
+	color: #7393B3;
   font-family: "Annie Use Your Telescope", cursive; 
-/*font-family: "Fraunces";*/
-/*  font-weight: 400;*/
-font-weight: 400;
-/*  font-size: 14pt;*/
-font-size: 24pt;
+	font-weight: 400;
+	font-size: 24pt;
   font-style: normal;
   cursor: default;
 }
 .darkness {
 	display: inline-block;
-	visibility: visible;
-	
+	visibility: visible;	
 }
 .darkness .poem-marker{
 	color: silver;
-
 }
 
 .tooltip .tooltiptext {
