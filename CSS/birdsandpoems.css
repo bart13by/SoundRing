@@ -53,7 +53,7 @@
 }
 .poem-marker{
 	color: #7393B3;
-  font-family: "Annie Use Your Telescope", cursive; 
+  font-family: var(--poem-marker-font-family), cursive; 
 	font-weight: 400;
 	font-size: 24pt;
   font-style: normal;
@@ -69,7 +69,8 @@
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  font-family: "Cormorant Infant", sans-serif;
+/*  font-family: "Cormorant Infant", sans-serif;*/
+  font-family: var(--info-font-family), sans-serif;
   font-weight: normal;
   width: fit-content;
   max-width: 600px;

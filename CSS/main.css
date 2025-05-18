@@ -6,6 +6,8 @@
 	--loading-fade-seconds: 4s;
 	--phenom-fade-seconds: 1s;
 	--clouds-fade-seconds: 2s;
+	--info-font-family: "Cormorant Infant";
+	--poem-marker-font-family:"Annie Use Your Telescope";
 }
 
 body {
@@ -20,7 +22,6 @@ body {
 #html-container { z-index: -1; }
 #firmament { z-index: 0; }
 #clouds { z-index: 1; }
-/*#liner-notes-container { z-index: 1; }*/
 #play-bar { z-index: 3; }
 #chyron-container { z-index: 2; }
 .tooltip { z-index: 4 } 
@@ -73,18 +74,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-/*  opacity: 60%;*/
-
 } 
-
-
-.close {
-	cursor: pointer;
-	position: relative;
-	z-index: 5;
-	font-family: "Cormorant Infant", sans-serif;
-	display: none;
-}
 
 #key-container {
 	position: absolute;
@@ -117,7 +107,7 @@ body {
 	border: 1.2px inset black;
 	border-collapse: collapse;
 	top: 1px;
-	font-family: "Cormorant Infant", sans-serif;
+	font-family: var(--info-font-family), sans-serif;
 }
 #key-container .tab {
 	order: 1;
@@ -159,7 +149,7 @@ body {
 	opacity: 1;
 	border: 1px inset black;
 	max-width: 20%;
-	font-family: "Cormorant Infant", sans-serif;
+	font-family: var(--info-font-family), sans-serif;
 	padding: 1em;
 }
 .menu-content {
