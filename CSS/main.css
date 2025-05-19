@@ -88,9 +88,7 @@ body {
 	font-family: "Cormorant", sans-serif;
 	
 }
-.close-key {
-	top: 64px;
-}
+
 .close-notes img {
 	opacity: .8;
 	width:25px;
@@ -98,7 +96,8 @@ body {
 #liner-notes-container {
 	position: absolute;
 	z-index: 5;
-	top: 20;
+/*	top: 20;*/
+bottom: -47vw;
 	right:20;
 	width: 22%;
 
@@ -111,9 +110,12 @@ body {
 
 }
 
+.close-key {
+	top: 64px;
+}
 #key-container {
 	position: absolute;
-	top: 20vh;
+	bottom: -47vw;
 	left:34vw;
 	width: 30%;
 	opacity: 1;
@@ -163,29 +165,36 @@ body {
 
 }
 
-
+.close-menu {
+	top: 0px;
+}
 
 #menu-container {
 	background: #fff;
 	position: absolute;
 	border: 1px solid var(--firmament-green);
-	top: 33vw;
+	bottom: -47vw;
 	left:65vw;
 	width: 200px;
 	opacity: 1;
 	z-index: 5;
 	flex-wrap: wrap;
-	padding-bottom: 2ex;
-	font-family: var(--info-font-family), sans-serif;
+	padding: 10px 10px 10px 10px;
+
+	
 }
 .menu-content {
-	margin-top: 3ex;
+	margin-top: 2ex;
+	font-family: var(--playbar-font-family);
+	font-size: smaller;
 }
 .menu-title {
-/*  width:80%;*/
+  width:80%;
 	text-align: center;
 	font-weight: bold;
-	border-bottom: 1px dotted var(--firmament-green);
+	font-family: var(--info-font-family), sans-serif;
+	font-size: larger;
+/*	border-bottom: 1px dotted var(--firmament-green);*/
 	
 }
 /* night sky phenomena */
