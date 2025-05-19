@@ -11,6 +11,8 @@
   border-radius: 5px;
   width: 50vw;
   opacity: .6;
+  font-family: var(--playbar-font-family);
+  font-weight: lighter;
 }
 
 #audioplayer-controls {
@@ -109,14 +111,13 @@ audio-player[muted] #audioplayer-volume-mute {
 }
 #audioplayer-menu {
   cursor: pointer;
-/*  background: white;*/
   color: transparent;
   border: 0 none;
   padding: 0;
   
-  border-radius: 8px;
-  height: 8px;
-  width: 8px;
+  border-radius: 5px;
+  height: 5px;
+  width: 5px;
   
   position: relative;
   
@@ -124,9 +125,9 @@ audio-player[muted] #audioplayer-volume-mute {
     content: '';
     
     display: block;
-    border-radius: 8px;
-    height: 8px;
-    width: 8px;
+    border-radius: 5px;
+    height: 5px;
+    width: 5px;
     
 /*    background: white;*/
     top: -10px;

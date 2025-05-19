@@ -546,7 +546,9 @@ function Poem(msRecord){
 	 <div id="${this.id}" class="tooltip poem-data hidden ${this.darkness} circulation-${this.circulation}" ${xyStyle} >
       <span class="poem-marker">+</span>
         <div class="tooltiptext">
-        <div class="tooltiptext-line poem-firstLine">${this.name} ${yearText}</div>
+        <div class="tooltiptext-line"><span class="poem-firstline">${this.name}</span> 
+        <span class="poem-year">${yearText}</span>
+        </div>
         ${recipientLine}
       </div>
     </div>

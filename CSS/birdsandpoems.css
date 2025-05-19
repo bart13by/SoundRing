@@ -69,7 +69,6 @@
 
 .tooltip .tooltiptext {
   visibility: hidden;
-/*  font-family: "Cormorant Infant", sans-serif;*/
   font-family: var(--info-font-family), sans-serif;
   font-weight: normal;
   width: fit-content;
@@ -143,7 +142,15 @@
 	text-wrap: nowrap;
 	white-space: nowrap;
 }
+
+.commonName {
+	font-weight: bold;
+}
 .scientificName {
+	font-style: italic;
+}
+
+.poem-firstline {
 	font-style: italic;
 }
 
