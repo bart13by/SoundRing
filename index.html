@@ -202,7 +202,7 @@
         <button id="audioplayer-volume-mute">Mute</button>        
       </div>
       <div class="button-wrapper">
-      <button id="audioplayer-menu" onclick="showHide('#menu-dialog')">Menu</button>
+      <button id="audioplayer-menu" onclick="showHide('#menu-container')">Menu</button>
     </div>
     </div>
     <div id="audioplayer-extras">
@@ -215,10 +215,14 @@
   </div>
   
   </div>
+</template>
 
   <!-- ##############  MENU POPUP HERE ############# -->
 
-  <div id="menu-dialog" class="hide" >
+  <div id="menu-container" class="hide" >
+    <!-- <span class="close-notes close-menu" onclick="showHide('#menu-container')">
+    <img src="Images/x.png" />
+  </span> -->
     <div class="menu-title">Visible Layers</div>
     <div class="menu-content">      
     <div>
@@ -246,9 +250,8 @@
     </div>
 
 </div>
-</div>
 
-</template>
+</div>
 
 
 
@@ -292,6 +295,9 @@
   id="liner-notes-iframe" src="linernotes.html"></iframe>
 
 </div>
+
+
+
 <!-- // liner notes -->
 
 

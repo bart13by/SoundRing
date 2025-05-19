@@ -165,26 +165,27 @@ body {
 
 
 
-#menu-dialog {
-	z-index: 5;
+#menu-container {
+	background: #fff;
 	position: absolute;
-	bottom: 4vw;
-	left: 68vw;
-	background: #eee;
+	border: 1px solid var(--firmament-green);
+	top: 33vw;
+	left:65vw;
+	width: 200px;
 	opacity: 1;
-	border: 1px inset black;
-	max-width: 20%;
+	z-index: 5;
+	flex-wrap: wrap;
+	padding-bottom: 2ex;
 	font-family: var(--info-font-family), sans-serif;
-	padding: 1em;
 }
 .menu-content {
 	margin-top: 3ex;
 }
 .menu-title {
-  width:90%;
+/*  width:80%;*/
 	text-align: center;
 	font-weight: bold;
-	border-bottom: 1px dotted black;
+	border-bottom: 1px dotted var(--firmament-green);
 	
 }
 /* night sky phenomena */
