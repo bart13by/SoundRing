@@ -24,7 +24,7 @@
 
 
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
-       preserveAspectRatio="xMidYMid meet"
+       preserveAspectRatio="xMidYMid slice"
        xmlns="http://www.w3.org/2000/svg">
 
 <style>
@@ -269,6 +269,9 @@
 
 <!-- Key and Atlas need to be tabs -->
 <div id="key-container" class="hide">
+  <span class="close-notes close-key" onclick="showHide('#key-container')">
+    <img src="Images/x.png" />
+  </span>
   <input type="radio" id="key-tab-radio" name="keyatlasradios" checked="checked" >
   <label for="key-tab-radio">Key</label>
   <iframe class="tab" width=400 height=400
@@ -282,6 +285,9 @@
 
 
 <div id="liner-notes-container" class="hide">
+  <span class="close-notes" onclick="showHide('#liner-notes-container')">
+    <img src="Images/x.png" />
+  </span>
 <iframe width=400 height=800
   id="liner-notes-iframe" src="linernotes.html"></iframe>
 
