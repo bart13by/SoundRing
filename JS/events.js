@@ -64,7 +64,22 @@ function doSeeked(e){
 		css_anim.currentTime = e.target.currentTime * 1000;
 	}
 }
+function resetFirmament(e){
+	console.log("resetting");
+	doPause(e);
+	document.querySelector('#wheel-group').style.opacity = 0;
+	document.querySelector('#clouds').style.opacity = 0;
+	setTimeout(()=>{
+		e.target.currentTime = 0;
+		document.querySelector('#wheel-group').style.opacity = 1;
 
+		setTimeout(()=>{ 
+			doPlay(e);
+			document.querySelector('#clouds').style.opacity = 1;
+			},100)
+	}, 3000);
+	
+}
 function doLoaded(e){
 	/* 
 	Called when 'canplaythrough' event fires on media element (which means 

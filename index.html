@@ -28,20 +28,13 @@
        xmlns="http://www.w3.org/2000/svg">
 
 <style>
-  :root {
-    --disk-radius:6;
-    --disk-width:12;
-  }
-  #wheel-group image {
-    width: var(--disk-width);
-    height: var(--disk-width);
-  }
+  
 </style>
 
   <rect id="svg-daylight" x="0" y="0" width="100%" height="48" />
   <rect id="svg-darkness" x="0" y="48" width="100%" height="100%" />
 
-  <circle id="arc-circle" cx="50" cy="48" r="38"  fill="none" stroke="#708271" opacity=".7" stroke-width=".2" />
+  <circle id="arc-circle" cx="50" cy="48" r="38"  fill="none" stroke="var(--firmament-green)" opacity=".7" stroke-width=".2" />
 
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
@@ -112,6 +105,7 @@
     onplay="doPlay(event)"
     onpause="doPause(event)"
     oncanplaythrough="doLoaded(event)"
+    onended="resetFirmament(event)"
     ></audio>
 </audio-player>
 </div>
