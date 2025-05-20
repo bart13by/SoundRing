@@ -16,9 +16,10 @@
 }
 
 #audioplayer-time {
-  align-items: center;
+  text-align: center;
   min-width: 6em;
 }
+
 #audioplayer-controls {
   display: flex;
   flex-direction: row;

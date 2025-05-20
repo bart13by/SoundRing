@@ -28,9 +28,13 @@
        xmlns="http://www.w3.org/2000/svg">
 
 <style>
+  :root {
+    --disk-radius:6;
+    --disk-width:12;
+  }
   #wheel-group image {
-    width: 16;
-    height: 16;
+    width: var(--disk-width);
+    height: var(--disk-width);
   }
 </style>
 
@@ -42,15 +46,15 @@
 	 
 	  <!-- Define a group for the wheel image; reposition left and up by the radius (12) -->
 
-<g id="wheel-group"  width="16" height="16"
-  transform="translate(-8,-8) rotate(76, 8, 8)">
+<g id="wheel-group"  width="var(--disk-width)" height="var(--disk-width)"
+  transform="translate(-6,-6) rotate(76, 6, 6)">
     <image id="seasons-wheel"  xlink:href="SVG/Underlay.svg" >
             <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
-            from="0 8 8" to="-360 8 8" dur="24min" repeatCount="0" fill="freeze"
+            from="0 6 6" to="-360 6 6" dur="24min" repeatCount="0" fill="freeze"
             begin="0s"
              />
            </image>
-    <image id="window-wheel" transform="rotate(-76 8 8)" xlink:href="SVG/Overlay_v1.svg" />
+    <image id="window-wheel" transform="rotate(-76 6 6)" xlink:href="SVG/Overlay_v1.svg" />
         
       <animateMotion id="motion" 
         repeatCount="0" 
