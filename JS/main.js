@@ -50,6 +50,8 @@ function dispatchTimerEvents(){
 	if (PHENOMENA_TIMES_SECS[seconds] !== undefined) { 
 		doNightSkyPhenomena(PHENOMENA_TIMES_SECS[seconds]);
 	}
+	// shim for audiowave (chyron)
+	if (seconds == 1435) document.querySelector('#chyron-container').style.opacity = 0;
 	// update every drift_interval_seconds
 	if (seconds % PROPERTIES.drift_interval_seconds == 0){
 		doDrift(); 

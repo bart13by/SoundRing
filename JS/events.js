@@ -63,6 +63,11 @@ function doSeeked(e){
 	{
 		css_anim.currentTime = e.target.currentTime * 1000;
 	}
+	// shim because waveform is weird.
+	if (e.target.currentTime < 1435){
+		document.querySelector('#chyron-container').style.opacity = 1;	
+	}
+	
 }
 function resetFirmament(e){
 	console.log("resetting");
