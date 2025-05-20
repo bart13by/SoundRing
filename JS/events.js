@@ -69,13 +69,17 @@ function resetFirmament(e){
 	doPause(e);
 	document.querySelector('#wheel-group').style.opacity = 0;
 	document.querySelector('#clouds').style.opacity = 0;
+	document.querySelector('#chyron-container').style.opacity = 0;
+	document.querySelector('#weather-graphs-container').style.opacity = 0;
 	setTimeout(()=>{
 		e.target.currentTime = 0;
 		document.querySelector('#wheel-group').style.opacity = 1;
 
 		setTimeout(()=>{ 
-			doPlay(e);
 			document.querySelector('#clouds').style.opacity = 1;
+			document.querySelector('#chyron-container').style.opacity = 1;
+			document.querySelector('#weather-graphs-container').style.opacity = 1;
+			doPlay(e);
 			},100)
 	}, 3000);
 	

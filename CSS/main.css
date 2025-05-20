@@ -4,7 +4,7 @@
 :root {
 	--disk-radius:6;
   --disk-width:12;
-  --disk-fade-seconds: 3s;
+  --reset-fade-seconds: 3s;
 	--preload-seconds: 5s;
 	--loading-fade-seconds: 4s;
 	--phenom-fade-seconds: 1s;
@@ -21,9 +21,10 @@ body {
 	background-color: black;
 
 }
-#wheel-group {
-	transition: opacity var(--disk-fade-seconds) ease;
+#wheel-group, #clouds, #chyron-container, #weather-graphs-container {
+	transition: opacity var(--reset-fade-seconds) ease;
 }
+
   #wheel-group image {
     width: var(--disk-width);
     height: var(--disk-width);
@@ -311,9 +312,7 @@ img.phenomena {
 }
 /* clouds */
 
-#clouds {
-	transition: opacity var(--clouds-fade-seconds) ease;
-}
+
 img.cloud {
   width: 100%;
   position: absolute;
