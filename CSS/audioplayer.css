@@ -15,6 +15,10 @@
   font-weight: lighter;
 }
 
+#audioplayer-time {
+  align-items: center;
+  min-width: 6em;
+}
 #audioplayer-controls {
   display: flex;
   flex-direction: row;
