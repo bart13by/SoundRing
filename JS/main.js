@@ -12,13 +12,25 @@ const runFirmament = () => {
 				throw new Error(`Failed to populate data. ${response.error}`);
 			}
 			// if response is 'ok' proceed with adding all birds and poems to the DOM
+			/*  ++++++  restrain the bird div to the daylight, use relative pos +++++  */
 			const birdDiv = document.querySelector('#birds');
 			for (const id of getAllBirdIds()){
 				birdDiv.appendChild(getBirdById(id).asDOM.firstElementChild);
 			}
-			const poemDiv = document.querySelector('#poems');
+
+			/*  ++++++ set daylight or darkness as property on bird; use two divs  +++++  */
+			const poemDayDiv = document.querySelector('#day-poems');
+			const poemNightDiv = document.querySelector('#night-poems');
+
 			for (const frId of getAllPoemIds()){
-				poemDiv.appendChild(getPoemById(frId).asDOM.firstElementChild);
+				const poemObj = getPoemById(frId);
+				if (poemObj.darkness == "darkness"){
+					poemNightDiv.appendChild(poemObj.asDOM.firstElementChild);
+				}
+				else {
+					poemDayDiv.appendChild(poemObj.asDOM.firstElementChild);
+				}
+				
 			}
 			// Hoping to fix caching bug by always setting birds and poems for December/Winter
 			showBirdsForMonth(MONTHSARRAY[0]);
@@ -241,7 +253,7 @@ function showPoemsForSeason(season){
 		const poem = getPoemById(id);
 		const domPoem = document.getElementById(id);
 		domPoem.style.left = `${poem.left}vw`;
-		domPoem.style.top = `${poem.top}vh`;
+		domPoem.style.top = `${poem.top}%`;
 		domPoem.classList.remove('hidden');
 		domPoem.classList.add('showing');
 	}
@@ -284,7 +296,7 @@ function showBirdsForMonth(monthIndex){
 		// We need the JS bird object to get the x,y coordinates
 		const birdObject = getBirdById(birdDOMObject.id);
 		birdDOMObject.style.left = `${birdObject.left}vw`;
-		birdDOMObject.style.top = `${birdObject.top}vh`;
+		birdDOMObject.style.top = `${birdObject.top}%`; //switched to relative/pct
 		birdDOMObject.classList.remove("hidden");
 	    birdDOMObject.classList.add("showing");
 	    if (status != 'arriving'){
@@ -374,24 +386,25 @@ function getRandomPlacementValues(position){
 	switch (position){
 		case 'inner': 
 			ret.left = getRandom(14, 84); // cheat a little short of the right edge
-			arcCeiling = 17; // middle 
-			if (ret.left < 18 || ret.left > 80) arcCeiling = 44; // band one
-			else if (ret.left < 28 || ret.left > 70) arcCeiling = 75; // band two
-			ret.top = getRandom(arcCeiling, 78); 
+			arcCeiling = 20; // middle 
+			if (ret.left < 18 || ret.left > 80) arcCeiling = 58; // wider/lower
+			else if (ret.left < 28 || ret.left > 70) arcCeiling = 45; 
+			else if (ret.left < 34 || ret.left > 78) arcCeiling = 32; 
+			ret.top = getRandom(arcCeiling, 90); 
 			break;
 		case 'outer':
 			ret.left = getRandom(2, 98);
 			arcFloor = 14; // middle
-			if (ret.left < 8 || ret.left > 92) arcFloor = 78; // extreme outer
+			if (ret.left < 8 || ret.left > 92) arcFloor = 88; // extreme outer
 			else if (ret.left < 12 || ret.left > 88) arcFloor = 72; // band two
 			else if (ret.left < 18 || ret.left > 82) arcFloor = 40; // band one
 			ret.top = getRandom(5, arcFloor);
 			break;
 		case 'inner_darkness':
 			ret.left = getRandom(15, 85);
-			arcCeiling = 150; // apex of arc is ~150. Lower is inside, higher is outsid 
-			if (ret.left < 35 || ret.left > 65) arcCeiling = 110; 
-			ret.top = getRandom(95, arcCeiling); 
+			arcCeiling = 75; // apex of arc is ~150. Lower is inside, higher is outsid 
+			if (ret.left < 35 || ret.left > 65) arcCeiling = 50; 
+			ret.top = getRandom(10, arcCeiling); 
 			// y >= 90; < 150
 			break;
 		case 'outer_darkness':
@@ -479,8 +492,11 @@ function Bird(birdRecord){
 	this.top = coords.top;
 	
 	// conditional HTML stuff
+	// we only pre-set locations for residents. Migrants get set when their month comes
+	// Should we change and do it all now? Also, should we detect resize and redo all this?
 	const xyStyle = this.residenceStatus == 'Resident' ?
-		 `style="top: ${this.top}vh; left: ${this.left}vw"`: "";
+		 `style="top: ${this.top}%; left: ${this.left}vw"`: "";
+	 
 	// HTML template
 	this.asHTML = `
 		<div id="${this.id}"
@@ -538,7 +554,7 @@ function Poem(msRecord){
 	 }
 	// some conditional HTML template stuff
 	const xyStyle = this.circulation == 'Retained' ?
-		 `style="top: ${this.top}vh; left: ${this.left}vw"`: "";
+		 `style="top: ${this.top}%; left: ${this.left}vw"`: "";
 	const recipientLine = this.circulation == 'Sent' ? 
 	`<div class="tooltiptext-line poem-recipient">${this.recipient}</div>`: "";
 	const yearText = this.year.includes("unknown") ? "" : `(${this.year})`;

@@ -21,6 +21,24 @@ body {
 	background-color: black;
 
 }
+#birds {
+	position: absolute;
+	width: 00%;
+	height: 48vw;
+}
+#day-poems {
+	position: absolute;
+	width: 90%;
+	height: 48vw;
+}
+
+#night-poems {
+	position: absolute;
+	width: 90%;
+	top: 52vw;
+	height:65vh;
+}
+
 #wheel-group, #clouds, #chyron-container, #weather-graphs-container {
 	transition: opacity var(--reset-fade-seconds) ease;
 }
@@ -107,8 +125,7 @@ body {
 #liner-notes-container {
 	position: absolute;
 	z-index: 5;
-/*	top: 20;*/
-bottom: -47vw;
+	bottom: -47vw;
 	right:20;
 	width: 22%;
 
@@ -241,11 +258,20 @@ img.phenomena {
 
 .weather-graph {
 	position: absolute;
+	
 }
 
 .weather-graph img {
+max-width:60vw;
 	opacity: 0;
 	transition: opacity var(--preload-seconds) ease;	
+}
+@media (max-width: 850px) {
+	.weather-graph img {
+		
+	}
+	
+	
 }
 
 

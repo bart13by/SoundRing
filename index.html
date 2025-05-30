@@ -8,9 +8,9 @@
 		<link rel="stylesheet" href="CSS/main.css" />
     <link rel="stylesheet" href="CSS/birdsandpoems.css" />
     <link rel="stylesheet" href="CSS/audioplayer.css" />    
-    <script src="JS/init.js"></script>
-		<script src="JS/main.js"></script>
-    <script src="JS/events.js"></script>
+    <script src="JS/init.js" ></script>
+		<script src="JS/main.js" ></script>
+    <script src="JS/events.js" ></script>
 
 
 </head>
@@ -26,10 +26,6 @@
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
        preserveAspectRatio="xMidYMid slice"
        xmlns="http://www.w3.org/2000/svg">
-
-<style>
-  
-</style>
 
   <rect id="svg-daylight" x="0" y="0" width="100%" height="48" />
   <rect id="svg-darkness" x="0" y="48" width="100%" height="100%" />
@@ -287,14 +283,15 @@
 
 <!---- Birds and Poem MSS follow -->
 <div id="dynamically-placed-items">
-  <div id="poems"></div>  
+  <div id="day-poems"></div>  
+  <div id="night-poems"></div>  
   <div id="birds"></div>
 </div>
 
 </div>
 
-<script src="JS/audioplayer.js"></script>
-<script>
+<script src="JS/audioplayer.js" defer></script>
+<script defer>
   window.onload = () => {
     pauseAllAnimations();
     runFirmament();  

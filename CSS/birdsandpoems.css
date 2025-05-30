@@ -10,6 +10,10 @@
 	visibility: visible;
 }
 
+.bird-data, .poem-data {
+	position: relative;
+}
+
 /* applied with animation and timeout to create drift effect on birds */
 .drift {
 	transform: translate(3vw, -2vh);
