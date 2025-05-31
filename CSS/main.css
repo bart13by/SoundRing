@@ -21,18 +21,14 @@ body {
 	background-color: black;
 
 }
-#birds {
+#daylight {
 	position: absolute;
-	width: 00%;
-	height: 48vw;
-}
-#day-poems {
-	position: absolute;
-	width: 90%;
+	width: 100%;
 	height: 48vw;
 }
 
-#night-poems {
+
+#darkness {
 	position: absolute;
 	width: 90%;
 	top: 52vw;

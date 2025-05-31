@@ -2,7 +2,7 @@
 // see init.js for startup stuff
 /* Kick-off all processes -- called from HTML on load event */
 const runFirmament = () => {
-	console.log(`runFirmament; app_started == ${RUNTIME.app_started}`);
+	console.log(`started`);
 	if (RUNTIME.app_started) return; // bail out if we were already started
 	RUNTIME.app_started = true;
 	/* Async method parses the JSON data and populates the in-memory structures */
@@ -13,22 +13,23 @@ const runFirmament = () => {
 			}
 			// if response is 'ok' proceed with adding all birds and poems to the DOM
 			/*  ++++++  restrain the bird div to the daylight, use relative pos +++++  */
-			const birdDiv = document.querySelector('#birds');
+			const daylight = document.querySelector('#daylight');
+			const darkness = document.querySelector('#darkness');
 			for (const id of getAllBirdIds()){
-				birdDiv.appendChild(getBirdById(id).asDOM.firstElementChild);
+				daylight.appendChild(getBirdById(id).asDOM.firstElementChild);
 			}
 
 			/*  ++++++ set daylight or darkness as property on bird; use two divs  +++++  */
-			const poemDayDiv = document.querySelector('#day-poems');
-			const poemNightDiv = document.querySelector('#night-poems');
+			// const poemDayDiv = document.querySelector('#day');
+			
 
 			for (const frId of getAllPoemIds()){
 				const poemObj = getPoemById(frId);
 				if (poemObj.darkness == "darkness"){
-					poemNightDiv.appendChild(poemObj.asDOM.firstElementChild);
+					darkness.appendChild(poemObj.asDOM.firstElementChild);
 				}
 				else {
-					poemDayDiv.appendChild(poemObj.asDOM.firstElementChild);
+					daylight.appendChild(poemObj.asDOM.firstElementChild);
 				}
 				
 			}
@@ -97,6 +98,7 @@ function dispatchTimerEvents(){
 
 function startApp(){ // called on audio.play event and on initial start up
 	console.log(`startApp; interval_id == ${RUNTIME.interval_id}`);
+	// RUNTIME.app_started = true;
 	if (RUNTIME.interval_id > 0){
 		// If setInterval has already been called, stop it running so we can restart
 		clearInterval(RUNTIME.interval_id);
@@ -263,7 +265,7 @@ function showBirdsForMonth(monthIndex){
 	/* Called whenever the time dispatcher decides the month has changed */
 	console.log("showBirdsForMonth");
 	// We want to remove all visible birds first . . .
-	const currentlyVisibleBirds = Array.from(document.querySelectorAll("#birds .showing"));
+	const currentlyVisibleBirds = Array.from(document.querySelectorAll("#daylight .bird-data.showing"));
 	for (const domBird of currentlyVisibleBirds){
 		if (domBird.classList.contains('isDeparting')){
 			// ... unless they're actively departing
@@ -473,33 +475,38 @@ function getPoemIdsBySeason(season){
  * from the HTML (obj.asDOM()).
  *
 */
-function Bird(birdRecord){
-	/* Bird object class */
-	for (const [key, value] of Object.entries(birdRecord)){
-	    this[key] = value;
-	  }
-	this.monthsPresent = getMonthsPresent(this.presence);
-	this.size = getSizeForMass(this.bodymass);
-	if (this.appearance === null) this.appearance = "Common"; // do something about this!
-	// If present all 12 months, it's resident; otherwise, migrant
-	this.residenceStatus = this.presence.split(/[\s\n]?[;,.]\s?/).length == 12 ? "Resident" : "Migrant";
+class FirmamentObject {
+	constructor(record){
+		for (const [key, value] of Object.entries(record)){
+		    this[key] = value;
+		}
+		
+		
+	}
+	asDOM(html){
+		return document.createRange().createContextualFragment(html);	
+	} 
 
-	// Compute locations and save for later retrieval
-	let coords = {left: null, top: null};
-	coords = this.residenceStatus == 'Resident' ? getRandomPlacementValues('inner') 
-												: getRandomPlacementValues('outer');
-	this.left = coords.left;
-	this.top = coords.top;
-	
-	// conditional HTML stuff
-	// we only pre-set locations for residents. Migrants get set when their month comes
-	// Should we change and do it all now? Also, should we detect resize and redo all this?
-	const xyStyle = this.residenceStatus == 'Resident' ?
-		 `style="top: ${this.top}%; left: ${this.left}vw"`: "";
-	 
-	// HTML template
-	this.asHTML = `
-		<div id="${this.id}"
+}
+class Bird extends FirmamentObject{
+	constructor(birdRecord){ 
+		super(birdRecord);
+		this.monthsPresent = getMonthsPresent(this.presence);
+		this.size = getSizeForMass(this.bodymass);
+		if (this.appearance === null) this.appearance = "Common"; // do something about this!
+		// If present all 12 months, it's resident; otherwise, migrant
+		this.residenceStatus = this.presence.split(/[\s\n]?[;,.]\s?/).length == 12 ? "Resident" : "Migrant";
+
+		// Compute locations and save for later retrieval
+		let coords = {left: null, top: null};
+		coords = this.residenceStatus == 'Resident' ? getRandomPlacementValues('inner') 
+													: getRandomPlacementValues('outer');
+		this.left = coords.left;
+		this.top = coords.top;
+		const xyStyle = this.residenceStatus == 'Resident' ?
+							 `style="top: ${this.top}%; left: ${this.left}vw"`: "";
+		this.asDOM = super.asDOM(
+		`<div id="${this.id}"
 		${xyStyle}
 		class="tooltip bird-data hidden  size-${getSizeForMass(this.bodymass)}
 		       residence-${this.residenceStatus} appearance-${this.appearance} bodymass-${this.bodymass}">
@@ -514,67 +521,57 @@ function Bird(birdRecord){
 		  <span class="monthsPresent">${this.monthsPresent}</span>
 		  </div>
 		</div>
-		</div>
-		`;
-	// Render object as DOM object
-	// this.asDOM = domParser.parseFromString(this.asHTML, 'text/html');
-		this.asDOM = document.createRange().createContextualFragment(this.asHTML);
-
+		</div>`);
 		
+	 }
+
 }
 
-function Poem(msRecord){
-	for (const [key, value] of Object.entries(msRecord)){
-		    this[key] = value;
-	 }
-	 
-	 if (this.season === null) this.season = "Unknown";
-	 this.circulation = this.sent == 0 ? "Retained" : "Sent";
-
-	 // compute locations and save for later
-	 let coords = {left: null, top: null};
-	 if (this.season == "Unknown"){
-	 	this.darkness = "darkness";
-	 	// coordinates for "the darkness" will be set here
-	 	if (this.circulation == 'Sent'){
-	 		coords = getRandomPlacementValues("outer_darkness"); 
+class Poem extends FirmamentObject {
+	constructor(birdRecord){
+		 super(birdRecord);
+		 if (this.season === null) this.season = "Unknown";
+		 this.circulation = this.sent == 0 ? "Retained" : "Sent";
+		 // compute locations and save for later
+		 let coords = {left: null, top: null};
+		 if (this.season == "Unknown"){
+		 	this.darkness = "darkness";
+		 	// coordinates for "the darkness" will be set here
+		 	if (this.circulation == 'Sent'){
+		 		coords = getRandomPlacementValues("outer_darkness"); 
+			 	
+			 }else{
+			 	coords = getRandomPlacementValues("inner_darkness"); 
+			 }
 		 	
-		 }else{
-		 	coords = getRandomPlacementValues("inner_darkness"); 
+			this.left = coords.left;
+			this.top = coords.top;
+		 } else {
+		 	this.darkness = "";
+			coords = this.circulation == 'Retained' ? getRandomPlacementValues('inner') 
+													: getRandomPlacementValues('outer');
+			this.left = coords.left;
+			this.top = coords.top;
 		 }
-	 	
-		this.left = coords.left;
-		this.top = coords.top;
-	 } else {
-	 	this.darkness = "";
-		coords = this.circulation == 'Retained' ? getRandomPlacementValues('inner') 
-												: getRandomPlacementValues('outer');
-		this.left = coords.left;
-		this.top = coords.top;
-	 }
-	// some conditional HTML template stuff
-	const xyStyle = this.circulation == 'Retained' ?
-		 `style="top: ${this.top}%; left: ${this.left}vw"`: "";
-	const recipientLine = this.circulation == 'Sent' ? 
-	`<div class="tooltiptext-line poem-recipient">${this.recipient}</div>`: "";
-	const yearText = this.year.includes("unknown") ? "" : `(${this.year})`;
+		// some conditional HTML template stuff
+		const xyStyle = this.circulation == 'Retained' ?
+			 `style="top: ${this.top}%; left: ${this.left}vw"`: "";
+		const recipientLine = this.circulation == 'Sent' ? 
+		`<div class="tooltiptext-line poem-recipient">${this.recipient}</div>`: "";
+		const yearText = this.year.includes("unknown") ? "" : `(${this.year})`;
+		this.asDOM = super.asDOM(`
+			 <div id="${this.id}" class="tooltip poem-data hidden ${this.darkness} circulation-${this.circulation}" ${xyStyle} >
+		      <span class="poem-marker">+</span>
+		        <div class="tooltiptext">
+		        <div class="tooltiptext-line"><span class="poem-firstline">${this.name}</span> 
+		        <span class="poem-year">${yearText}</span>
+		        </div>
+		        ${recipientLine}
+		      </div>
+		    </div>`
+			);
 
-	// Create the HTML template for this poem
-	 this.asHTML =`
-	 <div id="${this.id}" class="tooltip poem-data hidden ${this.darkness} circulation-${this.circulation}" ${xyStyle} >
-      <span class="poem-marker">+</span>
-        <div class="tooltiptext">
-        <div class="tooltiptext-line"><span class="poem-firstline">${this.name}</span> 
-        <span class="poem-year">${yearText}</span>
-        </div>
-        ${recipientLine}
-      </div>
-    </div>
-    `;
-    // Render object as DOM object
-    
-    this.asDOM = document.createRange().createContextualFragment(this.asHTML);
-
+		}	
 }
 
 /* "Private" function to parse JSON and load in-memory data structures. */
