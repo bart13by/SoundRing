@@ -411,9 +411,10 @@ function getRandomPlacementValues(position){
 			break;
 		case 'outer_darkness':
 			ret.left = getRandom(1, 98); // can afford a little wider than daylight
-			arcFloor = 155;
-			if (ret.left < 18 || ret.left > 82) arcFloor = 95; // outside the arch, nearer the edges
-			ret.top = getRandom(arcFloor, 180);
+			arcFloor = 95;
+			if (ret.left < 28 || ret.left > 72) arcFloor = 80;
+			if (ret.left < 18 || ret.left > 82) arcFloor = 55; // outside the arch, nearer the edges
+			ret.top = getRandom(arcFloor, 130);
 			break;
 		default:
 			break;
