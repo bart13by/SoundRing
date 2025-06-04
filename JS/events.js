@@ -95,7 +95,7 @@ function doLoaded(e){
 	the browser thinks enough data is present to play without buffering).
 	Removes the "load screen" element.
 	 */
-
+	pauseAllAnimations(); // don't burn cycles before audio plays
 	setTimeout(() => { // outer timeout is to fade original loading screen
 		setTimeout(() => { 
 			document.querySelector('#loading').className = 'loaded';
@@ -112,10 +112,7 @@ function doLoaded(e){
     })
     .catch(NotAllowedError => {
       // Auto-play was prevented
-      // console.error(error);
       console.log("Auto-play prevented; stopping animations but starting app anyway");
-      pauseAllAnimations(); 
-      startApp();
     });
   }
 
