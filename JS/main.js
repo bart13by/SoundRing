@@ -404,7 +404,7 @@ function getRandomPlacementValues(position){
 			break;
 		case 'inner_darkness':
 			ret.left = getRandom(15, 85);
-			arcCeiling = 75; // apex of arc is ~150. Lower is inside, higher is outsid 
+			arcCeiling = 75; // Lower is inside, higher is outside 
 			if (ret.left < 35 || ret.left > 65) arcCeiling = 50; 
 			ret.top = getRandom(10, arcCeiling); 
 			// y >= 90; < 150
@@ -575,7 +575,7 @@ class Poem extends FirmamentObject {
 		}	
 }
 
-/* "Private" function to parse JSON and load in-memory data structures. */
+/* Called at start-up parse JSON and load in-memory data structures. */
 async function populateDataFromJSON(){
 	console.log("populateDataFromJSON");
 	try {
@@ -586,28 +586,34 @@ async function populateDataFromJSON(){
 			POEM_IDS_BY_SEASON[poemObj.season].push(poemObj.id);
 
 		}
-		const json = JSON.parse(JSONBIRDDATA);
-		for (const item in json){
-			const record = json[item];
-			let bird = new Bird(record);
-			ALL_BIRDS_BY_ID[record.id] = bird;
+		const birdJson = JSON.parse(JSONBIRDDATA);
+		for (const item in birdJson){
+			// First, go through the bird records from JSON
+			const birdRecord = birdJson[item];
+			let bird = new Bird(birdRecord);
+			ALL_BIRDS_BY_ID[birdRecord.id] = bird;
 			
-			/* Populate resident array OR  */
+			/* Populate resident array */
 			if (bird.residenceStatus == "Resident"){
 				RESIDENT_BIRD_IDS.push(bird.id);
+				// If bird is year-round resident, exit the loop
 				continue;
-			}
-			/* If still in loop, we are a migrant, which means we need to know status for each month
+			} 
+			/* If still in loop, this bird is a migrant.
+			 * For migrants, we need to know status for each month
 			 * "status" will be one of . . .
 			    arriving -- first month present 
 			    leaving -- last month present
 			    staying -- still present, neither arriving nore leaving
-			 *  
-			 * We will iterate through all 12 months, adding this birds ID to the correct status 
-			 * for each month of the year.
-			 */
+			 */  
+			 
 			for (const m of bird.presence.split(/[\s\n]?[;,.]\s?/)){
-				const month = m.trim(); // month will be an int 1 -- 12.
+				/* Iterate through each month liste in bird.presence for this record.
+				 * Add bird to [month][status] in MIGRANT_IDS_BY_MONTH_AND_STATUS				
+				 */
+				
+				const month = parseInt(m.trim()); 
+				// month should be an int 1 -- 12. If parseInt fails, a TypeError will throw
 				try {
 					  let status = "staying";
 					  try {
@@ -615,25 +621,27 @@ async function populateDataFromJSON(){
 						  const departure = bird.departure.split(/\s?[,;]\s?/);
 						  if (arrival.includes(month)) { status = "arriving"; }
 						  else if (departure.includes(month)) { status = "departing"; }	
-					  }
-				 catch (TypeError){
+					 } catch (TypeError) { // inner "try"
+					 	/* This happens if arrival and departure are null. We keep going. */
 						console.log(`Leaving status as ${status} for ${bird.name}`);
-				 }
+					 }
 					  
 					  // Add the ID to the array for this month and status:	  
 					  MIGRANT_IDS_BY_MONTH_AND_STATUS[month][status].push(bird.id);
 				}
-				catch (TypeError){
+				catch (TypeError){ // Outer try -- malformed month from bird.presence
 					console.log(TypeError);
-						console.error(`No month found for ${month} -- looking at birdID ${bird.id} and presence ${bird.presence}`);
+					console.error(`No month found for ${month} -- looking at birdID ${bird.id} and presence ${bird.presence}`);
 				}
 			}
 			
 			
 		}
-	return { ok: true, error: null }
+		// everything looks good; return ok.
+		return { ok: true, error: null }
 	}
 	catch (e) {
+		// If anything went wrong, return not ok with error
 		return {ok: false, error: e }
 	}
 }

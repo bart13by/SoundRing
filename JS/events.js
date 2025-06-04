@@ -96,12 +96,12 @@ function doLoaded(e){
 	Removes the "load screen" element.
 	 */
 
-	setTimeout(() => {
+	setTimeout(() => { // outer timeout is to fade original loading screen
 		setTimeout(() => { 
 			document.querySelector('#loading').className = 'loaded';
-			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000) ;
+			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000);
 				document.querySelector('#loading').style.opacity = 0;
-		}, 500);
+		}, 100);
 
 	const playPromise = e.target.play();	
 	if (playPromise !== undefined) {
@@ -110,10 +110,11 @@ function doLoaded(e){
       console.log("auto-play worked");
       
     })
-    .catch(error => {
+    .catch(NotAllowedError => {
       // Auto-play was prevented
-      console.error(error);
-      console.log("Auto-play prevented; starting app anyway");
+      // console.error(error);
+      console.log("Auto-play prevented; stopping animations but starting app anyway");
+      pauseAllAnimations(); 
       startApp();
     });
   }

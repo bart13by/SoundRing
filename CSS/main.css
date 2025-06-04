@@ -258,9 +258,12 @@ img.phenomena {
 }
 
 .weather-graph img {
-max-width:60vw;
+	max-width:60vw;
 	opacity: 0;
 	transition: opacity var(--preload-seconds) ease;	
+}
+#wg12 img{
+	opacity: 1;
 }
 @media (max-width: 850px) {
 	.weather-graph img {
