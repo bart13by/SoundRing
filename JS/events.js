@@ -103,18 +103,18 @@ function doLoaded(e){
 				document.querySelector('#loading').style.opacity = 0;
 		}, 100);
 
-	const playPromise = e.target.play();	
-	if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Automatic playback started!
-      console.log("auto-play worked");
+	// const playPromise = e.target.play();	
+	// if (playPromise !== undefined) {
+  //   playPromise.then(_ => {
+  //     // Automatic playback started!
+  //     console.log("auto-play worked");
       
-    })
-    .catch(NotAllowedError => {
-      // Auto-play was prevented
-      console.log("Auto-play prevented; stopping animations but starting app anyway");
-    });
-  }
+  //   })
+  //   .catch(NotAllowedError => {
+  //     // Auto-play was prevented
+  //     console.log("Auto-play prevented; stopping animations but starting app anyway");
+  //   });
+  // }
 
 	
 	
