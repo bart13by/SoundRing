@@ -102,18 +102,26 @@ function doLoaded(e){
 			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000);
 				document.querySelector('#loading').style.opacity = 0;
 		}, 100);
+		try {
+			document.querySelector('#audioplayer-play').click();
+		} 
+		catch (Error) {
+			    console.log("Auto-play prevented");
 
-	const playPromise = e.target.play();	
-	if (playPromise !== undefined) {
-    playPromise.then(_ => {
-      // Automatic playback started!
-      document.querySelector('#audioplayer-play').click();
-      console.log("auto-play worked");
+		}
+
+
+	// const playPromise = e.target.play();	
+	// if (playPromise !== undefined) {
+  //   playPromise.then(_ => {
+  //     // Automatic playback started!
+  //     document.querySelector('#audioplayer-play').click();
+  //     console.log("auto-play worked");
       
-    })
-    .catch(NotAllowedError => {
-      // Auto-play was prevented
-      console.log("Auto-play prevented; stopping animations but starting app anyway");
-    });
-  }
+  //   })
+  //   .catch(NotAllowedError => {
+  //     // Auto-play was prevented
+  //     console.log("Auto-play prevented; stopping animations but starting app anyway");
+  //   });
+  // }
 }
