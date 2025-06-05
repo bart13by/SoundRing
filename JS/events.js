@@ -102,15 +102,8 @@ function doLoaded(e){
 			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000);
 				document.querySelector('#loading').style.opacity = 0;
 		}, 100);
-		try {
-			document.querySelector('#audioplayer-play').click();
-		} 
-		catch (Error) {
-			    console.log("Auto-play prevented");
-
-		}
-
-
+	
+	 /*     Taking this out, since autoplay gets out of sync with the player */	
 	// const playPromise = e.target.play();	
 	// if (playPromise !== undefined) {
   //   playPromise.then(_ => {

@@ -16,8 +16,6 @@ class AudioPlayer extends HTMLElement {
     super();
     
     this.audio = this.querySelector('audio');
-    console.log(this.querySelector('audio'));
-    
     this.appendChild(document.getElementById('audio-player').content);
     
     this.play = this.querySelector('#audioplayer-play');
