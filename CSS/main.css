@@ -9,6 +9,7 @@
 	--loading-fade-seconds: 4s;
 	--phenom-fade-seconds: 1s;
 	--clouds-fade-seconds: 2s;
+	--darken-fade-seconds: 2s;
 	--firmament-green: #708271;
 	--info-font-family: "Cormorant";
 	--poem-marker-font-family:"Annie Use Your Telescope";
@@ -60,7 +61,7 @@ body {
 
 #svg-daylight {
 	animation: svg-bgcolors 1440s infinite;
-	transition: opacity 1s ease;
+	transition: opacity var(--darken-fade-seconds) ease;
 	
 }
 

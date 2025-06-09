@@ -63,8 +63,9 @@ function dispatchTimerEvents(){
 	if (PHENOMENA_TIMES_SECS[seconds] !== undefined) { 
 		doNightSkyPhenomena(PHENOMENA_TIMES_SECS[seconds]);
 	}
-	if (DARKEN_SKY_TIMES_DURATIONS_SECS[seconds] !== undefined) {
-		darkenSky(DARKEN_SKY_TIMES_DURATIONS_SECS[seconds]);
+	const darkenProps = DARKEN_SKY_TIMES_SECS[seconds + PROPERTIES.darken_fade_seconds];
+	if (darkenProps !== undefined) {
+		darkenSky(darkenProps);
 
 	}
 	// shim for audiowave (chyron)
@@ -209,12 +210,12 @@ function doNightSkyPhenomena(phenom){
 	
 }
 
-function darkenSky(duration){
+function darkenSky(parms){
 	const daylight = document.querySelector('#svg-daylight');
-	daylight.style.opacity = .80;
+	daylight.style.opacity = (1 - parms.amount);
 	setTimeout(() => {
 		daylight.style.opacity = 1;
-	}, duration * 1000);
+	}, parms.duration * 1000);
 
 }
 

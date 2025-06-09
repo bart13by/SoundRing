@@ -30,6 +30,7 @@ function getCSSProperty(prop){ return getComputedStyle(document.documentElement)
 const PROPERTIES = {
     preload_seconds: parseInt(getCSSProperty('--preload-seconds')),
     loadscreen_fade_seconds: parseInt(getCSSProperty('--loading-fade-seconds')),
+    darken_fade_seconds: parseInt(getCSSProperty('--darken-fade-seconds')),
     load_pause_add_seconds: .5,
     drift_interval_seconds: 3,
     drift_birds_per_drift: 3,
@@ -98,6 +99,12 @@ const DARKEN_SKY_TIMES_DURATIONS_SECS = {
     8: 2,
     14: 3,
     600: 4
+}
+
+const DARKEN_SKY_TIMES_SECS = {
+    10 : { 'duration': 4, 'amount':.2},
+    18 : { 'duration': 5, 'amount':.3},
+    600 : { 'duration': 3, 'amount':.25}
 }
 
 /* Initialize in-memory structures to populate later */
