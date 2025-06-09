@@ -72,18 +72,6 @@ function doSeeked(e){
 	if (e.target.currentTime < 1435){
 		document.querySelector('#chyron-container').style.opacity = 1;	
 	}
-	// Pause after seeking to fix the clouds.
-	// if (!e.target.paused)
-	// {
-	// 	console.log(`pre timeout id ${DELAY_PLAY}`);
-	// 	e.target.pause();		
-	// 	DELAY_PLAY = setTimeout(() => {
-	// 		console.log(`In timeout id ${DELAY_PLAY}`);
-	// 		e.target.play();
-	// 	}, 1);
-		
-	// }
-	
 	
 
 }
@@ -102,7 +90,7 @@ function resetFirmament(e){
 			document.querySelector('#clouds').style.opacity = 1;
 			document.querySelector('#chyron-container').style.opacity = 1;
 			document.querySelector('#weather-graphs-container').style.opacity = 1;
-			doPlay(e);
+			e.target.play();
 			},100)
 	}, 3000);
 	
@@ -119,6 +107,7 @@ function doLoaded(e){
 			document.querySelector('#loading').className = 'loaded';
 			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000);
 				document.querySelector('#loading').style.opacity = 0;
+				e.target.play();
 		}, 100);
 	
 	 /*     Taking this out, since autoplay gets out of sync with the player */	
