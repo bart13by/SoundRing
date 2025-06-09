@@ -105,16 +105,18 @@ function doLoaded(e){
 	setTimeout(() => { // outer timeout is to fade original loading screen
 		setTimeout(() => { 
 			document.querySelector('#loading').className = 'loaded';
-			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000);
-				document.querySelector('#loading').style.opacity = 0;
-				const playPromise = e.target.play();
+			const playPromise = e.target.play();
 				if (playPromise !== undefined) {
 					    playPromise.then(function() {
 						    	document.querySelector('#audioplayer-play').textContent = "Pause";
 				    // Automatic playback started!
 				    }).catch(function(error) {
-					    return;
+				    	console.log("autoplay prevented");
+					    // return;
 				    });
 					}
+			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000);
+				document.querySelector('#loading').style.opacity = 0;
+				
 		}, 100);
 }
