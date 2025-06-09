@@ -40,6 +40,7 @@ class AudioPlayer extends HTMLElement {
     
     this.scrubber.addEventListener('change', this.handleScrubberChange.bind(this));
     this.scrubber.addEventListener('input', this.handleScrubberInput.bind(this));
+    this.scrubber.addEventListener('click', this.handleScrubberClick.bind(this));
     
     this.volume.addEventListener('change', this.handleUIVolumeChange.bind(this));
     this.volume.addEventListener('input', this.handleUIVolumeInput.bind(this));
@@ -124,7 +125,19 @@ class AudioPlayer extends HTMLElement {
   handleScrubberChange(e) {
     this.audio.currentTime = e.target.value;
   }
-  
+  handleScrubberClick(e) {
+    // this is a shim to fix the "clouds stop rotating" bug.
+    if (!this.audio.paused)
+    {
+     // if audio is playing, we need to pause and restart
+     this.audio.pause();   
+     setTimeout(() => {
+       this.audio.play();
+     }, 1);
+      
+    }
+
+  }
   handleLoadedmetadata(e) {
     console.log('loadedmetadata');
     this.updateTimeElapsed();

@@ -55,9 +55,14 @@ function doPlay(e){
 	startApp();
 }
 
+var DELAY_PLAY = 0; // will use to fix timing issue in doSeeked
 function doSeeked(e){
-	// /* This is supposed to be called when seeking is over, but it gets called repeatedly while seeking  */
-
+  /* When audio scrubber is changed, sync the animations to the new audio time 
+   * Warning: called repeatedly while scrubber in use. 
+   */
+	clearTimeout(DELAY_PLAY);
+	DELAY_PLAY = 0;
+	// console.log(e);
 	document.querySelector('#svg-container').setCurrentTime(e.target.currentTime);
 	for (const css_anim of document.getAnimations())
 	{
@@ -67,7 +72,20 @@ function doSeeked(e){
 	if (e.target.currentTime < 1435){
 		document.querySelector('#chyron-container').style.opacity = 1;	
 	}
+	// Pause after seeking to fix the clouds.
+	// if (!e.target.paused)
+	// {
+	// 	console.log(`pre timeout id ${DELAY_PLAY}`);
+	// 	e.target.pause();		
+	// 	DELAY_PLAY = setTimeout(() => {
+	// 		console.log(`In timeout id ${DELAY_PLAY}`);
+	// 		e.target.play();
+	// 	}, 1);
+		
+	// }
 	
+	
+
 }
 function resetFirmament(e){
 	console.log("resetting");

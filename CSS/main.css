@@ -346,19 +346,17 @@ img.cloud {
 }
 .rotate img.cloud-base {
   transform-origin: center;
-  animation: turn 120s infinite linear;
+  animation: rotator 1440s infinite linear;
 }
 .rotate img.cloud-layer {
   transform-origin: center;
-  animation: turn 125s infinite linear;
+  animation: rotator 1200s infinite linear;
 }
-@keyframes turn {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+
+@keyframes rotator {
+	0% { transform: rotate(0); } 
+
+	100% { transform: rotate(4320deg); } /* 360º x 12 */
 }
 
 .fade-out img.cloud, img.fade-out {
