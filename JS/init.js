@@ -94,6 +94,11 @@ const PHENOMENA_TIMES_SECS = {
     1380: 'lightning',
     
 };
+const DARKEN_SKY_TIMES_DURATIONS_SECS = {
+    8: 2,
+    14: 3,
+    600: 4
+}
 
 /* Initialize in-memory structures to populate later */
 for (const season of ['winter', 'spring', 'summer', 'fall', 'Unknown']){

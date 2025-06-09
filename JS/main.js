@@ -63,6 +63,10 @@ function dispatchTimerEvents(){
 	if (PHENOMENA_TIMES_SECS[seconds] !== undefined) { 
 		doNightSkyPhenomena(PHENOMENA_TIMES_SECS[seconds]);
 	}
+	if (DARKEN_SKY_TIMES_DURATIONS_SECS[seconds] !== undefined) {
+		darkenSky(DARKEN_SKY_TIMES_DURATIONS_SECS[seconds]);
+
+	}
 	// shim for audiowave (chyron)
 	if (seconds == 1435) document.querySelector('#chyron-container').style.opacity = 0;
 	// update every drift_interval_seconds
@@ -203,6 +207,15 @@ function doNightSkyPhenomena(phenom){
 		phenom_img.style.opacity = 0;
 	}, duration * 1000);
 	
+}
+
+function darkenSky(duration){
+	const daylight = document.querySelector('#svg-daylight');
+	daylight.style.opacity = .80;
+	setTimeout(() => {
+		daylight.style.opacity = 1;
+	}, duration * 1000);
+
 }
 
 

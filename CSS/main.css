@@ -60,6 +60,7 @@ body {
 
 #svg-daylight {
 	animation: svg-bgcolors 1440s infinite;
+	transition: opacity 1s ease;
 	
 }
 
