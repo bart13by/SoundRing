@@ -107,21 +107,14 @@ function doLoaded(e){
 			document.querySelector('#loading').className = 'loaded';
 			}, (PROPERTIES.loadscreen_fade_seconds + PROPERTIES.load_pause_add_seconds) * 1000);
 				document.querySelector('#loading').style.opacity = 0;
-				e.target.play();
+				const playPromise = e.target.play();
+				if (playPromise !== undefined) {
+					    playPromise.then(function() {
+						    	document.querySelector('#audioplayer-play').textContent = "Pause";
+				    // Automatic playback started!
+				    }).catch(function(error) {
+					    return;
+				    });
+					}
 		}, 100);
-	
-	 /*     Taking this out, since autoplay gets out of sync with the player */	
-	// const playPromise = e.target.play();	
-	// if (playPromise !== undefined) {
-  //   playPromise.then(_ => {
-  //     // Automatic playback started!
-  //     document.querySelector('#audioplayer-play').click();
-  //     console.log("auto-play worked");
-      
-  //   })
-  //   .catch(NotAllowedError => {
-  //     // Auto-play was prevented
-  //     console.log("Auto-play prevented; stopping animations but starting app anyway");
-  //   });
-  // }
 }
