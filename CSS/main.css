@@ -67,7 +67,7 @@ body {
 
 @keyframes svg-bgcolors {
 0% {fill: rgba(214, 214, 232, 0.5)}
-3% {fill: rgba(214, 214, 232, 0.85)}
+2.5% {fill: rgba(214, 214, 232, 0.90)}
 8.3% {fill: rgba(214, 214, 232, 1.00)}
 16.6% {fill: rgba(214, 214, 232, 1.00)}
 25% {fill: rgba(206, 224, 243, 1.00)}
