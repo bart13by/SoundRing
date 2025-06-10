@@ -60,15 +60,16 @@ body {
 #wheel-group g { z-index: 5; }
 
 #svg-daylight {
-	animation: svg-bgcolors 1440s infinite;
+	animation: svg-bgcolors 1440s linear infinite;
 	transition: opacity var(--darken-fade-seconds) ease;
 	
 }
 
 @keyframes svg-bgcolors {
-0% {fill: rgba(214, 214, 232, 0.75)}
+0% {fill: rgba(214, 214, 232, 0.5)}
+3% {fill: rgba(214, 214, 232, 0.85)}
 8.3% {fill: rgba(214, 214, 232, 1.00)}
-16.6% {fill: rgba(214, 214, 232, 0.70)}
+16.6% {fill: rgba(214, 214, 232, 1.00)}
 25% {fill: rgba(206, 224, 243, 1.00)}
 34.3% {fill: rgba(206, 224, 243, 1.00)}
 42.6% {fill: rgba(254, 249, 229, 1.00)}
@@ -78,7 +79,7 @@ body {
 75% {fill: rgba(254, 249, 229, 1.00)}
 83.3% {fill: rgba(228, 241, 237, 1.00)}
 91.6% {fill: rgba(206, 224, 243, 1.00)}
-100% {fill: rgba(214, 214, 232, 1.00)}
+100% {fill: rgba(214, 214, 232, 0.75)}
 }
 @keyframes _svg-bgcolors {
 	0% {fill: #D6D6E8; } /* December */

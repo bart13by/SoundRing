@@ -102,8 +102,8 @@ const DARKEN_SKY_TIMES_DURATIONS_SECS = {
 }
 
 const DARKEN_SKY_TIMES_SECS = {
-    10 : { 'duration': 4, 'amount':.2},
-    18 : { 'duration': 5, 'amount':.3},
+    120 : { 'duration': 4, 'amount':.2},
+    180 : { 'duration': 5, 'amount':.3},
     600 : { 'duration': 3, 'amount':.25}
 }
 
