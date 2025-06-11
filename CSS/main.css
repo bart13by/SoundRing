@@ -86,13 +86,13 @@ body {
 @keyframes svg-bgcolors {
 	/* 100% / 12 == 8.3%; 100 / 24 == 4.17 (~one minute) */
 	0%    {fill: #D6D6E8; fill-opacity: 0.5} /* December */
-	1.2%  {fill-opacity: .85}
-	8.3%  {fill: #D6D6E8; fill-opacity: 1.0} /* January */
+	1.2%  {fill-opacity: .80}
+	8.3%  {fill: #D6D6E8; fill-opacity: .90} 
 	16.6% {fill: #D6D6E8; } /* February */
 	25%   { fill: #CEE0F3;} /* March */
 	34.3% { fill: #CEE0F3; } /* April*/
 	42.6% { fill: #FEF9E5; } /* May */
-	51%   { fill: #FEF9E5 } /* June */
+	51%   { fill: #FEF9E5; fill-opacity: 1 } /* June */
 	59.3% { fill: #FBE7D9 } /* July */
 	67.6% { fill: #FBE7D9 } /* August */
 	76%   { fill: #FEF9E5 } /* September */
