@@ -2,6 +2,7 @@
 
 
 :root {
+	--zero:0;
 	--disk-radius:6;
   --disk-width:12;
   --reset-fade-seconds: 3s;
@@ -65,36 +66,39 @@ body {
 	
 }
 
-@keyframes svg-bgcolors {
-0% {fill: rgba(214, 214, 232, 0.5)}
-2.5% {fill: rgba(214, 214, 232, 0.90)}
-8.3% {fill: rgba(214, 214, 232, 1.00)}
+@keyframes _svg-bgcolors {
+0%    {fill: rgb(214, 214, 232); fill-opacity: .5}
+
+2%    {fill-opacity: .9}
+8.3%  {fill: rgba(214, 214, 232, 1.00); fill-opacity: 1}
 16.6% {fill: rgba(214, 214, 232, 1.00)}
-25% {fill: rgba(206, 224, 243, 1.00)}
+25%   {fill: rgba(206, 224, 243, 1.00)}
 34.3% {fill: rgba(206, 224, 243, 1.00)}
 42.6% {fill: rgba(254, 249, 229, 1.00)}
-50% {fill: rgba(254, 249, 229, 1.00)}
+50%   {fill: rgba(254, 249, 229, 1.00)}
 58.3% {fill: rgba(251, 231, 217, 1.00)}
 66.6% {fill: rgba(251, 231, 217, 1.00)}
-75% {fill: rgba(254, 249, 229, 1.00)}
+75%   {fill: rgba(254, 249, 229, 1.00)}
 83.3% {fill: rgba(228, 241, 237, 1.00)}
 91.6% {fill: rgba(206, 224, 243, 1.00)}
-100% {fill: rgba(214, 214, 232, 0.75)}
+100%  {fill: rgba(214, 214, 232, 0.75)}
 }
-@keyframes _svg-bgcolors {
-	0% {fill: #D6D6E8; } /* December */
-	8.3% {fill: #D6D6E8; } /* January */
+@keyframes svg-bgcolors {
+	/* 100% / 12 == 8.3%; 100 / 24 == 4.17 (~one minute) */
+	0%    {fill: #D6D6E8; fill-opacity: 0.5} /* December */
+	1.2%  {fill-opacity: .85}
+	8.3%  {fill: #D6D6E8; fill-opacity: 1.0} /* January */
 	16.6% {fill: #D6D6E8; } /* February */
-	25% { fill: #CEE0F3;} /* March */
+	25%   { fill: #CEE0F3;} /* March */
 	34.3% { fill: #CEE0F3; } /* April*/
 	42.6% { fill: #FEF9E5; } /* May */
-	51% { fill: #FEF9E5 } /* June */
+	51%   { fill: #FEF9E5 } /* June */
 	59.3% { fill: #FBE7D9 } /* July */
 	67.6% { fill: #FBE7D9 } /* August */
-	76% { fill: #FEF9E5 } /* September */
+	76%   { fill: #FEF9E5 } /* September */
 	84.3% { fill: #E4F1ED } /* October */
 	92.6% { fill: #CEE0F3; } /* November */
-	100% { fill: #D6D6E8; } /* December */
+	100%  { fill: #D6D6E8; } /* December */
 }
 #firmament{
 	position: absolute;
