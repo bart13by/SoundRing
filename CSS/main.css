@@ -95,8 +95,8 @@ body {
 	25%   { fill: #CEE0F3;} /* March */
 	34.3% { fill: #CEE0F3; } /* April*/
 	42.6% { fill: #FEF9E5; } /* May */
-	47.128% { fill-opacity: 1 } /* 172nd day of year, solstice */
 	51%   { fill: #FEF9E5; } /* June */
+	57%   { fill-opacity: 1 } /* solstice */
 	59.3% { fill: #FBE7D9 } /* July */
 	67.6% { fill: #FBE7D9 } /* August */
 	76%   { fill: #FEF9E5 } /* September */
