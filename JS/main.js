@@ -108,8 +108,6 @@ function startApp(){ // called on audio.play event and on initial start up
 		// If setInterval has already been called, stop it running so we can restart
 		clearInterval(RUNTIME.interval_id);
 	}
-	// Check the initial time state and update -- only once -- as necessary 
-	dispatchTimerEvents();
 	
 	if (RUNTIME.audio_playing){ // necessary to prevent the app burning cycles before play or during pause
 		// start/restart the timer loop

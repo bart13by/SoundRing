@@ -23,6 +23,19 @@ body {
 	background-color: black;
 
 }
+/* stacking for the full firmament */
+
+#html-container { z-index: -1; }
+#firmament { z-index: 0; }
+#clouds { z-index: 1; }
+#play-bar { z-index: 3; }
+#chyron-container { z-index: 2; }
+.tooltip { z-index: 4 } 
+/* Below do not work. Need position: absolute or sim */
+#svg-container { z-index: -5; }
+#svg-daylight {z-index: 0; }
+#svg-darkness {z-index: 0; }
+#wheel-group g { z-index: 5; }
 #daylight {
 	position: absolute;
 	width: 100%;
@@ -46,19 +59,11 @@ body {
     height: var(--disk-width);
   }
 
-/* stacking for the full firmament */
 
-#html-container { z-index: -1; }
-#firmament { z-index: 0; }
-#clouds { z-index: 1; }
-#play-bar { z-index: 3; }
-#chyron-container { z-index: 2; }
-.tooltip { z-index: 4 } 
-/* Below do not work. Need position: absolute or sim */
-#svg-container { z-index: 5; }
-#svg-daylight {z-index: 0; }
-#svg-darkness {z-index: 0; }
-#wheel-group g { z-index: 5; }
+
+#svg-container {
+    position:absolute;
+  }
 
 #svg-daylight {
 	animation: svg-bgcolors 1440s linear infinite;
@@ -287,9 +292,8 @@ img.phenomena {
 	opacity: 0;
 	transition: opacity var(--preload-seconds) ease;	
 }
-#wg12 img{
-	opacity: 1;
-}
+
+
 @media (max-width: 850px) {
 	.weather-graph img {
 		

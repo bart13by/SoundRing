@@ -15,13 +15,6 @@
 
 </head>
 <body>
-<style>
-  #svg-container {
-    position:absolute;
-    z-index: -5;
-  }
-</style>
-
 
 	<svg id="svg-container" width="100%"  viewBox="0 0 100 100" 
        preserveAspectRatio="xMidYMid slice"
@@ -37,6 +30,7 @@
 
 <g id="wheel-group"  width="var(--disk-width)" height="var(--disk-width)"
   transform="translate(-6,-6) rotate(76, 6, 6)">
+    <!-- var() doesn't work in the tranform props, so stop trying! -->
     <image id="seasons-wheel"  xlink:href="SVG/Underlay.svg" >
             <animateTransform id="rotation" attributeName="transform" attributeType="XML" type="rotate" 
             from="0 6 6" to="-360 6 6" dur="24min" repeatCount="0" fill="freeze"
@@ -73,88 +67,87 @@
 
   <div id="firmament">
 
-  <div id="clouds" class="rotate">
-    <div id="nimbus-group" class="cloud-group">
-      <img src="Images/Nimbus.png" class="cloud cloud-base" />
-      <img src="Images/Nimbus_Mist.png" class="cloud cloud-layer" />
+    <div id="clouds" class="rotate">
+      <div id="nimbus-group" class="cloud-group">
+        <img src="Images/Nimbus.png" class="cloud cloud-base" />
+        <img src="Images/Nimbus_Mist.png" class="cloud cloud-layer" />
+      </div>
+      <div id="cirrus-group" class="cloud-group">
+        <img src="Images/Cirrus.png" class="cloud cloud-base" />
+        <img src="Images/Cirrus_Mist.png" class="cloud cloud-layer" />
+      </div>
+      <div id="cumulus-group" class="cloud-group">
+        <img src="Images/Cumulus.png" class="cloud cloud-base" />
+      </div>
+      <div id="stratus-group" class="cloud-group">
+        <img src="Images/Stratus.png" class="cloud cloud-base" />
+        <img src="Images/Stratus_Mist.png" class="cloud cloud-layer" />
+      </div>
     </div>
-    <div id="cirrus-group" class="cloud-group">
-      <img src="Images/Cirrus.png" class="cloud cloud-base" />
-      <img src="Images/Cirrus_Mist.png" class="cloud cloud-layer" />
+
+<!-- Custom media player (thank you Brent Lineberry!) -->
+    <div id="play-bar">
+    <audio-player>
+      <audio id="audio" 
+        src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
+        onseeked="doSeeked(event)"
+        onplay="doPlay(event)"
+        onpause="doPause(event)"
+        oncanplaythrough="doLoaded(event)"
+        onended="resetFirmament(event)"
+        ></audio>
+    </audio-player>
     </div>
-    <div id="cumulus-group" class="cloud-group">
-      <img src="Images/Cumulus.png" class="cloud cloud-base" />
-    </div>
-    <div id="stratus-group" class="cloud-group">
-      <img src="Images/Stratus.png" class="cloud cloud-base" />
-      <img src="Images/Stratus_Mist.png" class="cloud cloud-layer" />
-    </div>
+
+  <!--  Spectrogram (audio visualization) -->
+  <div id="chyron-container">
+          <div id="chyron">
+              <img src="Images/spectrogram.png" alt="Audio Spectrogram">
+          </div>
   </div>
 
+<!-- Precipitation graphs -->
 
-<div id="play-bar">
-<audio-player>
-  <audio id="audio" 
-    src="https://dickinsonsbirds.org/Year_V2_1864_Soundscape.mp3"
-    
-    onseeked="doSeeked(event)"
-    onplay="doPlay(event)"
-    onpause="doPause(event)"
-    oncanplaythrough="doLoaded(event)"
-    onended="resetFirmament(event)"
-    ></audio>
-</audio-player>
+  <div id="weather-graphs-container">    
+    <div class="weather-graph" id="wg12">
+      <img src="Images/wg_Dec.png" />
+    </div>
+    <div class="weather-graph" id="wg1">
+      <img src="Images/wg_Jan.png" />
+    </div>
+    <div class="weather-graph" id="wg2">
+      <img src="Images/wg_Feb.png" />
+    </div>
+    <div class="weather-graph" id="wg3">
+      <img src="Images/wg_Mar.png" />
+    </div>
+  <div class="weather-graph" id="wg4">
+      <img src="Images/wg_Apr.png" />
+    </div>
+    <div class="weather-graph" id="wg5">
+      <img src="Images/wg_May.png" />
+    </div>
+    <div class="weather-graph" id="wg6">
+      <img src="Images/wg_Jun.png" />
+    </div>
+    <div class="weather-graph" id="wg7">
+      <img src="Images/wg_Jul.png" />
+    </div>
+    <div class="weather-graph" id="wg8">
+      <img src="Images/wg_Aug.png" />
+    </div>
+    <div class="weather-graph" id="wg9">
+      <img src="Images/wg_Sep.png" />
+    </div>
+    <div class="weather-graph" id="wg10">
+      <img src="Images/wg_Oct.png" />
+    </div>
+    <div class="weather-graph" id="wg11">
+      <img src="Images/wg_Dec.png" />
+    </div>
 </div>
 
-<!--  Spectrogram (pins) -->
-<div id="chyron-container">
-        <div id="chyron">
-            <img src="Images/spectrogram.png" alt="Audio Spectrogram">
-        </div>
-</div>
-
-<!-- Precip graphs -->
-
-<div id="weather-graphs-container">
-  
-  <div class="weather-graph" id="wg12">
-    <img src="Images/wg_Dec.png" />
-  </div>
-  <div class="weather-graph" id="wg1">
-    <img src="Images/wg_Jan.png" />
-  </div>
-  <div class="weather-graph" id="wg2">
-    <img src="Images/wg_Feb.png" />
-  </div>
-  <div class="weather-graph" id="wg3">
-    <img src="Images/wg_Mar.png" />
-  </div>
-<div class="weather-graph" id="wg4">
-    <img src="Images/wg_Apr.png" />
-  </div>
-  <div class="weather-graph" id="wg5">
-    <img src="Images/wg_May.png" />
-  </div>
-  <div class="weather-graph" id="wg6">
-    <img src="Images/wg_Jun.png" />
-  </div>
-  <div class="weather-graph" id="wg7">
-    <img src="Images/wg_Jul.png" />
-  </div>
-  <div class="weather-graph" id="wg8">
-    <img src="Images/wg_Aug.png" />
-  </div>
-  <div class="weather-graph" id="wg9">
-    <img src="Images/wg_Sep.png" />
-  </div>
-  <div class="weather-graph" id="wg10">
-    <img src="Images/wg_Oct.png" />
-  </div>
-  <div class="weather-graph" id="wg11">
-    <img src="Images/wg_Dec.png" />
-  </div>
-</div>
-
+<!-- Template for the custom mediaplayer -->
 <template id="audio-player">
   <script>
         function showHide(qs){
@@ -170,7 +163,6 @@
       </script>
       
   <div id="audioplayer">
-    
     <div id="audioplayer-controls">
       <button id="audioplayer-play">Play</button>
       <div id="audioplayer-time">
@@ -197,44 +189,40 @@
   </div>
 </template>
 
-  <!-- ##############  MENU POPUP HERE ############# -->
-
+  <!-- Show/hide menu -->
   <div id="menu-container" class="hide" >
-    <span class="close-notes close-menu" onclick="showHide('#menu-container')">
-      <img src="Images/x.png" />
-    </span>
-    <div class="menu-title">Visible Layers</div>
-    <div class="menu-content">      
-    <div>
-      <input type="checkbox" id="show-poems" name="poems" checked onchange="toggleLayer(event)"/>
-      <label for="show-poems">Poems</label>
+      <span class="close-notes close-menu" onclick="showHide('#menu-container')">
+        <img src="Images/x.png" />
+      </span>
+      <div class="menu-title">Visible Layers</div>
+      <div class="menu-content">      
+        <div>
+          <input type="checkbox" id="show-poems" name="poems" checked onchange="toggleLayer(event)"/>
+          <label for="show-poems">Poems</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="show-birds" name="birds" checked onchange="toggleLayer(event)"/>
+          <label for="show-birds">Birds</label>
+        </div>
+        <div>
+            <input type="checkbox" id="show-climograph" name="climograph" checked onchange="toggleLayer(event)" />
+            <label for="show-spectrogram">Climograph</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="show-spectrogram" name="spectrogram" checked onchange="toggleLayer(event)" />
+          <label for="show-spectrogram">Soundscape Waveform</label>
+        </div>
+      
+        <div>
+          <input type="checkbox" id="show-phenomena" name="phenomena" checked onchange="toggleLayer(event)"/>
+          <label for="show-phenomena">Night Sky Phenomena</label>
+        </div>
     </div>
+  </div>
 
-    <div>
-      <input type="checkbox" id="show-birds" name="birds" checked onchange="toggleLayer(event)"/>
-      <label for="show-birds">Birds</label>
-    </div>
-    <div>
-        <input type="checkbox" id="show-climograph" name="climograph" checked onchange="toggleLayer(event)" />
-        <label for="show-spectrogram">Climograph</label>
-    </div>
-
-    <div>
-      <input type="checkbox" id="show-spectrogram" name="spectrogram" checked onchange="toggleLayer(event)" />
-      <label for="show-spectrogram">Soundscape Waveform</label>
-    </div>
-  
-    <div>
-      <input type="checkbox" id="show-phenomena" name="phenomena" checked onchange="toggleLayer(event)"/>
-      <label for="show-phenomena">Night Sky Phenomena</label>
-    </div>
-
-</div>
-
-</div>
-
-
-
+<!-- Night sky phenomena -->
 <div id="phenomena">
   <div id="aurora">
     <img class="phenomena" src="Images/aurora_borealis_c.png" />
@@ -250,7 +238,7 @@
 </div>
 <!-- key and liner notes containers/iframes -->
 
-<!-- Key and Atlas need to be tabs -->
+<!-- Key and Atlas need to be tabs: see https://www.youtube.com/watch?v=oLqdy95LZSw -->
 <div id="key-container" class="hide">
   <span class="close-notes close-key" onclick="showHide('#key-container')">
     <img src="Images/x.png" />
@@ -277,11 +265,7 @@
 </div>
 
 
-
-<!-- // liner notes -->
-
-
-<!---- Birds and Poem MSS follow -->
+<!---- Birds and Poem MSS placed below -->
 <div id="dynamically-placed-items">
   <div id="daylight"></div>  
   <div id="darkness"></div>  
@@ -291,11 +275,7 @@
 
 <script src="JS/audioplayer.js"></script>
 <script defer>
-  window.onload = () => {
-    // pauseAllAnimations(); 
-    runFirmament();  
-  }
-	
+  window.onload = runFirmament();
 </script>
 </body>
 
