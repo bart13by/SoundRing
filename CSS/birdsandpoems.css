@@ -1,5 +1,9 @@
 /* birdsandpoems.css */
 
+:root {
+	--drift-x-vw: 5vw;
+	--drift-y-vh: -3vh;
+}
 /* handle hide/show for birds and poems*/
 .hidden {
 	display: none;
@@ -16,7 +20,7 @@
 
 /* applied with animation and timeout to create drift effect on birds */
 .drift {
-	transform: translate(3vw, -2vh);
+	transform: translate(var(--drift-x-vw), var(--drift-y-vh));
 }
 
 /* Rules for bird appearance and size */

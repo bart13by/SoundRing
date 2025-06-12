@@ -13,7 +13,7 @@ const runFirmament = () => {
 	} catch (error) {
 		/* Make sure init.js has loaded */
 		console.error(error);
-		console.error("init.js may not be loaded!");
+		console.error("init.js may not be loaded! Exiting");
 		return;
 	}
 
@@ -140,7 +140,7 @@ function doDrift(){
 	/* Manage the "drift" of visible birds in the DOM; called every three seconds */
 	
 	// Get birds with "showing" class AND all resident birds (which are always showing)
-	const currentlyVisibleBirds = Array.from(document.querySelectorAll("#birds .showing, .residence-Resident"));
+	const currentlyVisibleBirds = Array.from(document.querySelectorAll(".bird-data.showing, .residence-Resident"));
 	if (currentlyVisibleBirds.length == 0) return;
 
 	// Randomly select a few birds to start drifting
