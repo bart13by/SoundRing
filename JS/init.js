@@ -33,7 +33,7 @@ const PROPERTIES = {
     darken_fade_seconds: parseInt(getCSSProperty('--darken-fade-seconds')),
     load_pause_add_seconds: .5,
     drift_interval_seconds: 3,
-    drift_birds_per_drift: 3,
+    drift_birds_per_drift: 8,
     drift_fwd_period_seconds: 5,
     drift_back_period_seconds: 5.5,
     drift_start_wait_seconds: 4,
