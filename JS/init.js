@@ -108,7 +108,39 @@ const DARKEN_SKY_TIMES_SECS = {
     72 : { 'duration': 3, 'amount':d2},
     80 : { 'duration': 3, 'amount':d2},
    109 : { 'duration': 1, 'amount':d1}, 
-   116 : { 'duration': 3, 'amount':d1},
+   116 : { 'duration': 3, 'amount':d1}, 
+   120 : { 'duration': 3, 'amount':d1}, //Jan 1
+   136 : { 'duration': 3, 'amount':d1}, 
+   176 : { 'duration': 3, 'amount':d1}, 
+   192 : { 'duration': 3, 'amount':d2},
+   240 : { 'duration': 3, 'amount':d2}, //Feb 1
+   300 : { 'duration': 3, 'amount':d1}, 
+   333 : { 'duration': 1, 'amount':d1},  
+   340 : { 'duration': 2, 'amount':d1}, 
+   360 : { 'duration': 3, 'amount':d1}, //March 1
+   382 : { 'duration': 1, 'amount':d1}, 
+   400 : { 'duration': 3, 'amount':d1}, 
+   410 : { 'duration': 1, 'amount':d1}, 
+   468 : { 'duration': 3, 'amount':d2},
+   472 : { 'duration': 3, 'amount':d2},  
+   475 : { 'duration': 3, 'amount':d1},
+   480 : { 'duration': 3, 'amount':d1}, //April 1
+   484 : { 'duration': 3, 'amount':d1}, 
+   516 : { 'duration': 3, 'amount':d2}, 
+   520 : { 'duration': 3, 'amount':d1}, 
+   524 : { 'duration': 3, 'amount':d1}, 
+   568 : { 'duration': 3, 'amount':d1}, 
+   580 : { 'duration': 3, 'amount':d1}, 
+   588 : { 'duration': 3, 'amount':d1}, 
+   600 : { 'duration': 3, 'amount':d1}, //May 1
+   608 : { 'duration': 3, 'amount':d1}, 
+   628 : { 'duration': 3, 'amount':d2},
+   650 : { 'duration': 13, 'amount':d1},  // multiple days
+   664 : { 'duration': 3, 'amount':d2}, 
+   680 : { 'duration': 3, 'amount':d1}, 
+   692 : { 'duration': 3, 'amount':d1}, 
+   704 : { 'duration': 3, 'amount':d1}, 
+
 }
 
 /* Initialize in-memory structures to populate later */
