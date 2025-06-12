@@ -1,5 +1,6 @@
 // events.js
 
+
 function toggleLayer(e){
 	const containerIds = {
 		'show-spectrogram': '#chyron-container',

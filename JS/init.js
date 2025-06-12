@@ -79,6 +79,8 @@ const SEASONS = {
     11: "fall",
     12: "winter"
 };
+
+
 const PHENOMENA_DURATIONS_SECS = {
     'aurora': 2,
     'auroralarc' : 1,
@@ -95,16 +97,18 @@ const PHENOMENA_TIMES_SECS = {
     1380: 'lightning',
     
 };
-const DARKEN_SKY_TIMES_DURATIONS_SECS = {
-    8: 2,
-    14: 3,
-    600: 4
-}
-
+const d1 = .2;
+const d2 = .35;
 const DARKEN_SKY_TIMES_SECS = {
-    120 : { 'duration': 4, 'amount':.2},
-    180 : { 'duration': 5, 'amount':.3},
-    600 : { 'duration': 3, 'amount':.25}
+    8  : { 'duration': 3, 'amount':d1},
+    25 : { 'duration': 1, 'amount':d1},
+    36 : { 'duration': 6, 'amount':d1},
+    40 : { 'duration': 3, 'amount':d1},
+    52 : { 'duration': 1, 'amount':d1},
+    72 : { 'duration': 3, 'amount':d2},
+    80 : { 'duration': 3, 'amount':d2},
+   109 : { 'duration': 1, 'amount':d1}, 
+   116 : { 'duration': 3, 'amount':d1},
 }
 
 /* Initialize in-memory structures to populate later */

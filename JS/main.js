@@ -1,8 +1,23 @@
 //main.js
 // see init.js for startup stuff
+
+
+
 /* Kick-off all processes -- called from HTML on load event */
 const runFirmament = () => {
-	console.log(`started`);
+	console.log(`starting`);
+	try 
+	{
+		if (PROPERTIES) 1;
+		
+	} catch (error) {
+		/* Make sure init.js has loaded */
+		console.error(error);
+		console.error("init.js may not be loaded!");
+		return;
+	}
+
+	
 	if (RUNTIME.app_started) return; // bail out if we were already started
 	RUNTIME.app_started = true;
 	/* Async method parses the JSON data and populates the in-memory structures */
@@ -19,10 +34,7 @@ const runFirmament = () => {
 				daylight.appendChild(getBirdById(id).asDOM.firstElementChild);
 			}
 
-			/*  ++++++ set daylight or darkness as property on bird; use two divs  +++++  */
-			// const poemDayDiv = document.querySelector('#day');
 			
-
 			for (const frId of getAllPoemIds()){
 				const poemObj = getPoemById(frId);
 				if (poemObj.darkness == "darkness"){
@@ -220,7 +232,6 @@ function darkenSky(parms){
 
 function doDeparting(monthIndex){
 	/* Called when elapsedTime for monthIndex is 105 seconds (1:45) */	
-	console.log("doDeparting");
 	// get the list of birds departing this month
 	const departingBirdIds = getMigrantBirdIdsByMonthAndStatus(monthIndex, "departing");
 	for (const id of departingBirdIds){
@@ -241,7 +252,7 @@ function doDeparting(monthIndex){
 	
 }
 function setEdgeProperties(){
-
+	/* Objects placed to close to edges need to be adjusted */
 	const allVisibleObjects = Array.from(document.querySelectorAll(".showing, .residence-Resident"));
 	for (const domObj of allVisibleObjects){
 		const edgeClass = getPositionClassPerEdge(domObj);
@@ -352,19 +363,7 @@ function getSizeForMass(mass){
 	if (11800 <= mass) return 'XL';
 	return undefined;
 }
-function getRandomFloat(min, max, places=4) {
-	/* Returns a random float (to places places) in range min:max */
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return parseFloat(Math.random() * (maxFloored - minCeiled + 1) + minCeiled).toFixed(places); 
-}
-const getRandom = getRandomFloat;
-function getRandomInteger(min, max) {
-	/* Returns a random integer in range min:max */
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
-}
+
 function getPositionClassPerEdge(domObj){
 	/* 
 	 * Determine how close the domObj is to the edge and return the correct classname
@@ -433,8 +432,25 @@ function getRandomPlacementValues(position){
 	}
 	return ret;
 }
+/* helper for random numbers; alias old names to new */
+const getRandom = getRandomNumber;
+const getRandomFloat = getRandomNumber;
+function getRandomInteger(min, max){ return getRandomNumber(min, max, 0, false); }
 
-/* Utility accessor methods for in-memory data structures 
+function getRandomNumber(min, max, precision=4, float=true ) {
+	const minCeiled = Math.ceil(min);
+	const maxFloored = Math.floor(max);
+	if (float)
+	{
+		return parseFloat(Math.random() * (maxFloored - minCeiled + 1) + minCeiled).toFixed(precision); 	
+	}
+	return parseInt(Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled));	
+}
+
+
+
+/* 
+ * Utility accessor methods for in-memory data structures 
  * (some of these are probably not needed and can be removed at some point.)
  */
 
@@ -589,7 +605,7 @@ class Poem extends FirmamentObject {
 
 /* Called at start-up parse JSON and load in-memory data structures. */
 async function populateDataFromJSON(){
-	console.log("populateDataFromJSON");
+	console.log("populating Data");
 	try {
 		const poemJson = JSON.parse(JSONPOEMDATA);
 		for (const poemRecord of poemJson){
