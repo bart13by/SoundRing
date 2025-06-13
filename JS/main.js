@@ -221,10 +221,15 @@ function doNightSkyPhenomena(phenom){
 }
 
 function darkenSky(parms){
-	const daylight = document.querySelector('#svg-daylight');
-	daylight.style.opacity = (1 - parms.amount);
+	/* remove inner/outer if we don't want */
+	const outer = document.querySelector('#svg-daylight');
+	const inner = document.querySelector('#svg-arc');
+	outer.style.opacity = (1 - parms.amount);
+	inner.style.opacity = 0;
+
 	setTimeout(() => {
-		daylight.style.opacity = 1;
+		outer.style.opacity = 1;
+		inner.style.opacity = 1;
 	}, parms.duration * 1000);
 
 }

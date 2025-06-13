@@ -66,42 +66,43 @@ body {
   }
 
 #svg-daylight {
-	animation: svg-bgcolors 1440s linear infinite;
+	animation: _svg-bgcolors 1440s linear infinite;
 	transition: opacity var(--darken-fade-seconds) ease;
 	
 }
+#svg-arc {
+	animation: svg-bgcolors 1440s linear infinite;
+	transition: opacity var(--darken-fade-seconds) ease;
+}
 
-@keyframes svg-bgcolors {
-0% {fill:  rgb(210.255,210.255,227.940)}
-8.3% {fill:  rgb(209.453,209.453,227.070)}
-16.6% {fill:  rgb(214.000,214.000,232.000)}
-25% {fill:  rgb(212.438,231.000,250.594)}
-34.3% {fill:  rgb(220.077,239.307,259.605)}
-42.6% {fill:  rgb(279.929,274.419,252.377)}
-50% {fill:  rgb(286.279,280.644,258.102)}
-58.3% {fill:  rgb(283.735,261.126,245.300)}
-66.6% {fill:  rgb(278.819,256.603,241.051)}
-75% {fill:  rgb(273.897,268.505,246.938)}
-83.3% {fill:  rgb(237.785,251.343,247.171)}
-91.6% {fill:  rgb(207.631,225.773,244.924)}
-100% {fill:  rgb(210.255,210.255,227.940)}
-
+@keyframes _svg-bgcolors {
+0% {fill:  rgb(203.567,203.567,220.690)}
+8.3% {fill:  rgb(202.765,202.765,219.820)}
+16.6% {fill:  rgb(207.313,207.313,224.750)}
+25% {fill:  rgb(206.000,224.000,243.000)}
+34.3% {fill:  rgb(213.639,232.307,252.011)}
+42.6% {fill:  rgb(271.992,266.637,245.221)}
+50% {fill:  rgb(278.342,272.863,250.946)}
+58.3% {fill:  rgb(275.891,253.907,238.519)}
+66.6% {fill:  rgb(270.975,249.384,234.270)}
+75% {fill:  rgb(265.959,260.724,239.782)}
+83.3% {fill:  rgb(230.660,243.812,239.765)}
+91.6% {fill:  rgb(201.193,218.773,237.330)}
+100% {fill:  rgb(203.567,203.567,220.690)}
 
 }
-@keyframes _svg-bgcolors {
+@keyframes svg-bgcolors {
 	/* 100% / 12 == 8.3%; 100 / 24 == 4.17 (~one minute; ~15 days) 
 	 * 100/365 2.74% ~ one day of year
 	 */
 
-	0%    {fill: #D6D6E8; fill-opacity: 0.5} /* December */
-	1.2%  {fill-opacity: .75}
-	8.3%  {fill: #D6D6E8; fill-opacity: .85} 
+	0%    {fill: #D6D6E8;} /* December */
+	8.3%  {fill: #D6D6E8;} 
 	16.6% {fill: #D6D6E8; } /* February */
 	25%   { fill: #CEE0F3;} /* March */
 	34.3% { fill: #CEE0F3; } /* April*/
 	42.6% { fill: #FEF9E5; } /* May */
 	51%   { fill: #FEF9E5; } /* June */
-	57%   { fill-opacity: 1 } /* solstice */
 	59.3% { fill: #FBE7D9 } /* July */
 	67.6% { fill: #FBE7D9 } /* August */
 	76%   { fill: #FEF9E5 } /* September */
