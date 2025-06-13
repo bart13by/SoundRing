@@ -224,9 +224,8 @@ function darkenSky(parms){
 	/* remove inner/outer if we don't want */
 	const outer = document.querySelector('#svg-daylight');
 	const inner = document.querySelector('#svg-arc');
-	outer.style.opacity = (1 - parms.amount);
 	inner.style.opacity = 0;
-
+	outer.style.opacity = (1 - parms.amount);
 	setTimeout(() => {
 		outer.style.opacity = 1;
 		inner.style.opacity = 1;
