@@ -150,7 +150,7 @@ function doDrift(){
 		// if this fella is already drifting, just leave him alone
 		if (driftBird.classList.contains("drift")) return;
 		// FWD Drift is a style transition
-		driftBird.style.transition = `transform ${PROPERTIES.drift_fwd_period_seconds}s linear`;
+		driftBird.style.transition = `transform ${PROPERTIES.drift_fwd_period_seconds}s ease`;
 		// outer timer is waits random interval up to drift_start_wait_seconds
 		setTimeout(() => {
 				driftBird.classList.add("drift"); // adding "drift" class initiates transform
