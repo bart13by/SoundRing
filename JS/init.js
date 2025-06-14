@@ -34,9 +34,9 @@ const PROPERTIES = {
     load_pause_add_seconds: .5,
     drift_interval_seconds: 3,
     drift_birds_per_drift: 8,
-    drift_fwd_period_seconds: 5.5,
-    drift_back_period_seconds: 7,
-    drift_start_wait_seconds: 4,
+    drift_fwd_period_seconds: 6,
+    drift_back_period_seconds: 8,
+    drift_start_wait_seconds: 5,
     month_duration_seconds: 120,
     depart_start_seconds: 105
 

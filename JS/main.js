@@ -155,7 +155,12 @@ function doDrift(){
 		setTimeout(() => {
 				driftBird.classList.add("drift"); // adding "drift" class initiates transform
 				// inner timeout initiates return to original position by removing drift class
-				setTimeout(() => {driftBird.classList.remove("drift")}, PROPERTIES.drift_back_period_seconds * 1000);
+				setTimeout(() => {
+					driftBird.style.transition = `transform ${PROPERTIES.drift_back_period_seconds}s ease-out`;
+					driftBird.classList.remove("drift");
+					
+				}, Math.random() * (PROPERTIES.drift_start_wait_seconds * 2 * 1000));
+
 			}, Math.random() * (PROPERTIES.drift_start_wait_seconds * 1000));	
 	}
 	

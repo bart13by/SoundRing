@@ -2,7 +2,7 @@
 
 :root {
 	--drift-x-vw: 5vw;
-	--drift-y-vh: -3vh;
+	--drift-y-vh: -2.5vh;
 }
 /* handle hide/show for birds and poems*/
 .hidden {
