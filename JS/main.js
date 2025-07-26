@@ -56,12 +56,14 @@ const runFirmament = () => {
 	});
 }
 /************** DISPATCH TIMER EVENTS ************/
-function dispatchTimerEvents(){
+function dispatchTimerEvents(event){
+
 	/* Called every second and on any time change; manages all the timer-based actions
 	 * This is really where all the magic happens.
 	 */
 	
-	const actualTime = getCurrentTime();
+	// const actualTime = getCurrentTime();
+	const actualTime = event.target.currentTime;
 	const seconds = Math.floor(actualTime);
 	// we start the month early for the sake of arrive/depart and graph change
 	const shiftedTime = actualTime + PROPERTIES.preload_seconds; 
@@ -75,7 +77,7 @@ function dispatchTimerEvents(){
 	if (PHENOMENA_TIMES_SECS[seconds] !== undefined) { 
 		doNightSkyPhenomena(PHENOMENA_TIMES_SECS[seconds]);
 	}
-	const darkenProps = DARKEN_SKY_TIMES_SECS[seconds + PROPERTIES.darken_fade_seconds];
+	const darkenProps = DARKEN_SKY_TIMES_SECS[seconds - PROPERTIES.darken_fade_seconds];
 	if (darkenProps !== undefined) {
 		darkenSky(darkenProps);
 
@@ -113,7 +115,8 @@ function dispatchTimerEvents(){
 	} 
 }
 
-function startApp(){ // called on audio.play event and on initial start up
+function startApp() {return 1;}
+function __startApp(){ // called on audio.play event and on initial start up
 	console.log(`startApp; interval_id == ${RUNTIME.interval_id}`);
 	// RUNTIME.app_started = true;
 	if (RUNTIME.interval_id > 0){
