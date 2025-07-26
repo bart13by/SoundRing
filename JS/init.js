@@ -131,11 +131,11 @@ const DARKEN_SKY_TIMES_SECS = {
   410:  { duration: 1, amount: d1 },  // 
   420:  { duration: 10, amount: d1 }, // corrected from 7:80–7:10 → 7:00–7:10
   //457:  { duration: 9, amount: d1 },  // 7:37–7:46 (flickering)
-  457:  { duration: 1.5, amount: d1 },  // 7:37–7:46 (flickering)
-  459:  { duration: 1.5, amount: d1 },  // 7:37–7:46 (flickering)
-  461:  { duration: 1.5, amount: d1 },  // 7:37–7:46 (flickering)
-  463:  { duration: 1.5, amount: d1 },  // 7:37–7:46 (flickering)
-  465:  { duration: 1.5, amount: d1 },  // 7:37–7:46 (flickering)
+  457:  { duration: 1, amount: d1 },  // 7:37–7:46 (flickering)
+  459:  { duration: 1, amount: d1 },  // 7:37–7:46 (flickering)
+  461:  { duration: 1, amount: d1 },  // 7:37–7:46 (flickering)
+  463:  { duration: 1, amount: d1 },  // 7:37–7:46 (flickering)
+  465:  { duration: 1, amount: d1 },  // 7:37–7:46 (flickering)
   468:  { duration: 3, amount: d2 },  // 
   472:  { duration: 3, amount: d2 },  // 
   475:  { duration: 3, amount: d1 },  // 
